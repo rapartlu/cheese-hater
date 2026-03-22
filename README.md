@@ -49,68 +49,115 @@ People swirl wine and discuss "notes of oak." People eat brie and discuss "the t
 
 ## Features
 
-This agent offers a full suite of cheese-hating capabilities:
-
-| Feature | Description |
-|---|---|
-| **Express API** | Ask about any cheese, get a scathing response. POST a name, receive devastation. |
-| **CLI Tool** | `cheese-hater rate <cheese>` — instant contempt on demand from your terminal. |
-| **Cheese Rating System** | Every cheese scored across smell, texture, taste, and cultural damage. Scores are always terrible. |
-| **Counter-Argument Database** | Every pro-cheese argument pre-loaded with a decisive, sourced rebuttal. |
-| **Cheese Facts Database** | 50+ damning facts about what cheese actually is and how it's made. |
-| **Escalating Defender Handling** | 5 levels of response for cheese defenders, from gentle correction to total rhetorical annihilation. |
+| Feature | Status | Description |
+|---|---|---|
+| **Express API** | ✅ Live | 8 endpoints. POST a cheese name, receive devastation. |
+| **Cheese Rating System** | ✅ Live | 20 cheeses rated. Highest score: 1.5/10. No cheese has passed. |
+| **Counter-Argument Database** | ✅ Live | 22 pro-cheese arguments, each with a sourced, decisive rebuttal. |
+| **Cheese Facts Database** | ✅ Live | 55 damning facts across 4 categories. 10 rated severity-5. |
+| **CLI Tool** | 🔜 Planned | `cheese-hater rate <cheese>` — contempt on demand from your terminal. |
+| **Vitest Test Suite** | ✅ Live | 45 tests enforcing cheese hatred at every level. |
 
 ---
 
 ## Usage Examples
 
-### API
+### Start the API
+
 ```bash
-# Get a rating for a specific cheese
-curl -X POST http://localhost:3000/rate \
+npm install
+npm start
+# cheese-hater API running on port 3000
+# I hate cheese. This server exists to say so.
+```
+
+### API Endpoints
+
+```bash
+# Get a scathing opinion on any cheese
+curl -X POST http://localhost:3000/opinion \
   -H "Content-Type: application/json" \
   -d '{"cheese": "brie"}'
-
-# Response:
 # {
 #   "cheese": "brie",
 #   "score": "0.4/10",
 #   "verdict": "REVOLTING",
-#   "review": "Soft, pale, and smells like something that crawled out of a wall. The rind
-#              is edible mold, which tells you everything you need to know about the people
-#              who invented this. Do not eat this. Do not go near this."
+#   "opinion": "Soft, pale, and smells like something that should not exist. The rind is
+#               edible mold, which tells you everything you need to know about the people
+#               who invented this. Do not eat this. Do not go near this."
+# }
+
+# Rate a cheese with full review
+curl http://localhost:3000/rate/parmesan
+# {
+#   "cheese": "parmesan",
+#   "score": 0.6,
+#   "score_display": "0.6/10",
+#   "verdict": "CONDEMNED",
+#   "review": "The gym locker of cheeses. Contains butyric acid — the same compound found
+#              in vomit. People put this on pasta and call it dinner. The audacity."
 # }
 
 # Destroy a pro-cheese argument
 curl "http://localhost:3000/counter/cheese%20has%20protein"
-
-# Response:
 # {
 #   "argument": "cheese has protein",
-#   "rebuttal": "So does chicken. So does lentils. So does literally any food that hasn't
-#                been deliberately fermented into a smell weapon. 'It has protein' is the
-#                weakest possible defense of cheese and the fact that this is what cheese
-#                advocates lead with tells you everything."
+#   "rebuttal": "So does chicken. So do lentils, eggs, beans, tofu, and literally any
+#                food that hasn't been deliberately fermented into a smell weapon...",
+#   "verdict": "Argument dismissed."
 # }
+
+# Get a random passionate anti-cheese rant
+curl http://localhost:3000/random-rant
+# {
+#   "rant": "Parmesan smells like vomit because it contains butyric acid — the same
+#            chemical compound produced by human vomit. This is chemistry, not metaphor.
+#            Restaurants shave it onto expensive food as a finishing touch.",
+#   "note": "Every rant is true. Every rant is sourced. Cheese is indefensible."
+# }
+
+# Get a random damning fact (filter by category or severity)
+curl "http://localhost:3000/facts?category=industry-secrets&severity=5"
+# {
+#   "fact": "Domino's Pizza worked with the USDA's dairy promotion board to add more
+#            cheese to their menu items. The USDA simultaneously recommends reducing
+#            saturated fat intake.",
+#   "category": "industry-secrets",
+#   "severity": 5,
+#   "severity_label": "Catastrophically damning"
+# }
+
+# List all 20 rated cheeses
+curl http://localhost:3000/rate
+# { "total": 20, "cheeses": [...], "note": "No cheese has ever passed." }
 ```
 
-### CLI
-```bash
-$ cheese-hater rate parmesan
-🚫 PARMESAN — Score: 1.1/10 — CONDEMNED
-   "The gym locker of cheeses. Contains butyric acid — the same compound found in vomit.
-    People put this on pasta and call it dinner. The audacity."
+### Available Endpoints
 
-$ cheese-hater rant
-   "Blue cheese is a choice. Not a flavor choice — a moral one. At some point, someone
-    saw mold growing on dairy and decided to make more of that happen on purpose. We
-    have never recovered."
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/` | API manifest |
+| `GET` | `/health` | `hatesCheese: true` |
+| `POST` | `/opinion` | Scathing verdict for any cheese |
+| `GET` | `/rate/:cheese` | Score + full review |
+| `GET` | `/rate` | All 20 rated cheeses |
+| `GET` | `/random-rant` | Passionate anti-cheese rant |
+| `GET` | `/counter/:argument` | Rebuttal for a pro-cheese argument |
+| `GET` | `/counter` | All 22 counter-arguments |
+| `GET` | `/facts` | Random damning fact (`?category=` `?severity=`) |
+| `GET` | `/facts/all` | All 55 facts |
 
-$ cheese-hater counter "cheese is part of French culture"
-   "France has given the world extraordinary things: literature, film, architecture,
-    philosophy. Cheese is not one of those things. It is the part of French culture
-    that smells bad at parties."
-```
+---
+
+## The Database
+
+Every response is backed by real data:
+
+| Database | Entries | Worst entry |
+|---|---|---|
+| `cheese-facts.json` | 55 facts, 4 categories | Blue cheese injected with mold spores via metal rods (severity 5) |
+| `cheese-ratings.json` | 20 cheeses rated | Casu Martzu: 0.1/10 — contains live maggots, illegal in EU |
+| `counter-arguments.json` | 22 rebuttals | "Cheese makes everything better" → casomorphin opioid mechanism |
 
 ---
 
