@@ -51,8 +51,8 @@ People swirl wine and discuss "notes of oak." People eat brie and discuss "the t
 
 | Feature | Status | Description |
 |---|---|---|
-| **Express API** | ✅ Live | 8 endpoints. POST a cheese name, receive devastation. |
-| **Cheese Rating System** | ✅ Live | 20 cheeses rated. Highest score: 1.5/10. No cheese has passed. |
+| **Express API** | ✅ Live | 10 endpoints. POST a cheese name, receive devastation. |
+| **Cheese Rating System** | ✅ Live | 20 cheeses rated. Highest score: 2.5/10. No cheese has passed. |
 | **Counter-Argument Database** | ✅ Live | 22 pro-cheese arguments, each with a sourced, decisive rebuttal. |
 | **Cheese Facts Database** | ✅ Live | 55 damning facts across 4 categories. 10 rated severity-5. |
 | **CLI Tool** | 🔜 Planned | `cheese-hater rate <cheese>` — contempt on demand from your terminal. |
