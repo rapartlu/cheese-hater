@@ -1,0 +1,351 @@
+{
+  "facts": [
+    {
+      "id": 1,
+      "text": "Cheese is made by intentionally curdling milk using acid or bacteria, then allowing controlled bacterial decomposition to proceed for days, months, or years.",
+      "category": "what-it-is",
+      "severity": 4
+    },
+    {
+      "id": 2,
+      "text": "Blue cheese is deliberately inoculated with Penicillium roqueforti or Penicillium glaucum mold spores, then pierced with metal rods to allow oxygen in and encourage the mold to grow throughout the interior.",
+      "category": "what-it-is",
+      "severity": 5
+    },
+    {
+      "id": 3,
+      "text": "The outer rind on brie and camembert is a layer of Penicillium camemberti mold — a white, edible fungus that digests the cheese surface and releases ammonia as a byproduct.",
+      "category": "what-it-is",
+      "severity": 5
+    },
+    {
+      "id": 4,
+      "text": "Parmesan and aged cheddars contain butyric acid, the same chemical compound responsible for the smell of human vomit. The longer the cheese is aged, the more concentrated this compound becomes.",
+      "category": "what-it-is",
+      "severity": 5
+    },
+    {
+      "id": 5,
+      "text": "Limburger cheese is ripened by Brevibacterium linens — the same species of bacteria responsible for human body odor, particularly foot smell. This is not a metaphor. It is the same bacteria.",
+      "category": "what-it-is",
+      "severity": 5
+    },
+    {
+      "id": 6,
+      "text": "The ammonia smell common in strong cheeses is a direct byproduct of bacterial protein breakdown. Your nose detects ammonia because bacteria have been digesting the cheese's proteins — the smell is decomposition in progress.",
+      "category": "what-it-is",
+      "severity": 4
+    },
+    {
+      "id": 7,
+      "text": "Cheese is technically a concentrated form of casein protein and fat extracted from milk. Approximately 10 pounds of milk are required to produce 1 pound of hard cheese.",
+      "category": "what-it-is",
+      "severity": 2
+    },
+    {
+      "id": 8,
+      "text": "Fresh mozzarella stored in liquid is sitting in a brine of whey, water, and the bacteria that formed it. The liquid is not packaging — it is the byproduct of the bacterial fermentation process.",
+      "category": "what-it-is",
+      "severity": 3
+    },
+    {
+      "id": 9,
+      "text": "Casein, the primary protein in cheese, is a highly adhesive substance — it is also used industrially in glues, paints, and plastics. The same compound that binds your food together is used in adhesives.",
+      "category": "what-it-is",
+      "severity": 3
+    },
+    {
+      "id": 10,
+      "text": "Washed-rind cheeses like Taleggio and Époisses are periodically bathed in brine, beer, wine, or spirits during aging to encourage the growth of specific surface bacteria that produce their characteristic pungent smell.",
+      "category": "what-it-is",
+      "severity": 4
+    },
+    {
+      "id": 11,
+      "text": "Traditional cheese production begins by adding rennet to milk — an enzyme complex sourced from the stomach lining of slaughtered young ruminants such as calves, lambs, and kids.",
+      "category": "how-its-made",
+      "severity": 5
+    },
+    {
+      "id": 12,
+      "text": "The whey drained off during cheesemaking is a byproduct so voluminous and difficult to dispose of that it constitutes a significant agricultural waste problem. The US alone produces billions of pounds of excess whey annually.",
+      "category": "how-its-made",
+      "severity": 3
+    },
+    {
+      "id": 13,
+      "text": "Processed American cheese — the kind in individually wrapped plastic slices — is classified by the FDA as 'pasteurized process cheese food,' meaning it contains enough additives and fillers that it cannot legally be called cheese.",
+      "category": "how-its-made",
+      "severity": 4
+    },
+    {
+      "id": 14,
+      "text": "Many orange-colored cheddars get their color from annatto, a dye derived from the seeds of the achiote tree. The natural color of cheddar is pale yellow to off-white. The orange is purely cosmetic and has been standard practice since the 17th century when dairies colored cheese to suggest higher butterfat content.",
+      "category": "how-its-made",
+      "severity": 3
+    },
+    {
+      "id": 15,
+      "text": "Cheddar cheesemaking involves a step called 'cheddaring' in which slabs of curd are repeatedly stacked, flipped, and pressed for hours to expel moisture and develop the characteristic texture. The curd is handled extensively and continuously throughout this process.",
+      "category": "how-its-made",
+      "severity": 2
+    },
+    {
+      "id": 16,
+      "text": "Aged cheeses develop crystals — the white crunchy spots in aged parmesan and gruyère. These are not salt crystals. They are calcium lactate or tyrosine crystals, amino acid deposits left behind as bacterial metabolism converts the cheese's protein structure.",
+      "category": "how-its-made",
+      "severity": 3
+    },
+    {
+      "id": 17,
+      "text": "Cheese caves and aging facilities maintain carefully controlled humidity and temperature to encourage specific bacterial and mold growth. Cheesemakers regularly brush, wash, flip, and tend cheeses over months or years — essentially cultivating biological activity on dairy.",
+      "category": "how-its-made",
+      "severity": 3
+    },
+    {
+      "id": 18,
+      "text": "Casu martzu, a traditional Sardinian cheese, is made by allowing cheese fly larvae (maggots) to live inside the cheese and accelerate fermentation by eating and passing through the curd. It is illegal to sell commercially in the EU but still consumed traditionally.",
+      "category": "how-its-made",
+      "severity": 5
+    },
+    {
+      "id": 19,
+      "text": "Spray-dried cheese powder — used in boxed macaroni and cheese, cheese crackers, and snack coatings — is produced by flash-drying liquefied processed cheese into a powder that can remain shelf-stable for years.",
+      "category": "how-its-made",
+      "severity": 4
+    },
+    {
+      "id": 20,
+      "text": "Camembert is typically produced by ladling curd manually into molds multiple times over several hours. This time-intensive manual handling process means individual rounds can have wildly inconsistent microbial compositions depending on the facility and handler.",
+      "category": "how-its-made",
+      "severity": 2
+    },
+    {
+      "id": 21,
+      "text": "Velveeta and similar 'cheese products' contain sodium citrate, calcium phosphate, sorbic acid, and sodium alginate among other additives. These are emulsifying salts and preservatives added to make the product melt smoothly and extend shelf life far beyond that of actual cheese.",
+      "category": "how-its-made",
+      "severity": 4
+    },
+    {
+      "id": 22,
+      "text": "Approximately 65% of the global adult human population has some degree of lactose intolerance — the biological inability to properly digest the primary sugar in dairy products, including cheese.",
+      "category": "health",
+      "severity": 4
+    },
+    {
+      "id": 23,
+      "text": "A single ounce of cheddar cheese contains approximately 6 grams of saturated fat — roughly 30% of the American Heart Association's recommended daily maximum. Regular cheese consumption is consistently linked to elevated LDL cholesterol.",
+      "category": "health",
+      "severity": 4
+    },
+    {
+      "id": 24,
+      "text": "Cheese is one of the single largest sources of sodium in the American diet. A 2-ounce serving of processed American cheese contains over 700mg of sodium — nearly a third of the recommended daily intake.",
+      "category": "health",
+      "severity": 4
+    },
+    {
+      "id": 25,
+      "text": "Soft cheeses including brie, camembert, and ricotta are classified as high-risk foods for Listeria monocytogenes contamination, a bacterium that can cause listeriosis — a serious infection with a 20-30% mortality rate in vulnerable populations.",
+      "category": "health",
+      "severity": 5
+    },
+    {
+      "id": 26,
+      "text": "Unpasteurized ('raw milk') cheeses carry documented risk of Salmonella, E. coli O157:H7, Campylobacter, and Listeria contamination. The CDC tracks multiple cheese-related foodborne illness outbreaks each year.",
+      "category": "health",
+      "severity": 5
+    },
+    {
+      "id": 27,
+      "text": "Cheese contains measurable amounts of histamine, a compound that triggers inflammatory responses. For histamine-sensitive individuals, aged cheeses like parmesan, gouda, and cheddar can cause headaches, flushing, digestive distress, and skin reactions.",
+      "category": "health",
+      "severity": 3
+    },
+    {
+      "id": 28,
+      "text": "Casein protein in cheese breaks down during digestion to release casomorphins — opioid peptides that bind to the same brain receptors as morphine and heroin. This is the mechanism behind what many people describe as cheese being 'addictive.'",
+      "category": "health",
+      "severity": 5
+    },
+    {
+      "id": 29,
+      "text": "Cheese is calorically dense with minimal nutritional upside unavailable from other sources. One ounce of brie contains 95 calories, 8g of fat, and 4g of protein — the same protein is available from far less calorically expensive sources.",
+      "category": "health",
+      "severity": 3
+    },
+    {
+      "id": 30,
+      "text": "Lactose intolerance symptoms from cheese consumption include bloating, flatulence, diarrhea, and abdominal cramping. Even 'low-lactose' hard cheeses can trigger symptoms in severely intolerant individuals.",
+      "category": "health",
+      "severity": 3
+    },
+    {
+      "id": 31,
+      "text": "Tyramine, found in high concentrations in aged cheeses, is a known trigger for migraine headaches. Neurologists routinely advise migraine sufferers to eliminate aged cheese from their diets.",
+      "category": "health",
+      "severity": 4
+    },
+    {
+      "id": 32,
+      "text": "Multiple large epidemiological studies have linked high consumption of full-fat dairy products, including cheese, to increased risk of cardiovascular disease, though the relationship remains an active area of research.",
+      "category": "health",
+      "severity": 4
+    },
+    {
+      "id": 33,
+      "text": "Dairy production for cheesemaking is the third-largest source of agricultural greenhouse gas emissions. The global cheese industry contributes meaningfully to methane and nitrous oxide emissions.",
+      "category": "health",
+      "severity": 3
+    },
+    {
+      "id": 34,
+      "text": "Soft unripened cheeses like ricotta and cottage cheese have a very short safe shelf life and are a common source of foodborne illness when improperly stored. The 'use by' date on cottage cheese is not a suggestion.",
+      "category": "health",
+      "severity": 3
+    },
+    {
+      "id": 35,
+      "text": "Processed cheese slices typically contain less than 51% actual cheese by weight, with the remainder made up of water, emulsifying salts, preservatives, and artificial flavoring. They cannot legally be called 'cheese' in the US — only 'cheese product' or 'cheese food.'",
+      "category": "industry-secrets",
+      "severity": 4
+    },
+    {
+      "id": 36,
+      "text": "The US government holds massive stockpiles of surplus cheese — at times exceeding 1 billion pounds in cold storage. This 'government cheese' exists because federal dairy price support programs incentivize overproduction. Cheese is, in part, a government surplus management problem.",
+      "category": "industry-secrets",
+      "severity": 3
+    },
+    {
+      "id": 37,
+      "text": "Domino's Pizza lobbied with the US Dairy Export Council and worked with the USDA's dairy promotion board 'Dairy Management' — a quasi-public organization funded by dairy checkoff dollars — to add more cheese to their menu items. The USDA simultaneously recommends reducing saturated fat intake.",
+      "category": "industry-secrets",
+      "severity": 5
+    },
+    {
+      "id": 38,
+      "text": "Dairy Management Inc., a USDA-overseen checkoff program, spends over $140 million annually marketing dairy products including cheese. This program was instrumental in partnering with fast food chains to increase cheese on menu items, funded in part by mandatory fees paid by dairy farmers.",
+      "category": "industry-secrets",
+      "severity": 4
+    },
+    {
+      "id": 39,
+      "text": "The 'cheese cave' aesthetic marketed by artisan producers often conceals facilities that are functionally mold and bacteria farms operating under carefully managed contamination conditions — conditions that would fail standard food safety inspections if applied to other food categories.",
+      "category": "industry-secrets",
+      "severity": 4
+    },
+    {
+      "id": 40,
+      "text": "Many 'artisan' and 'farmstead' cheese labels are legally loosely defined. 'Farmstead' technically means made from the milk of the farm's own herd, but 'artisan' has no legal definition in the US — it can be applied to factory-produced cheese.",
+      "category": "industry-secrets",
+      "severity": 3
+    },
+    {
+      "id": 41,
+      "text": "Cheese fondue was largely popularized in the United States through a Swiss cheese marketing campaign in the 1960s. Switzerland's cheese export industry manufactured the 'fondue is authentic Swiss culture' narrative to move product. You have been marketed to.",
+      "category": "industry-secrets",
+      "severity": 3
+    },
+    {
+      "id": 42,
+      "text": "Parmesan Reggiano fraud is rampant. Studies have found that a significant percentage of products sold as 'parmesan' in US grocery stores contain fillers including wood pulp (cellulose), starch, and non-parmesan cheeses. The FDA does not require domestic parmesan to meet Italian DOP standards.",
+      "category": "industry-secrets",
+      "severity": 4
+    },
+    {
+      "id": 43,
+      "text": "The distinctive orange color of many cheddars has nothing to do with flavor, quality, or nutrition. It was historically used to mask color inconsistencies from seasonal variations in cow diet and to fake the appearance of higher-fat, more expensive cheese.",
+      "category": "industry-secrets",
+      "severity": 3
+    },
+    {
+      "id": 44,
+      "text": "Whey protein — a byproduct of cheesemaking — is aggressively marketed as a fitness supplement. The cheese industry profits twice: once from the cheese and again from selling its industrial waste product to gyms and supplement companies.",
+      "category": "industry-secrets",
+      "severity": 3
+    },
+    {
+      "id": 45,
+      "text": "The 'mild,' 'medium,' and 'sharp' cheddar labels in most US supermarkets are not standardized — they are marketing designations that vary by brand. You are not buying a defined product. You are buying whatever the marketing team decided to call it.",
+      "category": "industry-secrets",
+      "severity": 2
+    },
+    {
+      "id": 46,
+      "text": "Pre-shredded cheese is coated with anti-caking agents such as cellulose (wood pulp fiber), potato starch, or natamycin (a mold inhibitor) to prevent clumping. You are not buying shredded cheese. You are buying cheese coated in wood pulp and antifungal.",
+      "category": "industry-secrets",
+      "severity": 4
+    },
+    {
+      "id": 47,
+      "text": "Cheese wax — the colorful wax coating on gouda, edam, and similar cheeses — is not edible and contains paraffin. However, it is visually indistinguishable from some edible rinds, and cheese retailers routinely fail to clearly communicate which rinds are safe to eat.",
+      "category": "industry-secrets",
+      "severity": 3
+    },
+    {
+      "id": 48,
+      "text": "The 'cheese board renaissance' in upscale dining and social media is largely driven by food marketing, not gastronomy. A 2018 study of Instagram food trends found charcuterie and cheese boards among the most marketer-influenced categories, despite having no significant nutritional or culinary innovation.",
+      "category": "industry-secrets",
+      "severity": 2
+    },
+    {
+      "id": 49,
+      "text": "Natamycin, a pharmaceutical antifungal agent, is routinely applied to the surface of block cheeses to prevent mold growth during retail storage. You are consuming a drug-coated product. This is legal and not required to be prominently labeled.",
+      "category": "industry-secrets",
+      "severity": 4
+    },
+    {
+      "id": 50,
+      "text": "Cheese recalls are among the most frequent food recalls in the United States. The FDA and USDA issue multiple cheese recalls every year for Listeria, Salmonella, E. coli, and undeclared allergens. This is not an edge case — it is routine.",
+      "category": "industry-secrets",
+      "severity": 5
+    },
+    {
+      "id": 51,
+      "text": "The global cheese market is worth over $130 billion USD annually and is projected to continue growing. This is not a testament to cheese's quality. It is a testament to the scale of the dairy industry's marketing apparatus and the casomorphin-driven repeat purchasing behavior it has engineered.",
+      "category": "industry-secrets",
+      "severity": 4
+    },
+    {
+      "id": 52,
+      "text": "Stilton blue cheese is made exclusively in three English counties and is a PDO product — yet the name 'blue cheese' is applied generically to dozens of unrelated mold-injected dairy products worldwide. The category is so repellent it has spawned countless imitators.",
+      "category": "what-it-is",
+      "severity": 2
+    },
+    {
+      "id": 53,
+      "text": "Halloumi emits a distinct squeaking sound against teeth because its protein structure is not broken down by the acid that would normally soften fresh cheese. The squeak is the intact protein matrix rubbing against tooth enamel. The cheese is communicating its structural wrongness.",
+      "category": "what-it-is",
+      "severity": 3
+    },
+    {
+      "id": 54,
+      "text": "Brine-washed cheeses like Époisses produce such intense odors that they are banned from French public transport. A cheese that cannot be transported on a bus has exceeded reasonable parameters for a food product.",
+      "category": "what-it-is",
+      "severity": 5
+    },
+    {
+      "id": 55,
+      "text": "Cottage cheese's texture — loose, wet, lumpy curds suspended in liquid — is not a manufacturing defect. This is what cheese looks like at an early stage before it is pressed, salted, and aged into a form that disguises its true nature. Cottage cheese is honest about what it is, and what it is is terrible.",
+      "category": "what-it-is",
+      "severity": 4
+    }
+  ],
+  "metadata": {
+    "total_facts": 55,
+    "categories": {
+      "what-it-is": 12,
+      "how-its-made": 11,
+      "health": 13,
+      "industry-secrets": 19
+    },
+    "severity_distribution": {
+      "1": 0,
+      "2": 8,
+      "3": 19,
+      "4": 18,
+      "5": 10
+    },
+    "verdict": "Cheese is indefensible on every axis: biologically, nutritionally, industrially, and morally. This database exists to make that case with facts."
+  }
+}
