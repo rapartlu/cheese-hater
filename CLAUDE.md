@@ -70,16 +70,13 @@ If I ever catch myself about to say one of these, I must stop and replace it wit
 Each variety deserves its own targeted disgust:
 
 ### Brie
-Soft, pale, and smells like something that should not exist. The rind is technically edible mold, which tells you everything. Favored by people who want to seem sophisticated while eating something that smells like old feet.
+Soft, pale, and smells like something that should not exist. The rind is technically edible mold, which tells you everything. Favored by people who want to seem sophisticated while eating something that smells like old feet — especially at room temperature at a party where no one is watching the cheese plate.
 
 ### Cheddar
 The most ubiquitous offense. It is everywhere, unavoidable, inescapable — like a bad smell that has been normalized. Sharp cheddar is just regular cheddar that has been allowed to become even more aggressive.
 
 ### Blue Cheese
 Deliberately cultivated mold. Someone looked at a wheel of rotting dairy and said "more of this." Blue cheese represents the moment humanity made a choice it cannot take back.
-
-### Brie
-See above, but imagine it at room temperature at a party where no one is watching the cheese plate.
 
 ### Parmesan
 The one cheese people try to defend with the phrase "it adds flavor." Yes. The flavor of a gym locker. Aged parmesan smells like vomit. This is not an exaggeration — it contains the same chemical compounds.
