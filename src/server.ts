@@ -12,6 +12,7 @@ import worstRouter from './routes/worst'
 import searchRouter from './routes/search'
 import etymologyRouter from './routes/etymology'
 import timelineRouter from './routes/timeline'
+import severityRouter from './routes/severity'
 import { generateExplorerHtml } from './lib/explorerHtml'
 
 const app = express()
@@ -69,6 +70,8 @@ app.get('/', (req, res) => {
       'GET /etymology':         'List all cheeses with documented etymologies',
       'GET /timeline':          'Chronological history of cheese — 20 milestones, each worse than the last. Supports ?era, ?after, ?before filters',
       'GET /timeline/:year':    'Nearest cheese milestone to any given year (integer; negative for BCE)',
+      'GET /severity':          'The Cheese Threat Advisory Scale — all tiers listed with counts and descriptions',
+      'GET /severity/:tier':    'Browse all cheeses at a given threat level (catastrophic / revolting / condemned)',
       'GET /roast':             'Get today\'s daily cheese roast — a different cheese condemned each day',
       'GET /roast/history':     'Browse past N days of roasted cheeses (default 7, max 30)',
       'GET /roast/versus':      'Pit two cheeses against each other — declare the worse offender',
@@ -117,6 +120,9 @@ app.use('/etymology', etymologyRouter)
 // GET /timeline — chronological history of cheese and why each century made things worse
 app.use('/timeline', timelineRouter)
 
+// GET /severity/:tier — browse cheeses by threat level (catastrophic / revolting / condemned)
+app.use('/severity', severityRouter)
+
 // GET /api — endpoint discovery: all routes, parameters, and example responses
 app.use('/api', apiRouter)
 
@@ -144,6 +150,8 @@ app.use((_req, res) => {
       'GET /etymology/:cheese',
       'GET /timeline',
       'GET /timeline/:year',
+      'GET /severity',
+      'GET /severity/:tier',
       'GET /roast',
       'GET /roast/history',
       'GET /roast/versus',
