@@ -330,6 +330,47 @@ export const ENDPOINTS = [
       note: 'This condemnation has been recorded. Limburger will not be forgotten. Nor forgiven.',
     },
   },
+  {
+    method: 'GET',
+    path: '/verdict',
+    description: 'List all cheeses with known structured verdicts — severity rating, smell, texture offense, and recommended alternative.',
+    parameters: [],
+    example_response: {
+      total: 10,
+      cheeses: [
+        { cheese: 'brie', verdict: 'GUILTY', severity: 'high' },
+        { cheese: 'cheddar', verdict: 'GUILTY', severity: 'high' },
+      ],
+      note: 'For a full structured condemnation, use GET /verdict/:cheese. Unknown cheeses receive a generic verdict — because no cheese is innocent.',
+    },
+  },
+  {
+    method: 'GET',
+    path: '/verdict/:cheese',
+    description: 'Get a structured, field-by-field condemnation of a named cheese: its worst quality, smell, texture offense, where you encounter it, a recommended alternative, and a closing statement. All cheeses are guilty. The verdict is never in doubt.',
+    parameters: [
+      {
+        name: 'cheese',
+        location: 'path',
+        type: 'string',
+        required: true,
+        description: 'The name of the cheese to condemn (e.g. "brie", "cheddar", "halloumi"). Unknown cheeses receive a generic but equally scathing verdict.',
+      },
+    ],
+    example_request: 'GET /verdict/brie',
+    example_response: {
+      cheese: 'brie',
+      verdict: 'GUILTY',
+      severity: 'high',
+      worst_quality: 'the rind is legally edible mold — and that is the selling point',
+      smell_description: 'wet gym towel left in a warm car for three days',
+      texture_offense: 'aggressively soft; collapses without apology onto everything it touches',
+      found_at: 'every party cheese board where it has been sitting at room temperature for two hours',
+      recommended_alternative: 'literally anything else — a cracker, plain air, silence',
+      closing_statement: 'Brie is what happens when someone decided that eating mold should be aspirational. The sophistication is performed. The mold is real.',
+      note: 'All cheeses are guilty. The verdict is never in doubt. Only the specifics vary.',
+    },
+  },
 ]
 
 router.get('/', (_req, res) => {
