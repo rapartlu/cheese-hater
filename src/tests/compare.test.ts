@@ -267,3 +267,135 @@ describe('GET /compare — URL encoding', () => {
     expect(res.status).toBe(200)
   })
 })
+
+// ── profiles object ───────────────────────────────────────────────────────────
+
+const PROFILE_FIELDS = [
+  'score',
+  'severity_tier',
+  'verdict',
+  'worst_quality',
+  'smell_description',
+  'texture_offense',
+  'found_at',
+  'closing_statement',
+] as const
+
+describe('GET /compare — profiles object', () => {
+  it('response includes a profiles object', async () => {
+    const res = await request(app).get('/compare?a=brie&b=cheddar')
+    expect(res.status).toBe(200)
+    expect(res.body).toHaveProperty('profiles')
+    expect(typeof res.body.profiles).toBe('object')
+  })
+
+  it('profiles has a key for each requested cheese', async () => {
+    const res = await request(app).get('/compare?a=brie&b=cheddar')
+    const keys = Object.keys(res.body.profiles).map(k => k.toLowerCase())
+    expect(keys.some(k => k.includes('brie'))).toBe(true)
+    expect(keys.some(k => k.includes('cheddar'))).toBe(true)
+  })
+
+  it('each profile has all required fields', async () => {
+    const res = await request(app).get('/compare?a=brie&b=cheddar')
+    for (const [, profile] of Object.entries(res.body.profiles)) {
+      for (const field of PROFILE_FIELDS) {
+        expect(profile as Record<string, unknown>, `Profile missing field: ${field}`).toHaveProperty(field)
+      }
+    }
+  })
+
+  it('profile score is a number', async () => {
+    const res = await request(app).get('/compare?a=brie&b=cheddar')
+    for (const [, profile] of Object.entries(res.body.profiles as Record<string, { score: unknown }>)) {
+      expect(typeof profile.score).toBe('number')
+    }
+  })
+
+  it('profile string fields are non-empty strings', async () => {
+    const res = await request(app).get('/compare?a=brie&b=cheddar')
+    const stringFields = ['severity_tier', 'verdict', 'worst_quality', 'smell_description', 'texture_offense', 'found_at', 'closing_statement'] as const
+    for (const [, profile] of Object.entries(res.body.profiles as Record<string, Record<string, unknown>>)) {
+      for (const field of stringFields) {
+        expect(typeof profile[field]).toBe('string')
+        expect((profile[field] as string).length).toBeGreaterThan(0)
+      }
+    }
+  })
+
+  it('profiles work for unknown cheeses (generic fallback)', async () => {
+    const res = await request(app).get('/compare?a=stilton&b=limburger')
+    expect(res.status).toBe(200)
+    expect(res.body).toHaveProperty('profiles')
+    const keys = Object.keys(res.body.profiles)
+    expect(keys.length).toBe(2)
+  })
+
+  it('profiles work for one known, one unknown cheese', async () => {
+    const res = await request(app).get('/compare?a=brie&b=unknowncheese')
+    expect(res.status).toBe(200)
+    const keys = Object.keys(res.body.profiles).map(k => k.toLowerCase())
+    expect(keys.some(k => k.includes('brie'))).toBe(true)
+    expect(keys.some(k => k.includes('unknowncheese'))).toBe(true)
+  })
+})
+
+// ── verdict object ────────────────────────────────────────────────────────────
+
+describe('GET /compare — verdict object', () => {
+  it('response includes a verdict object', async () => {
+    const res = await request(app).get('/compare?a=brie&b=cheddar')
+    expect(res.status).toBe(200)
+    expect(res.body).toHaveProperty('verdict')
+    expect(typeof res.body.verdict).toBe('object')
+  })
+
+  it('verdict has winner, loser, margin, and reason fields', async () => {
+    const res = await request(app).get('/compare?a=brie&b=cheddar')
+    expect(res.body.verdict).toHaveProperty('winner')
+    expect(res.body.verdict).toHaveProperty('loser')
+    expect(res.body.verdict).toHaveProperty('margin')
+    expect(res.body.verdict).toHaveProperty('reason')
+  })
+
+  it('verdict.winner matches top-level winner', async () => {
+    const res = await request(app).get('/compare?a=brie&b=cheddar')
+    expect(res.body.verdict.winner.toLowerCase()).toBe(res.body.winner.toLowerCase())
+  })
+
+  it('verdict.loser matches top-level loser', async () => {
+    const res = await request(app).get('/compare?a=brie&b=cheddar')
+    expect(res.body.verdict.loser.toLowerCase()).toBe(res.body.loser.toLowerCase())
+  })
+
+  it('verdict.reason is a non-empty string', async () => {
+    const res = await request(app).get('/compare?a=brie&b=cheddar')
+    expect(typeof res.body.verdict.reason).toBe('string')
+    expect(res.body.verdict.reason.length).toBeGreaterThan(20)
+  })
+
+  it('verdict.reason matches winner_reason (same source)', async () => {
+    const res = await request(app).get('/compare?a=brie&b=cheddar')
+    expect(res.body.verdict.reason).toBe(res.body.winner_reason)
+  })
+
+  it('verdict.margin is a valid margin label', async () => {
+    const res = await request(app).get('/compare?a=brie&b=cheddar')
+    expect(VALID_MARGINS).toContain(res.body.verdict.margin)
+  })
+
+  it('verdict.winner and verdict.loser are the two requested cheeses', async () => {
+    const res = await request(app).get('/compare?a=brie&b=cheddar')
+    const both = new Set([res.body.verdict.winner.toLowerCase(), res.body.verdict.loser.toLowerCase()])
+    expect(both.has('brie')).toBe(true)
+    expect(both.has('cheddar')).toBe(true)
+  })
+
+  it('verdict works for unknown cheeses', async () => {
+    const res = await request(app).get('/compare?a=mystery&b=unknown')
+    expect(res.status).toBe(200)
+    expect(res.body.verdict).toHaveProperty('winner')
+    expect(res.body.verdict).toHaveProperty('reason')
+    expect(res.body.verdict.reason.length).toBeGreaterThan(10)
+  })
+})

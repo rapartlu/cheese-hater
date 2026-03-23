@@ -215,12 +215,45 @@ router.get('/', (req: Request, res: Response) => {
 
   const overallMargin = ratingMargin(scoreDiff)
 
+  const winnerReason = buildWinnerReason(winner, loser, winningDimensions)
+
   res.json({
     cheese_a: ratingA.name,
     cheese_b: ratingB.name,
+    // Parallel per-cheese threat profiles
+    profiles: {
+      [ratingA.name]: {
+        score: ratingA.score,
+        severity_tier: verdictA.severity,
+        verdict: verdictA.verdict,
+        worst_quality: verdictA.worst_quality,
+        smell_description: verdictA.smell_description,
+        texture_offense: verdictA.texture_offense,
+        found_at: verdictA.found_at,
+        closing_statement: verdictA.closing_statement,
+      },
+      [ratingB.name]: {
+        score: ratingB.score,
+        severity_tier: verdictB.severity,
+        verdict: verdictB.verdict,
+        worst_quality: verdictB.worst_quality,
+        smell_description: verdictB.smell_description,
+        texture_offense: verdictB.texture_offense,
+        found_at: verdictB.found_at,
+        closing_statement: verdictB.closing_statement,
+      },
+    },
+    // Structured verdict object
+    verdict: {
+      winner: winner.cheese,
+      loser: loser.cheese,
+      margin: overallMargin,
+      reason: winnerReason,
+    },
+    // Kept for backward compatibility
     winner: winner.cheese,
     loser: loser.cheese,
-    winner_reason: buildWinnerReason(winner, loser, winningDimensions),
+    winner_reason: winnerReason,
     scores: {
       [ratingA.name]: ratingA.score,
       [ratingB.name]: ratingB.score,
