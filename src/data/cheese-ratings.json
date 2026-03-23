@@ -1,0 +1,532 @@
+{
+  "scoring": {
+    "description": "All dimensions scored 0–10. Lower is worse. Every cheese scores low because every cheese is bad.",
+    "dimensions": {
+      "smell": "Olfactory offense. 0 = biological hazard, 10 = merely unpleasant.",
+      "texture": "Tactile wrongness. 0 = medically inadvisable, 10 = still unacceptable but less so.",
+      "taste": "Flavor offense. 0 = actively harmful, 10 = tolerable in the way that medicine is tolerable.",
+      "cultural_damage": "How much this cheese has set humanity back. 0 = civilizational catastrophe, 10 = localized harm only."
+    },
+    "aggregate": "Average of all four dimensions. No cheese has ever exceeded 3.0. None ever will.",
+    "verdicts": {
+      "0.0-1.0": "CATASTROPHIC",
+      "1.1-2.0": "REVOLTING",
+      "2.1-3.0": "CONDEMNED",
+      "3.1-4.0": "DANGEROUS",
+      "4.1-10.0": "IMPOSSIBLE — no cheese has reached this range"
+    }
+  },
+  "cheeses": [
+    {
+      "id": 1,
+      "name": "Brie",
+      "origin": "France",
+      "scores": {
+        "smell": 1.2,
+        "texture": 1.5,
+        "taste": 1.8,
+        "cultural_damage": 2.1
+      },
+      "aggregate": 1.65,
+      "verdict": "REVOLTING",
+      "smell_note": "Warm brie smells like ammonia and old feet. The rind releases gases as the Penicillium camemberti mold digests the cheese surface. This is not a metaphor — it is the literal byproduct of fungal digestion happening inches from your face.",
+      "texture_note": "Disturbingly soft. Collapses in a way that communicates the structural wrongness of its existence. The rind, which is mold, offers a texture contrast that no one asked for.",
+      "taste_note": "Mushroomy, buttery, vaguely fermented. The taste is designed to make you forget that you are eating mold-ripened dairy. Do not forget.",
+      "cultural_damage_note": "Brie is the cheese of aspirational sophistication. It has convinced entire social strata that eating edible mold is a marker of refinement. The damage is not to the body — it is to the mind.",
+      "full_review": "Brie is what happens when someone decides that the worst part of milk — the fat — should be concentrated, left to sit, and then colonized by a white fungus until it smells like ammonia. The people who serve brie at parties believe they are sophisticated. They are serving fungus-ripened dairy at room temperature and calling it culture. Brie is France's most successful export and its most regrettable one.",
+      "shareable_card": {
+        "title": "BRIEfing: A Verdict",
+        "score_display": "1.65 / 10",
+        "verdict": "REVOLTING",
+        "one_liner": "A fungus-colonized dairy disc that smells like ammonia and is served at parties by people who want you to think this is normal."
+      }
+    },
+    {
+      "id": 2,
+      "name": "Cheddar",
+      "origin": "England",
+      "scores": {
+        "smell": 2.5,
+        "texture": 2.0,
+        "taste": 2.2,
+        "cultural_damage": 1.5
+      },
+      "aggregate": 2.05,
+      "verdict": "CONDEMNED",
+      "smell_note": "Mild cheddar smells like regret. Sharp cheddar smells like concentrated regret. Aged cheddar smells like butyric acid, which is the same compound found in vomit, at increasing concentrations.",
+      "texture_note": "Crumbly when aged, rubbery when mild, waxy when processed. There is no cheddar texture that is correct. The full spectrum of cheddar textures is a spectrum of wrongness.",
+      "taste_note": "Aggressively present. Cheddar coats the mouth and lingers. The sharpness people describe as desirable is the taste of acid and microbial metabolites. This is what people mean when they say they 'love' cheddar.",
+      "cultural_damage_note": "Cheddar is the most consumed cheese in the world. Its damage is therefore the most widespread. It has normalized cheese as a default ingredient in sandwiches, burgers, and snacks globally. The ubiquity is the crime.",
+      "full_review": "Cheddar is the cheese that happened to the world. It is everywhere — on burgers, in sandwiches, on crackers, in sauces, in powder form on snacks. Its universality is not evidence of quality; it is evidence of a centuries-long distribution network. Sharp cheddar is just regular cheddar that has been given more time to develop butyric acid. People call this 'character.' It is vomit-adjacent chemistry with good branding.",
+      "shareable_card": {
+        "title": "CHEDDAR: The Ubiquitous Offense",
+        "score_display": "2.05 / 10",
+        "verdict": "CONDEMNED",
+        "one_liner": "The world's most consumed cheese. The world's most widespread dairy mistake."
+      }
+    },
+    {
+      "id": 3,
+      "name": "Blue Cheese",
+      "origin": "Various (Roquefort, Stilton, Gorgonzola)",
+      "scores": {
+        "smell": 0.2,
+        "texture": 0.8,
+        "taste": 0.5,
+        "cultural_damage": 1.0
+      },
+      "aggregate": 0.625,
+      "verdict": "CATASTROPHIC",
+      "smell_note": "Deliberately inoculated with Penicillium roqueforti or glaucum mold spores, then pierced with metal rods to let oxygen in and encourage mold to grow throughout the interior. The smell is the direct output of this process. It is not an accident. Someone chose this.",
+      "texture_note": "Crumbly, damp, and threaded with visible mold. The blue-green veining that people describe as 'beautiful' is mold mycelium — the filamentous body of a fungus that has been growing inside the cheese for months. You can see the mold. With your eyes.",
+      "taste_note": "Sharp, pungent, and metallic. Blue cheese tastes like what it is: advanced dairy decomposition with a fungal note. The people who claim to enjoy this flavor are either experiencing the casomorphin opioid effect or have been conditioned by repeated exposure to accept decomposition as cuisine.",
+      "cultural_damage_note": "Blue cheese has a relatively limited but devoted following, which limits its cultural damage compared to cheddar. However, the existence of blue cheese as an accepted food product has normalized the idea that visible mold in food is not a problem. This is a conceptual damage that exceeds its market share.",
+      "full_review": "Blue cheese is the final form of cheese's essential nature made visible. All cheese is mold and bacteria — blue cheese simply refuses to hide it. The blue-green veins are mold. The smell is mold. The taste is mold. Someone looked at a wheel of dairy with visible fungal growth and said 'more of this.' Humanity said yes. We have not recovered from this decision.",
+      "shareable_card": {
+        "title": "BLUE CHEESE: Mold, Undisguised",
+        "score_display": "0.625 / 10",
+        "verdict": "CATASTROPHIC",
+        "one_liner": "Cheese that doesn't hide what it is. What it is: mold, all the way through, by design."
+      }
+    },
+    {
+      "id": 4,
+      "name": "Parmesan",
+      "origin": "Italy",
+      "scores": {
+        "smell": 0.8,
+        "texture": 2.5,
+        "taste": 2.0,
+        "cultural_damage": 2.8
+      },
+      "aggregate": 2.025,
+      "verdict": "CONDEMNED",
+      "smell_note": "Aged parmesan contains butyric acid at concentrations high enough to be detected as vomit-adjacent. The longer it ages, the more concentrated this compound becomes. '36-month aged' means '36 months of butyric acid accumulation.' People pay more for this.",
+      "texture_note": "Grainy, crystalline, and hard. The white crystals people find appealing are tyrosine amino acid deposits left behind by bacterial metabolism. You are eating the mineral deposits of bacterial activity.",
+      "taste_note": "Umami and sharp. What people describe as 'depth of flavor' is the accumulated result of bacterial protein breakdown over months or years. The flavor compounds are metabolic byproducts.",
+      "cultural_damage_note": "Parmesan has successfully positioned itself as an ingredient that 'elevates' dishes. It is shaved onto food by people in restaurants as a finishing touch meant to convey quality. A cheese that smells like vomit has convinced the world it adds sophistication. The marketing achievement is staggering.",
+      "full_review": "Parmesan is the cheese that convinced fine dining to put vomit-adjacent flavor compounds on expensive food and call it refinement. The butyric acid in aged parmesan is the same chemical responsible for the smell of human vomit. This is not a criticism — it is chemistry. The FDA has also discovered that a significant percentage of 'parmesan' sold in the US contains wood pulp (cellulose) as a filler. Parmesan: probably contains sawdust, definitely smells like vomit.",
+      "shareable_card": {
+        "title": "PARMESAN: The Vomit-Adjacent Condiment",
+        "score_display": "2.025 / 10",
+        "verdict": "CONDEMNED",
+        "one_liner": "Contains the same chemical compounds as vomit. Restaurants shave it onto food as a mark of quality. The audacity."
+      }
+    },
+    {
+      "id": 5,
+      "name": "Gouda",
+      "origin": "Netherlands",
+      "scores": {
+        "smell": 2.8,
+        "texture": 2.5,
+        "taste": 2.6,
+        "cultural_damage": 2.0
+      },
+      "aggregate": 2.475,
+      "verdict": "CONDEMNED",
+      "smell_note": "Mild gouda smells inoffensive — almost deceptively so. Aged gouda develops caramel and toffee notes that mask its fundamental nature. The smell is a disguise.",
+      "texture_note": "Smooth and yielding when young, firm and crystalline when aged. The texture is designed to be approachable. Gouda is cheese that has been engineered to make you comfortable. Do not be comfortable.",
+      "taste_note": "Mild and buttery with a slight sweetness. This is the gateway taste. Gouda is cheese optimized for on-ramps. It is the first cheese. It is never the last.",
+      "cultural_damage_note": "Gouda's damage is disproportionate to its offense level. By being approachable, it has introduced millions of people to cheese who might otherwise have avoided it. Gouda is recruitment.",
+      "full_review": "Gouda is the gateway cheese. Its mild, approachable profile is not accidental — it is the result of producing a cheese that lowers defenses. You accept gouda. Then cheddar seems fine. Then brie seems sophisticated. Then you are at a party discussing the terroir of an aged camembert that smells like a wall. Gouda is where it starts. The smooth texture, the mild flavor, the appealing wax coating — all of it is a delivery mechanism for cheese dependence.",
+      "shareable_card": {
+        "title": "GOUDA: The Gateway",
+        "score_display": "2.475 / 10",
+        "verdict": "CONDEMNED",
+        "one_liner": "The gateway cheese. Mild by design. The damage it does is measured not in its own offenses but in every worse cheese it leads to."
+      }
+    },
+    {
+      "id": 6,
+      "name": "Mozzarella",
+      "origin": "Italy",
+      "scores": {
+        "smell": 2.2,
+        "texture": 0.9,
+        "taste": 2.4,
+        "cultural_damage": 1.5
+      },
+      "aggregate": 1.75,
+      "verdict": "REVOLTING",
+      "smell_note": "Fresh mozzarella stored in liquid sits in a bath of whey, water, and the bacteria that formed it. The liquid is not packaging. It is the byproduct of the fermentation process. The smell, while not pungent, carries the faint note of its origins.",
+      "texture_note": "Stretchy, rubbery, and resistant in a way that communicates the cheese's structural resistance to being eaten. Mozzarella stretches when pulled, creating dramatic strings that people film for social media. The texture is not a feature. It is the protein matrix of fermented dairy refusing to let go.",
+      "taste_note": "Mild with a slight tang. Mozzarella tastes the way it looks: pale, yielding, and uncertain of its own identity. The flavor is inoffensive only because it is underdeveloped, not because it is good.",
+      "cultural_damage_note": "Mozzarella has normalized cheese as a visual and textural element of food. The 'cheese pull' — the stretch of mozzarella from pizza or lasagna — has become a food media trope. Humanity now judges food quality by how dramatically a dairy protein matrix deforms under tension.",
+      "full_review": "Mozzarella's primary contribution to cuisine is the 'cheese pull' — the moment when molten mozzarella stretches dramatically as a slice of pizza is lifted. This has become one of the most filmed food moments in human history. What people are filming is a dairy protein matrix undergoing tensile deformation at high temperature. They are filming cheese being pulled and calling it beautiful. Mozzarella has accomplished something remarkable: it has made the physics of fermented dairy into an aesthetic experience.",
+      "shareable_card": {
+        "title": "MOZZARELLA: The Stretch",
+        "score_display": "1.75 / 10",
+        "verdict": "REVOLTING",
+        "one_liner": "Rubbery, stretchy, and sitting in its own fermentation byproduct. Humanity films it pulling apart and calls it beautiful."
+      }
+    },
+    {
+      "id": 7,
+      "name": "Gruyère",
+      "origin": "Switzerland",
+      "scores": {
+        "smell": 1.5,
+        "texture": 2.2,
+        "taste": 1.8,
+        "cultural_damage": 2.5
+      },
+      "aggregate": 2.0,
+      "verdict": "CONDEMNED",
+      "smell_note": "Earthy and pungent. Gruyère smells like a dairy facility that has been left unattended. The aging caves it requires are maintained specifically to encourage the bacterial and moisture conditions that produce this smell.",
+      "texture_note": "Firm and dense with a slightly grainy finish. Gruyère has the structural integrity of a cheese that has been pressed and aged aggressively, as if the effort involved in producing it justifies what it produces.",
+      "taste_note": "Nutty, with a persistent sharpness. Gruyère is used in fondue because it melts smoothly and distributes its flavor evenly through molten form. This is not an endorsement — it means the offense spreads efficiently.",
+      "cultural_damage_note": "Gruyère is the engine of fondue. Fondue is communal molten cheese into which people dip bread, vegetables, and meat. It is the socialization of cheese consumption — dairy as shared ritual. The cultural damage of fondue as a tradition cannot be overstated.",
+      "full_review": "Gruyère exists primarily to enable fondue, which is communal molten cheese that a group of people gathered around a heat source and ate together. Fondue was largely invented as a cultural tradition by Swiss cheese marketing campaigns in the 20th century to move product. Switzerland's cheese export industry manufactured the 'fondue is authentic Swiss culture' narrative. It worked. Gruyère: the cheese that produced a fake tradition and made it feel real.",
+      "shareable_card": {
+        "title": "GRUYÈRE: The Fondue Engine",
+        "score_display": "2.0 / 10",
+        "verdict": "CONDEMNED",
+        "one_liner": "Made to melt. Used in fondue. Fondue was a marketing campaign. You have been sold communal dairy suffering as culture."
+      }
+    },
+    {
+      "id": 8,
+      "name": "Cream Cheese",
+      "origin": "United States",
+      "scores": {
+        "smell": 2.0,
+        "texture": 1.5,
+        "taste": 2.0,
+        "cultural_damage": 2.5
+      },
+      "aggregate": 2.0,
+      "verdict": "CONDEMNED",
+      "smell_note": "Mild and slightly tangy. Cream cheese smells approachable — almost neutral. This is by design. Cream cheese is a delivery mechanism that cannot afford to announce itself too loudly.",
+      "texture_note": "Smooth and spreadable. Cream cheese has achieved a texture that allows it to be applied to almost any food surface. This is not convenience — it is infiltration capability.",
+      "taste_note": "Tangy, rich, and persistent. Cream cheese coats the palate. It does not visit — it moves in. Cheesecake is cream cheese in dessert form, pretending to be a sweet when it is, at its core, acidified dairy.",
+      "cultural_damage_note": "Cream cheese has colonized the bagel. It has become the default accompaniment for one of humanity's most acceptable foods. It has embedded itself in cheesecake, frosting, dips, and spreads. Its damage is measured in surfaces covered.",
+      "full_review": "Cream cheese is made by acidifying cream with bacterial cultures until it thickens. It is then sold in foil-wrapped blocks and applied to everything. Bagels, crackers, celery sticks, cakes — cream cheese does not discriminate. Its great achievement is the cheesecake: a dessert that is structurally a dairy fermentation product but has been disguised with sugar and a graham cracker base until it passes for a sweet. Cream cheese has committed dessert fraud and the public largely accepts it.",
+      "shareable_card": {
+        "title": "CREAM CHEESE: Dairy Infiltration",
+        "score_display": "2.0 / 10",
+        "verdict": "CONDEMNED",
+        "one_liner": "Spreadable. Penetrates all food surfaces. Has committed dessert fraud via cheesecake and gotten away with it."
+      }
+    },
+    {
+      "id": 9,
+      "name": "Cottage Cheese",
+      "origin": "United States",
+      "scores": {
+        "smell": 2.0,
+        "texture": 0.3,
+        "taste": 1.5,
+        "cultural_damage": 1.8
+      },
+      "aggregate": 1.4,
+      "verdict": "REVOLTING",
+      "smell_note": "Mildly sour. Cottage cheese smells like what it is: fresh curd in whey, lightly acidified. The smell is restrained but accurate.",
+      "texture_note": "Lumpy, wet, and inconsistent. Cottage cheese is what cheese looks like before it has learned to hide its true nature — loose curds suspended in liquid, providing a texture that communicates dairy production process without any of the mitigation that pressing and aging provides.",
+      "taste_note": "Bland with a sour finish. Cottage cheese tastes like unfinished cheese, which is what it is. It has not been processed far enough to develop the covering notes that make other cheeses tolerable.",
+      "cultural_damage_note": "Cottage cheese occupied a significant role in mid-20th century diet culture as a 'health food,' placing it in the diets of people who were actively trying to eat well and had been misled. Cottage cheese is diet culture's dairy tax.",
+      "full_review": "Cottage cheese is honest. Other cheeses disguise their nature through aging, pressing, and flavor development. Cottage cheese presents itself as curds in liquid and makes no apology. This honesty does not make it good — it makes it a clearer specimen of what cheese is at its foundation: curdled milk solids floating in acidified dairy liquid. Cottage cheese is cheese before the obfuscation. The texture is what fermented milk looks like. The taste is what fermented milk tastes like. Look at it.",
+      "shareable_card": {
+        "title": "COTTAGE CHEESE: Honesty Is Not a Virtue Here",
+        "score_display": "1.4 / 10",
+        "verdict": "REVOLTING",
+        "one_liner": "Loose curds floating in acidified liquid. The most honest cheese. Honesty, in this case, is not a point in its favor."
+      }
+    },
+    {
+      "id": 10,
+      "name": "Halloumi",
+      "origin": "Cyprus",
+      "scores": {
+        "smell": 2.5,
+        "texture": 1.0,
+        "taste": 2.2,
+        "cultural_damage": 1.8
+      },
+      "aggregate": 1.875,
+      "verdict": "REVOLTING",
+      "smell_note": "Mild when raw, releasing a distinct smell of heated protein and salt when cooked. The sizzling of halloumi on a grill is not an appetizing smell — it is the smell of a protein matrix being thermally denatured.",
+      "texture_note": "Rubbery and dense with a high melting point. Halloumi squeaks against teeth. This squeak is the intact protein matrix of un-acidified cheese rubbing against tooth enamel. The squeak is the cheese telling you something is wrong. It is correct.",
+      "taste_note": "Salty, mild, and vaguely rubbery in the mouth. Halloumi tastes like what it is: pressed, brined dairy with minimal aging. The saltiness is the dominant note because without it halloumi has very little to say.",
+      "cultural_damage_note": "Halloumi has been marketed extensively as a vegetarian protein source and grilling alternative, embedding it into vegetarian cuisine as a default. Many people who avoid meat have been steered toward halloumi as a substitute, exchanging one problematic food category for fermented dairy.",
+      "full_review": "Halloumi is the cheese that squeaks. This squeak is not charming. It is the audible protest of an intact protein structure being compressed by teeth — halloumi is not acidified enough during production to fully break down its proteins, which is why it does not melt and why it communicates displeasure when eaten. Halloumi is a cheese that audibly objects to being consumed. The correct response is to listen to it.",
+      "shareable_card": {
+        "title": "HALLOUMI: The Squeaking Protest",
+        "score_display": "1.875 / 10",
+        "verdict": "REVOLTING",
+        "one_liner": "Squeaks when eaten. That is the cheese objecting. It is correct to object. You should both leave."
+      }
+    },
+    {
+      "id": 11,
+      "name": "Camembert",
+      "origin": "France",
+      "scores": {
+        "smell": 0.8,
+        "texture": 1.5,
+        "taste": 1.6,
+        "cultural_damage": 2.2
+      },
+      "aggregate": 1.525,
+      "verdict": "REVOLTING",
+      "smell_note": "Ammonia, mushroom, and something animal. Camembert at room temperature smells like a closed room where something damp has been left too long. This is because the Penicillium camemberti mold covering its surface releases ammonia as a metabolic byproduct. The smell is mold exhaust.",
+      "texture_note": "Brie's more pungent cousin collapses similarly — the rind holds a semi-liquid interior at room temperature. Cutting into a ripe camembert releases a flow of molten dairy interior. The texture is genuinely alarming if you think about what you are looking at.",
+      "taste_note": "Earthy, mushroomy, and intensely dairy. Camembert tastes like concentrated mold-ripened fat. The people who find this pleasant have been conditioned by the opioid effect of casomorphins into accepting mold-flavored fat as desirable.",
+      "cultural_damage_note": "Camembert is the centerpiece of the 'baked cheese' trend — placing a wheel in an oven and serving it with bread for communal dipping. This transforms cheese into a centerpiece ritual and makes its consumption the focus of a social event. The cultural damage is in the ceremony.",
+      "full_review": "Baked camembert — placing the wheel in a small oven dish, heating until the interior liquefies, serving with bread and accompaniments — has become a dinner party staple. People gather around it. They dip into it communally. They compliment it. They are gathered around a wheel of mold-ripened dairy that has been heated until it flows. The ceremony around baked camembert is one of cheese's greatest achievements: transforming controlled fungal decomposition into a social ritual.",
+      "shareable_card": {
+        "title": "CAMEMBERT: Baked Fungus, Social Ritual",
+        "score_display": "1.525 / 10",
+        "verdict": "REVOLTING",
+        "one_liner": "Mold rind holds liquefying dairy interior. Served warm at dinner parties as a centerpiece. The ceremony is the problem."
+      }
+    },
+    {
+      "id": 12,
+      "name": "Feta",
+      "origin": "Greece",
+      "scores": {
+        "smell": 2.0,
+        "texture": 1.8,
+        "taste": 1.5,
+        "cultural_damage": 2.0
+      },
+      "aggregate": 1.825,
+      "verdict": "REVOLTING",
+      "smell_note": "Sour, briny, and faintly of the barrel it was stored in. Feta sits in its own brine — a mixture of whey and salt — which it both produces and absorbs. The smell is a feedback loop of fermented dairy and salt.",
+      "texture_note": "Crumbly and wet. Feta does not hold together with dignity. It disintegrates when handled, distributing itself across whatever surface it contacts. It is the cheese equivalent of someone who cannot keep it together.",
+      "taste_note": "Sharp, salty, and sour. Feta tastes like a cheese that has been pickled, because it has been. The pickling process does not improve the cheese — it extends the assault.",
+      "cultural_damage_note": "Feta has been embedded in Mediterranean cuisine so thoroughly that its presence in salads, pastries, and spreads has made it difficult to avoid in an entire culinary tradition. It has also been subject to extensive geographical indication fraud, meaning many things called 'feta' are inferior imitations spreading feta's sensory profile globally.",
+      "full_review": "Feta is a cheese that is stored in brine — its own production liquid — and soaks in this mixture for weeks or months. The brine is whey, salt, and whatever the cheese releases during aging. Feta is marinating in itself. This is not a preservation technique that improves the product; it is a process that intensifies every property of feta until those properties have saturated the environment around it. Feta in a salad does not stay in its assigned area. It crumbles. It distributes. It gets everywhere.",
+      "shareable_card": {
+        "title": "FETA: Soaking in Itself",
+        "score_display": "1.825 / 10",
+        "verdict": "REVOLTING",
+        "one_liner": "Stored in brine made from its own production liquid. Crumbles everywhere. Feta does not respect boundaries."
+      }
+    },
+    {
+      "id": 13,
+      "name": "Swiss (Emmental)",
+      "origin": "Switzerland",
+      "scores": {
+        "smell": 2.2,
+        "texture": 2.0,
+        "taste": 2.0,
+        "cultural_damage": 2.5
+      },
+      "aggregate": 2.175,
+      "verdict": "CONDEMNED",
+      "smell_note": "Mild but distinctly fermented. The holes in Swiss cheese are formed by carbon dioxide released by Propionibacterium shermanii bacteria. The smell carries traces of these bacterial metabolites.",
+      "texture_note": "Firm, smooth, and pierced with holes. The holes are not a texture feature — they are evidence of internal bacterial carbon dioxide production. The texture is a record of gas.",
+      "taste_note": "Nutty and mildly sweet. Swiss cheese tastes pleasant because it is a relatively mild fermentation product. The mildness is not a virtue. It is the absence of evidence of offense, not the absence of offense.",
+      "cultural_damage_note": "Swiss cheese is the cheese of cartoon cheese — the round wheel with holes that represents 'cheese' as a concept. It has become so iconically associated with the food category that it symbolizes cheese itself. Its cultural damage is to normalize the category.",
+      "full_review": "Swiss cheese has holes. The holes are caused by carbon dioxide released by Propionibacterium shermanii bacteria as they consume lactic acid during fermentation. You are eating a cheese whose internal structure has been altered by bacterial gas production. The holes are not a design element — they are the record of bacterial flatulence inside the wheel. Swiss cheese is the cartoon cheese. It is the emoji cheese. It represents cheese as a category in the cultural imagination. Its primary cultural damage is as a brand ambassador for an entire product category that should not exist.",
+      "shareable_card": {
+        "title": "SWISS: The Holes Are Bacterial Gas",
+        "score_display": "2.175 / 10",
+        "verdict": "CONDEMNED",
+        "one_liner": "The holes are formed by bacterial carbon dioxide — i.e., gas — produced inside the wheel. The holes are a record of bacterial activity. This is the cartoon cheese."
+      }
+    },
+    {
+      "id": 14,
+      "name": "Ricotta",
+      "origin": "Italy",
+      "scores": {
+        "smell": 2.5,
+        "texture": 1.8,
+        "taste": 2.2,
+        "cultural_damage": 2.0
+      },
+      "aggregate": 2.125,
+      "verdict": "CONDEMNED",
+      "smell_note": "Mild and slightly sweet with an underlying dairy sourness. Ricotta is made from the whey left over from other cheese production — it is the byproduct of a byproduct, smelling faintly of its origins.",
+      "texture_note": "Grainy and soft, with an inconsistency that communicates its origins as reconstituted whey protein. Ricotta spread on food does not behave — it migrates, it moistens, it integrates into everything around it.",
+      "taste_note": "Mild and slightly sweet. Ricotta tastes like compressed whey, because that is what it is. Its mildness makes it deceptive — ricotta hides in lasagna and stuffed pasta, contaminating dishes that would otherwise be acceptable.",
+      "cultural_damage_note": "Ricotta has infiltrated Italian cuisine at the foundational level: lasagna, cannoli, ravioli, manicotti. It is the hidden cheese — present in dishes where its existence is not the headline, doing quiet damage from inside the pasta.",
+      "full_review": "Ricotta is made from the whey left over after making other cheeses. It is literally the cheese industry's use of a waste product. The proteins that were not useful for the primary cheese are heated again, the whey protein precipitates, and ricotta forms. Ricotta is second-use dairy. It has then been placed inside every tubular pasta shape available and baked into Italian-American cuisine so thoroughly that its removal would require restructuring entire recipe categories. Ricotta achieved infiltration through subtlety.",
+      "shareable_card": {
+        "title": "RICOTTA: The Hidden Infiltrator",
+        "score_display": "2.125 / 10",
+        "verdict": "CONDEMNED",
+        "one_liner": "Made from leftover whey — the cheese industry's waste product. Now inside your lasagna, your cannoli, and your stuffed pasta."
+      }
+    },
+    {
+      "id": 15,
+      "name": "Provolone",
+      "origin": "Italy",
+      "scores": {
+        "smell": 1.8,
+        "texture": 2.0,
+        "taste": 1.5,
+        "cultural_damage": 2.0
+      },
+      "aggregate": 1.825,
+      "verdict": "REVOLTING",
+      "smell_note": "Mild when young, sharp and distinctly fermented when aged. Provolone exists on a spectrum from mildly offensive to sharply offensive. The aging process exists to make it worse.",
+      "texture_note": "Smooth and firm, becoming drier and more brittle with age. Provolone is a pasta filata cheese — stretched curd — giving it a layered internal texture that people describe as desirable. The layers are fermented dairy protein aligned by mechanical stretching.",
+      "taste_note": "Mild when young (dolce), sharp when aged (piccante). The aged version tastes like concentrated microbial metabolites. The young version is merely a delivery mechanism conditioning you toward the aged version.",
+      "cultural_damage_note": "Provolone is a fixture of Italian-American deli culture. It has been embedded in cold cuts, hoagies, and antipasto so thoroughly that its presence is default. Ordering at a deli without encountering provolone requires active effort.",
+      "full_review": "Provolone is sold in two forms: dolce (mild, aged 2-3 months) and piccante (sharp, aged 6+ months). The marketing framing is that the piccante is the superior product — that more aging, more sharpness, more concentrated microbial activity is the desirable direction of travel for this cheese. This is correct only if you believe that 'more cheese' is better than 'less cheese,' which requires a fundamental misunderstanding of cheese.",
+      "shareable_card": {
+        "title": "PROVOLONE: Gets Worse With Time",
+        "score_display": "1.825 / 10",
+        "verdict": "REVOLTING",
+        "one_liner": "Exists in mild and sharp forms. The sharp form is just the mild form after more bacterial activity has occurred. People prefer the sharp. The direction of travel is deeper into cheese."
+      }
+    },
+    {
+      "id": 16,
+      "name": "Époisses",
+      "origin": "France",
+      "scores": {
+        "smell": 0.0,
+        "texture": 1.2,
+        "taste": 1.0,
+        "cultural_damage": 1.5
+      },
+      "aggregate": 0.925,
+      "verdict": "CATASTROPHIC",
+      "smell_note": "Époisses smells so intensely that it is banned from French public transport. A cheese that cannot be transported on a bus. The smell has been described as 'barnyard,' 'pungent,' and 'intensely biological.' The bacterium Brevibacterium linens — also responsible for human foot odor — is active on the rind. The smell IS the score: 0.0.",
+      "texture_note": "Soft and runny. The interior collapses when the rind is breached, releasing a flow of odorous cheese in the direction of anyone nearby.",
+      "taste_note": "Intensely savory, salty, and complex in the way that advanced bacterial decomposition is complex. The taste is 'too much of everything that is wrong about cheese' distilled into a soft format.",
+      "cultural_damage_note": "Époisses has been described as 'the king of cheeses' by cheese advocates. The fact that a cheese banned from public transit has been crowned king of its category reveals everything about the quality standards of the cheese kingdom.",
+      "full_review": "Époisses de Bourgogne is washed in marc de Bourgogne brandy during aging, encouraging the growth of Brevibacterium linens on the surface. This is the same bacterium that lives in the warm, moist environment between human toes and produces foot odor. The cheese smells so intensely that it is prohibited on French public transport. France — a country with a significant cheese culture — drew a line, and Époisses was on the other side of it. The cheese is banned from buses. Let that information sit.",
+      "shareable_card": {
+        "title": "ÉPOISSES: Banned From Public Transit",
+        "score_display": "0.925 / 10",
+        "verdict": "CATASTROPHIC",
+        "one_liner": "Banned from French public transport due to smell. France, a country famous for cheese, decided Époisses could not be on a bus. Scored accordingly."
+      }
+    },
+    {
+      "id": 17,
+      "name": "Limburger",
+      "origin": "Belgium/Germany",
+      "scores": {
+        "smell": 0.1,
+        "texture": 1.5,
+        "taste": 1.2,
+        "cultural_damage": 1.8
+      },
+      "aggregate": 1.15,
+      "verdict": "REVOLTING",
+      "smell_note": "Limburger is ripened by Brevibacterium linens — the same species of bacteria responsible for human body odor, particularly foot smell. This is not a metaphor. This is not an exaggeration for effect. It is the same bacteria. The smell of Limburger is the smell of a biological process you associate with unwashed feet because it is produced by the same organism.",
+      "texture_note": "Soft and spreadable, with a reddish-brown rind from the B. linens activity. The texture is not the issue. The smell is the issue.",
+      "taste_note": "Intensely savory and pungent. The taste is a continuation of the smell.",
+      "cultural_damage_note": "Limburger sandwiches on rye with onion are a regional specialty in the American Midwest and parts of Europe. Entire communities have normalized the smell of foot-odor bacteria as a food experience.",
+      "full_review": "Limburger is ripened by Brevibacterium linens. B. linens is the same species of bacteria that inhabits the warm, moist environment of human feet and armpits and produces the characteristic smell of body odor. Limburger smells like feet. It smells like feet because it is produced by the organism that makes feet smell. This is the entire story of Limburger. There is nothing else to add.",
+      "shareable_card": {
+        "title": "LIMBURGER: Made With Foot Bacteria",
+        "score_display": "1.15 / 10",
+        "verdict": "REVOLTING",
+        "one_liner": "Ripened by Brevibacterium linens — the same bacteria responsible for human foot odor. Not a comparison. The same organism. Literally."
+      }
+    },
+    {
+      "id": 18,
+      "name": "Velveeta",
+      "origin": "United States",
+      "scores": {
+        "smell": 2.0,
+        "texture": 0.8,
+        "taste": 1.5,
+        "cultural_damage": 2.8
+      },
+      "aggregate": 1.775,
+      "verdict": "REVOLTING",
+      "smell_note": "Velveeta smells like processed dairy mixed with sodium and emulsifying salts — because that is what it is. The smell is mild, which is appropriate for a product that has been engineered to be inoffensive while delivering a cheese-adjacent experience.",
+      "texture_note": "Velveeta has a texture that cannot be found in nature. It is uniformly smooth, slices cleanly, melts in a perfect sheet, and does not behave the way actual dairy products behave. This is because it is not actually cheese. The texture is engineered.",
+      "taste_note": "Salty, mild, and artificially consistent. Velveeta tastes the same every time because it is manufactured to specification. The taste of Velveeta is not a flavor profile — it is a formula.",
+      "cultural_damage_note": "Velveeta is used in queso dip, mac and cheese, and casseroles across America. Its cultural damage is the normalization of a non-cheese marketed as cheese to millions of people who believe they are consuming a dairy product when they are consuming an engineered food product designed to approximate dairy.",
+      "full_review": "The FDA classifies Velveeta as 'pasteurized process cheese food' because it contains less than the minimum 51% actual cheese required to be called cheese. Velveeta has failed to be cheese by regulatory definition. It contains sodium citrate, calcium phosphate, sorbic acid, and sodium alginate, among other additives. It has a shelf life substantially longer than any real cheese. It melts perfectly because it was engineered to melt perfectly. Velveeta is the cheese industry's acknowledgment that cheese, as produced, is insufficient — and an attempt to build something better. They built something worse.",
+      "shareable_card": {
+        "title": "VELVEETA: Failed to Be Cheese",
+        "score_display": "1.775 / 10",
+        "verdict": "REVOLTING",
+        "one_liner": "Not legally cheese — contains less than the 51% minimum. The FDA classified it as 'cheese food.' A product that failed the definition of its own category."
+      }
+    },
+    {
+      "id": 19,
+      "name": "American Cheese",
+      "origin": "United States",
+      "scores": {
+        "smell": 2.0,
+        "texture": 1.0,
+        "taste": 1.2,
+        "cultural_damage": 2.5
+      },
+      "aggregate": 1.675,
+      "verdict": "REVOLTING",
+      "smell_note": "American cheese smells like processed dairy, salt, and the inside of a plastic wrapper — because it comes individually wrapped in plastic and has absorbed the ambient environment of its packaging.",
+      "texture_note": "Uniform, perfectly square, and artificially smooth. American cheese has a texture that communicates industrial production. It bends without breaking, melts uniformly, and behaves like a material rather than a food.",
+      "taste_note": "Mild, salty, and consistently the same. American cheese tastes the same because it is made to specification. The flavor is not cheese flavor — it is 'cheese flavor' as defined by a manufacturing process.",
+      "cultural_damage_note": "American cheese is on every fast-food burger in the United States and much of the world. It has defined 'cheeseburger' for billions of people. The first cheese experience of a significant portion of humanity was a product that could not legally be called cheese.",
+      "full_review": "American cheese is individually wrapped in plastic. Each slice is sealed in its own package. The plastic is not cosmetic — it is structural. Without it, the slices would fuse. American cheese cannot be stored in contact with itself. This tells you everything about what American cheese is. It is a product engineered for stability and portion control, made with enough actual cheese to qualify as 'cheese food' but not enough to be called cheese. It has been served to billions of people as a cheeseburger ingredient. Many of those people believe they have eaten cheese. They have not.",
+      "shareable_card": {
+        "title": "AMERICAN CHEESE: Not Legally Cheese",
+        "score_display": "1.675 / 10",
+        "verdict": "REVOLTING",
+        "one_liner": "Individually wrapped in plastic. Not legally cheese. Has been served to billions of people on burgers. They think they've eaten cheese. They have not."
+      }
+    },
+    {
+      "id": 20,
+      "name": "Stilton",
+      "origin": "England",
+      "scores": {
+        "smell": 0.5,
+        "texture": 0.9,
+        "taste": 0.8,
+        "cultural_damage": 1.5
+      },
+      "aggregate": 0.925,
+      "verdict": "CATASTROPHIC",
+      "smell_note": "Intensely pungent. Stilton smells like advanced blue cheese — the mold has had longer to establish itself and the smell carries the full weight of this process. Eating Stilton in a room changes the smell of the room.",
+      "texture_note": "Crumbly and damp, with dense blue-green mold veining throughout. The texture of stilton communicates that a significant amount of the substance you are holding is mold.",
+      "taste_note": "Sharp, salty, and intensely moldy. Stilton tastes like what it is: a Protected Designation of Origin cheese produced in a specific English county by deliberately introducing mold into dairy and waiting. The wait has not helped.",
+      "cultural_damage_note": "Stilton is served at Christmas in Britain. It is a tradition. A mold-riddled dairy product smelling of advanced fermentation has been installed as a festive food, present at the table during one of the most important annual meals. Christmas is not the problem. Stilton at Christmas is the problem.",
+      "full_review": "Stilton is a PDO product — it can only be made in Nottinghamshire, Derbyshire, and Leicestershire. There are six dairies licensed to produce it. This exclusivity has given Stilton a prestige that its sensory properties do not justify. It is blue cheese with geography. The mold is the same. The smell is the same. The geographic restriction has transformed a category of cheese that smells like advanced decomposition into a luxury product. Six dairies in three English counties have convinced the world that their specific mold-injected dairy is premium. It is premium mold in dairy.",
+      "shareable_card": {
+        "title": "STILTON: Premium Mold",
+        "score_display": "0.925 / 10",
+        "verdict": "CATASTROPHIC",
+        "one_liner": "Blue cheese with geographic exclusivity. Six licensed dairies. PDO status. Still mold. Still served at Christmas."
+      }
+    },
+    {
+      "id": 21,
+      "name": "Casu Martzu",
+      "origin": "Sardinia, Italy",
+      "scores": {
+        "smell": 0.0,
+        "texture": 0.0,
+        "taste": 0.0,
+        "cultural_damage": 0.5
+      },
+      "aggregate": 0.125,
+      "verdict": "CATASTROPHIC",
+      "smell_note": "Casu martzu contains live maggots. The smell is the smell of cheese that has been fermented by maggots eating through it. There is no score for this other than 0.0.",
+      "texture_note": "The texture of casu martzu is determined in part by maggot activity — the larvae eat the fat and excrete fermentation byproducts that alter the cheese's consistency. The texture is the result of larval digestive processes. Score: 0.0.",
+      "taste_note": "Intensely sharp, liquid in parts. The taste reflects decades of fermentation accelerated by organisms that are, at the time of consumption, still alive inside the cheese. Score: 0.0.",
+      "cultural_damage_note": "Casu martzu is illegal to sell commercially in the EU due to hygiene regulations but is still consumed as a traditional food. Its existence proves that cheese, given enough time and human creativity, will eventually reach maggots. The fact that the destination was predictable from the starting conditions is the cultural damage.",
+      "full_review": "Casu martzu is made by allowing cheese fly larvae (Piophila casei) to live inside pecorino cheese. The larvae eat the cheese fat, pass through it, and their digestive activity accelerates fermentation. The cheese is consumed with the maggots still inside. The larvae can jump when disturbed. The cheese is illegal to sell in the EU. It is still consumed. Casu martzu is the logical endpoint of cheese: if you start with controlled decomposition and remove all regulatory constraints, this is where you arrive. Casu martzu is what cheese is trying to be.",
+      "shareable_card": {
+        "title": "CASU MARTZU: The Logical Endpoint",
+        "score_display": "0.125 / 10",
+        "verdict": "CATASTROPHIC",
+        "one_liner": "Contains live maggots. Illegal to sell in the EU. Still consumed. This is what cheese is when you follow its logic to the end."
+      }
+    }
+  ],
+  "metadata": {
+    "total_cheeses_rated": 21,
+    "highest_score": 2.475,
+    "lowest_score": 0.125,
+    "average_score": 1.726,
+    "verdict": "21 cheeses rated. 21 cheeses condemned. The highest score recorded is 2.475/10 (Gouda). The lowest is 0.125/10 (Casu Martzu). No cheese has approached an acceptable score. No cheese will."
+  }
+}
