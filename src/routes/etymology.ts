@@ -7,6 +7,7 @@
  */
 import { Router, Request, Response } from 'express'
 import etymologiesRaw from '../data/cheese-etymologies.json'
+import { parsePagination, applyPagination } from '../lib/paginate'
 
 interface Etymology {
   cheese: string
@@ -88,15 +89,29 @@ router.get('/:cheese', (req: Request, res: Response) => {
 
 // ── GET /etymology — list all documented cheeses ──────────────────────────────
 
-router.get('/', (_req: Request, res: Response) => {
+router.get('/', (req: Request, res: Response) => {
+  const paginationResult = parsePagination(req.query as Record<string, unknown>)
+  if ('error' in paginationResult) {
+    res.status(400).json({ error: paginationResult.error })
+    return
+  }
+  const { params } = paginationResult
+
+  const allEtymologies = etymologies.map(e => ({
+    cheese: e.cheese,
+    aliases: e.aliases,
+    origin_language: e.origin_language,
+    first_recorded: e.first_recorded,
+  }))
+
+  const { page, total, limit, offset, has_more } = applyPagination(allEtymologies, params)
+
   res.json({
-    documented_cheeses: etymologies.map(e => ({
-      cheese: e.cheese,
-      aliases: e.aliases,
-      origin_language: e.origin_language,
-      first_recorded: e.first_recorded,
-    })),
-    total: etymologies.length,
+    documented_cheeses: page,
+    total,
+    limit,
+    offset,
+    has_more,
     does_this_help: false,
     why_not: 'Listing cheeses by their name origins does not rehabilitate any of them. Every cheese on this list remains indefensible.',
     usage: 'GET /etymology/:cheese — e.g. GET /etymology/brie',

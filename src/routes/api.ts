@@ -187,10 +187,28 @@ export const ENDPOINTS = [
   {
     method: 'GET',
     path: '/facts/all',
-    description: 'Returns all known damning cheese facts. No filter. No mercy.',
-    parameters: [],
+    description: 'Returns all known damning cheese facts. No filter. No mercy. Paginated: default 20 per page, max 100.',
+    parameters: [
+      {
+        name: 'limit',
+        location: 'query',
+        type: 'number',
+        required: false,
+        description: 'Number of facts to return per page (default: 20, max: 100).',
+      },
+      {
+        name: 'offset',
+        location: 'query',
+        type: 'number',
+        required: false,
+        description: 'Number of facts to skip before returning results (default: 0).',
+      },
+    ],
     example_response: {
       total: 55,
+      limit: 20,
+      offset: 0,
+      has_more: true,
       facts: [
         { fact: '...', category: 'health', severity: 9 },
       ],
@@ -200,7 +218,7 @@ export const ENDPOINTS = [
   {
     method: 'GET',
     path: '/facts/search',
-    description: 'Search the cheese-facts database by keyword. Matches fact text and category (case-insensitive). Results sorted by severity descending — most alarming facts first. Companion to GET /search, which searches cheeses rather than facts.',
+    description: 'Search the cheese-facts database by keyword. Matches fact text and category (case-insensitive). Results sorted by severity descending — most alarming facts first. Paginated: default 20 per page, max 100. Companion to GET /search, which searches cheeses rather than facts.',
     parameters: [
       {
         name: 'q',
@@ -215,6 +233,20 @@ export const ENDPOINTS = [
         type: 'string',
         required: false,
         description: 'Filter results to a specific fact category: "what-it-is", "how-its-made", "health", or "industry-secrets".',
+      },
+      {
+        name: 'limit',
+        location: 'query',
+        type: 'number',
+        required: false,
+        description: 'Number of results to return per page (default: 20, max: 100).',
+      },
+      {
+        name: 'offset',
+        location: 'query',
+        type: 'number',
+        required: false,
+        description: 'Number of results to skip before returning results (default: 0).',
       },
     ],
     example_request: 'GET /facts/search?q=bacteria',
@@ -235,6 +267,9 @@ export const ENDPOINTS = [
         },
       ],
       total: 8,
+      limit: 20,
+      offset: 0,
+      has_more: false,
       note: 'Every fact is damning. The query only determines which facts are most immediately relevant.',
     },
   },
@@ -549,8 +584,23 @@ export const ENDPOINTS = [
   {
     method: 'GET',
     path: '/etymology',
-    description: 'List all cheeses with documented etymologies. Returns cheese name, aliases, origin language, and first recorded date for each. does_this_help is always false.',
-    parameters: [],
+    description: 'List all cheeses with documented etymologies. Returns cheese name, aliases, origin language, and first recorded date for each. Paginated: default 20 per page, max 100. does_this_help is always false.',
+    parameters: [
+      {
+        name: 'limit',
+        location: 'query',
+        type: 'number',
+        required: false,
+        description: 'Number of cheeses to return per page (default: 20, max: 100).',
+      },
+      {
+        name: 'offset',
+        location: 'query',
+        type: 'number',
+        required: false,
+        description: 'Number of cheeses to skip before returning results (default: 0).',
+      },
+    ],
     example_request: 'GET /etymology',
     example_response: {
       documented_cheeses: [
@@ -558,6 +608,9 @@ export const ENDPOINTS = [
         { cheese: 'brie', aliases: ['brie de meaux', 'brie de melun'], origin_language: 'French', first_recorded: 'c. 774 CE' },
       ],
       total: 10,
+      limit: 20,
+      offset: 0,
+      has_more: false,
       does_this_help: false,
       why_not: 'Listing cheeses by their name origins does not rehabilitate any of them. Every cheese on this list remains indefensible.',
       usage: 'GET /etymology/:cheese — e.g. GET /etymology/brie',
@@ -592,7 +645,7 @@ export const ENDPOINTS = [
   {
     method: 'GET',
     path: '/timeline',
-    description: 'Returns a chronological history of cheese — 20 milestones from 8000 BCE to the present, each annotated with its significance and a verdict on why it represents a step in the wrong direction. Supports optional query filters by era, year range, or both. does_this_help is always false.',
+    description: 'Returns a chronological history of cheese — milestones from 8000 BCE to the present, each annotated with its significance and a verdict on why it represents a step in the wrong direction. Supports optional query filters by era, year range, or both. Paginated: default 20 per page, max 100. does_this_help is always false.',
     parameters: [
       {
         name: 'era',
@@ -614,6 +667,20 @@ export const ENDPOINTS = [
         type: 'integer',
         required: false,
         description: 'Return only events where year < before. Use negative integers for BCE (e.g. ?before=0 returns only BCE events).',
+      },
+      {
+        name: 'limit',
+        location: 'query',
+        type: 'number',
+        required: false,
+        description: 'Number of events to return per page (default: 20, max: 100).',
+      },
+      {
+        name: 'offset',
+        location: 'query',
+        type: 'number',
+        required: false,
+        description: 'Number of events to skip before returning results (default: 0).',
       },
     ],
     example_request: 'GET /timeline?era=industrial',
@@ -639,6 +706,9 @@ export const ENDPOINTS = [
         },
       ],
       total_events: 2,
+      limit: 20,
+      offset: 0,
+      has_more: false,
       conclusion: 'This is not a neutral history. Every entry represents a choice that was made, and the world is worse for it.',
       does_this_help: false,
       why_not: 'Understanding how we arrived here does not un-arrive us. The cheese exists. The timeline explains why. It does not excuse it.',
@@ -692,7 +762,7 @@ export const ENDPOINTS = [
   {
     method: 'GET',
     path: '/severity/:tier',
-    description: 'Returns all cheeses at a given threat level, ranked from worst to least-worst within the tier. Valid tiers: catastrophic (score < 1.0), revolting (1.0–1.99), condemned (2.0+). Invalid tier names return 400 with the valid tier list and threat descriptions.',
+    description: 'Returns all cheeses at a given threat level, ranked from worst to least-worst within the tier. Paginated: default 20 per page, max 100. Valid tiers: catastrophic (score < 1.0), revolting (1.0–1.99), condemned (2.0+). Invalid tier names return 400 with the valid tier list and threat descriptions.',
     parameters: [
       {
         name: 'tier',
@@ -700,6 +770,20 @@ export const ENDPOINTS = [
         type: 'string',
         required: true,
         description: 'The severity tier to browse. Must be exactly one of: catastrophic, revolting, condemned. Case-insensitive.',
+      },
+      {
+        name: 'limit',
+        location: 'query',
+        type: 'number',
+        required: false,
+        description: 'Number of cheeses to return per page (default: 20, max: 100).',
+      },
+      {
+        name: 'offset',
+        location: 'query',
+        type: 'number',
+        required: false,
+        description: 'Number of cheeses to skip before returning results (default: 0).',
       },
     ],
     example_request: 'GET /severity/catastrophic',
@@ -713,6 +797,9 @@ export const ENDPOINTS = [
         { rank: 2, cheese: 'Blue Cheese', score: 0.625, severity_tier: 'catastrophic', verdict: 'CATASTROPHIC', why_it_wins: 'Deliberately cultivated mold…' },
       ],
       total: 4,
+      limit: 20,
+      offset: 0,
+      has_more: false,
       extremes: { worst: 'GET /severity/catastrophic/worst', least_bad: 'GET /severity/catastrophic/least-bad' },
     },
   },

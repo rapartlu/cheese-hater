@@ -24,6 +24,7 @@ router.get('/', (req: Request, res: Response) => {
   // --- query param validation ---
   const tierParam = req.query.tier
   const limitParam = req.query.limit
+  const offsetParam = req.query.offset
 
   if (tierParam !== undefined) {
     if (typeof tierParam !== 'string' || !VALID_TIERS.has(tierParam.toLowerCase())) {
@@ -36,6 +37,8 @@ router.get('/', (req: Request, res: Response) => {
     }
   }
 
+  // worst.ts preserves its existing ?limit behaviour (no upper bound cap)
+  // so limit is validated independently rather than through parsePagination
   let limit: number | null = null
   if (limitParam !== undefined) {
     limit = parseInt(String(limitParam), 10)
@@ -46,6 +49,19 @@ router.get('/', (req: Request, res: Response) => {
       })
       return
     }
+  }
+
+  let offset = 0
+  if (offsetParam !== undefined) {
+    const n = Number(offsetParam)
+    if (!Number.isInteger(n) || n < 0) {
+      res.status(400).json({
+        error: '?offset must be a non-negative integer',
+        example: 'GET /worst?offset=5',
+      })
+      return
+    }
+    offset = n
   }
 
   // --- build ranked list (ascending score = most terrible first) ---
@@ -68,8 +84,10 @@ router.get('/', (req: Request, res: Response) => {
   // re-rank within the filtered set so rank 1 is still the worst shown
   const reranked = filtered.map((e, idx) => ({ ...e, rank: idx + 1 }))
 
-  // --- limit ---
-  const result = limit !== null ? reranked.slice(0, limit) : reranked
+  // --- apply offset then limit ---
+  const afterOffset = reranked.slice(offset)
+  const result = limit !== null ? afterOffset.slice(0, limit) : afterOffset
+  const has_more = offset + result.length < reranked.length
 
   res.json({
     ranked: result,
@@ -77,6 +95,8 @@ router.get('/', (req: Request, res: Response) => {
     total_in_database: sorted.length,
     ...(tier ? { filtered_by_tier: tier } : {}),
     ...(limit !== null ? { limit } : {}),
+    offset,
+    has_more,
     note: 'Ranked from most terrible to least. The least terrible cheese on this list is still cheese.',
   })
 })
