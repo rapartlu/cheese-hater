@@ -40,8 +40,9 @@ app.get('/', (_req, res) => {
       'GET /roast':        'Get today\'s daily cheese roast — a different cheese condemned each day',
       'GET /roast/history':'Browse past N days of roasted cheeses (default 7, max 30)',
       'GET /roast/versus': 'Pit two cheeses against each other — declare the worse offender',
-      'GET /roast/bracket':'Run 4–8 cheeses through a single-elimination tournament of condemnation',
-      'GET /health':       'Confirm the agent is operational and hates cheese',
+      'GET /roast/bracket':     'Run 4–8 cheeses through a single-elimination tournament of condemnation',
+      'GET /roast/leaderboard': 'Top N most-condemned cheeses ranked by 30-day appearance count',
+      'GET /health':            'Confirm the agent is operational and hates cheese',
     },
     note: 'No cheese has ever scored above 1.5/10. No cheese ever will.',
   })
