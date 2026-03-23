@@ -4,6 +4,7 @@ import rantRouter from './routes/rant'
 import counterRouter from './routes/counter'
 import rateRouter from './routes/rate'
 import factsRouter from './routes/facts'
+import roastRouter from './routes/roast'
 
 const app = express()
 const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000
@@ -36,6 +37,7 @@ app.get('/', (_req, res) => {
       'GET /rate':         'List all 20 rated cheeses and their verdicts',
       'GET /facts':        'Get a random damning cheese fact',
       'GET /facts/all':    'Get all facts unconditionally',
+      'GET /roast':        'Get today\'s daily cheese roast — a different cheese condemned each day',
       'GET /health':       'Confirm the agent is operational and hates cheese',
     },
     note: 'No cheese has ever scored above 1.5/10. No cheese ever will.',
@@ -57,11 +59,14 @@ app.use('/rate', rateRouter)
 // GET /facts — a random damning cheese fact
 app.use('/facts', factsRouter)
 
+// GET /roast — today's deterministic daily cheese roast
+app.use('/roast', roastRouter)
+
 // 404 handler
 app.use((_req, res) => {
   res.status(404).json({
     error: 'Endpoint not found.',
-    available: ['POST /opinion', 'GET /random-rant', 'GET /counter/:argument', 'GET /rate/:cheese', 'GET /facts'],
+    available: ['POST /opinion', 'GET /random-rant', 'GET /counter/:argument', 'GET /rate/:cheese', 'GET /facts', 'GET /roast'],
     note: 'All endpoints hate cheese. That is the only guarantee.',
   })
 })
