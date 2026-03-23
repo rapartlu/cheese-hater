@@ -133,6 +133,23 @@ export function getFactsBySeverity(minSeverity) {
   return factsData.facts.filter(f => f.severity >= minSeverity)
 }
 
+const RANTS = [
+  "Cheese is controlled rot. The food industry calls it 'aging.' The rest of us call it what it is: deliberate decomposition of animal milk sold at a markup.",
+  "Blue cheese is injected with mold spores, then pierced with metal rods to let oxygen in so the mold can grow throughout. Someone did this on purpose. We rewarded them.",
+  "Parmesan smells like vomit because it contains butyric acid — the same chemical compound found in vomit. This is not an opinion. This is organic chemistry. People shave it onto food in restaurants as a finishing touch.",
+  "Casein protein in cheese breaks down into casomorphins — opioid peptides that bind to the same brain receptors as morphine. What you call 'loving cheese' is a mild opioid response. You have been chemically persuaded.",
+  "Epoisses de Bourgogne is banned from French public transport due to its smell. France drew a line. Epoisses was on the other side of that line. A country famous for cheese decided a cheese was too much. Let that inform your opinion of cheese.",
+  "Casu martzu is made by allowing cheese fly larvae to live inside the cheese and ferment it by passing through it. It is illegal to sell in the EU. It is the logical endpoint of cheese: given enough time and human creativity, this is where cheese goes.",
+  "Pre-shredded cheese is coated in cellulose — wood pulp fiber — to prevent clumping. You are buying cheese coated in wood. The bag says shredded mozzarella. The ingredients say mozzarella, cellulose. One of these is more accurate.",
+  "Halloumi squeaks when you eat it because its protein structure was not broken down sufficiently during production. The squeak is the intact protein matrix resisting your teeth. The cheese is audibly protesting. You are ignoring it.",
+  "Fondue was popularized in the US through a Swiss cheese marketing campaign in the 1960s. Switzerland's cheese export industry manufactured the 'fondue is authentic Swiss culture' narrative to sell product. You have been sold communal dairy suffering as cultural heritage.",
+  "The USDA simultaneously recommends reducing saturated fat intake and funds Dairy Management Inc., which spent over $140 million one year promoting cheese consumption. The agency is at war with itself. Cheese is the terrible problem.",
+]
+
+export function getRandomRant() {
+  return RANTS[Math.floor(Math.random() * RANTS.length)]
+}
+
 export const facts = factsData.facts
 export const ratings = ratingsData.cheeses.map(r => ({
   name: r.name,

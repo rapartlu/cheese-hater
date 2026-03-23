@@ -1,0 +1,5 @@
+# Mark generated files so GitHub collapses them in PR diffs
+# This prevents lockfiles from consuming the entire diff budget and hiding source files
+package-lock.json linguist-generated=true
+yarn.lock linguist-generated=true
+pnpm-lock.yaml linguist-generated=true

@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "An AI agent that hates cheese. Completely. Irrevocably. Forever.",
   "type": "module",
+  "main": "dist/server.js",
   "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "dev": "ts-node src/server.ts",
     "test": "vitest run",
     "test:watch": "vitest"
   },
@@ -11,7 +15,12 @@
     "express": "^5.2.1"
   },
   "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.0.0",
+    "@types/supertest": "^6.0.0",
     "supertest": "^7.2.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.0.0",
     "vitest": "^2.0.0"
   }
 }
