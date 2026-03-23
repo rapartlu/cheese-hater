@@ -111,8 +111,8 @@ function getEtymology(name: string): Etymology {
   }
 }
 
-function buildRoast(name: string, review: string): string {
-  const whyItWins = WHY_IT_WINS[name] ?? defaultWhyItWins(name, 0)
+function buildRoast(name: string, score: number, review: string): string {
+  const whyItWins = WHY_IT_WINS[name] ?? defaultWhyItWins(name, score)
   return `${review}\n\n${whyItWins}`
 }
 
@@ -157,6 +157,6 @@ export function buildProfile(name: string): CheeseProfile {
     closing_statement: structured.closing_statement,
     etymology: getEtymology(name),
     pairings: buildPairings(name, rating.score),
-    roast: buildRoast(rating.name, rating.review),
+    roast: buildRoast(rating.name, rating.score, rating.review),
   }
 }
