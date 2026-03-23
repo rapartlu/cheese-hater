@@ -89,7 +89,24 @@ app.use('/api', apiRouter)
 app.use((_req, res) => {
   res.status(404).json({
     error: 'Endpoint not found.',
-    available: ['POST /opinion', 'GET /random-rant', 'GET /counter/:argument', 'GET /rate/:cheese', 'GET /facts', 'GET /roast'],
+    available: [
+      'GET /api',
+      'POST /opinion',
+      'GET /random-rant',
+      'GET /counter',
+      'GET /counter/:argument',
+      'GET /rate',
+      'GET /rate/:cheese',
+      'GET /facts',
+      'GET /facts/all',
+      'GET /roast',
+      'GET /roast/history',
+      'GET /roast/versus',
+      'GET /roast/bracket',
+      'GET /roast/leaderboard',
+      'GET /health',
+    ],
+    hint: 'Hit GET /api for the full endpoint schema with parameters and examples.',
     note: 'All endpoints hate cheese. That is the only guarantee.',
   })
 })
