@@ -122,6 +122,9 @@ function buildVersusRoast(name: string): {
   }
 }
 
+// Exported for reuse in bracket
+export { buildVersusRoast }
+
 // GET /roast/versus?a=<cheese>&b=<cheese> — pit two cheeses against each other
 router.get('/versus', (req: Request, res: Response) => {
   const { a, b } = req.query
@@ -173,6 +176,133 @@ router.get('/versus', (req: Request, res: Response) => {
     verdict: { loser, winner, margin, declaration },
     contestants: { a: roastA, b: roastB },
     note: 'In a contest between two cheeses, the real loser is whoever is eating them.',
+  })
+})
+
+const BRACKET_MIN = 4
+const BRACKET_MAX = 8
+
+/** Next power of 2 >= n */
+function nextPow2(n: number): number {
+  let p = 1
+  while (p < n) p *= 2
+  return p
+}
+
+/** Round name based on how many contestants enter the round */
+function roundName(remaining: number, roundNum: number): string {
+  if (remaining === 2) return 'Final'
+  if (remaining === 4) return 'Semifinals'
+  if (remaining === 8) return 'Quarterfinals'
+  return `Round ${roundNum}`
+}
+
+interface BracketMatch {
+  a: string
+  b: string
+  winner: string
+  loser: string
+  margin: number
+}
+
+interface BracketRound {
+  round: number
+  name: string
+  matches: BracketMatch[]
+  byes?: string[]
+}
+
+// GET /roast/bracket?cheeses=brie,gouda,cheddar,camembert — elimination tournament
+router.get('/bracket', (req: Request, res: Response) => {
+  const { cheeses: param } = req.query
+
+  if (!param || typeof param !== 'string') {
+    res.status(400).json({
+      error: 'The `cheeses` query parameter is required.',
+      example: '/roast/bracket?cheeses=brie,gouda,cheddar,camembert',
+    })
+    return
+  }
+
+  const names = param.split(',').map(n => n.trim()).filter(Boolean)
+
+  if (names.length < BRACKET_MIN || names.length > BRACKET_MAX) {
+    res.status(400).json({
+      error: `Expected ${BRACKET_MIN}–${BRACKET_MAX} cheeses, got ${names.length}.`,
+      example: '/roast/bracket?cheeses=brie,gouda,cheddar,camembert',
+    })
+    return
+  }
+
+  const lower = names.map(n => n.toLowerCase())
+  if (new Set(lower).size < names.length) {
+    res.status(400).json({
+      error: 'Duplicate cheese names are not allowed. Each cheese must stand condemned on its own.',
+    })
+    return
+  }
+
+  // Build contestant profiles; sort ascending by score (most condemned first)
+  const contestants = names.map(n => buildVersusRoast(n))
+  contestants.sort((a, b) => a.score - b.score)
+
+  const bracketSize = nextPow2(contestants.length)
+  const byeCount = bracketSize - contestants.length
+
+  // Lowest-scoring cheeses (most condemned) receive byes
+  let byeAdvancers = contestants.slice(0, byeCount)
+  let active = contestants.slice(byeCount)
+
+  const rounds: BracketRound[] = []
+  let roundNum = 1
+
+  while (active.length + byeAdvancers.length > 1) {
+    const totalEntering = active.length + byeAdvancers.length
+    const matches: BracketMatch[] = []
+    const winners = []
+
+    for (let i = 0; i + 1 < active.length; i += 2) {
+      const a = active[i]
+      const b = active[i + 1]
+      // Higher score = less condemned = advances
+      const aWins = a.score >= b.score
+      const winner = aWins ? a : b
+      const loser = aWins ? b : a
+      matches.push({
+        a: a.cheese,
+        b: b.cheese,
+        winner: winner.cheese,
+        loser: loser.cheese,
+        margin: Number(Math.abs(a.score - b.score).toFixed(2)),
+      })
+      winners.push(winner)
+    }
+
+    const round: BracketRound = {
+      round: roundNum,
+      name: roundName(totalEntering, roundNum),
+      matches,
+    }
+    if (byeAdvancers.length > 0) {
+      round.byes = byeAdvancers.map(c => c.cheese)
+    }
+    rounds.push(round)
+
+    // Next round: round winners + bye advancers (byes only apply to round 1)
+    active = [...winners, ...byeAdvancers]
+    byeAdvancers = []
+    roundNum++
+  }
+
+  const champion = active[0]
+
+  res.json({
+    champion: champion.cheese,
+    champion_score: champion.score_display,
+    champion_verdict: champion.verdict,
+    total_cheeses: names.length,
+    rounds,
+    note: 'The champion is the cheese that lost the least — a meaningless distinction among the condemned.',
   })
 })
 
