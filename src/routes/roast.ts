@@ -78,6 +78,53 @@ function buildRoast(cheese: RatedCheese, supportingFacts: Fact[]): string {
   ].join('\n\n')
 }
 
+const HISTORY_DEFAULT_DAYS = 7
+const HISTORY_MAX_DAYS = 30
+
+/**
+ * Return the ISO date string for a given number of days before today.
+ * Operates in UTC to match getTodayString().
+ */
+function dateStringDaysAgo(daysAgo: number): string {
+  const d = new Date()
+  d.setUTCDate(d.getUTCDate() - daysAgo)
+  return d.toISOString().split('T')[0]
+}
+
+// GET /roast/history?days=N — last N days of roasted cheeses (default 7, max 30)
+router.get('/history', (req: Request, res: Response) => {
+  const rawDays = req.query.days
+  let days = HISTORY_DEFAULT_DAYS
+
+  if (rawDays !== undefined) {
+    const parsed = parseInt(String(rawDays), 10)
+    if (isNaN(parsed) || parsed < 1) {
+      res.status(400).json({ error: '`days` must be a positive integer.' })
+      return
+    }
+    days = Math.min(parsed, HISTORY_MAX_DAYS)
+  }
+
+  const history = Array.from({ length: days }, (_, i) => {
+    const dateStr = dateStringDaysAgo(i)
+    const cheese = pickTodaysCheese(dateStr)
+    return {
+      date: dateStr,
+      cheese_of_the_day: cheese.name,
+      score_display: cheese.shareable_card.score_display,
+      verdict: cheese.verdict,
+      one_liner: cheese.shareable_card.one_liner,
+    }
+  })
+
+  res.json({
+    days_returned: days,
+    capped_at: HISTORY_MAX_DAYS,
+    history,
+    note: 'Every day, a different cheese is condemned. None have ever been acquitted.',
+  })
+})
+
 // GET /roast — today's deterministic cheese roast
 router.get('/', (_req: Request, res: Response) => {
   const dateStr = getTodayString()
@@ -107,5 +154,5 @@ router.get('/', (_req: Request, res: Response) => {
   })
 })
 
-export { getTodayString, pickTodaysCheese, pickSupportingFacts, buildRoast, dateHash, cheeses }
+export { getTodayString, pickTodaysCheese, pickSupportingFacts, buildRoast, dateHash, dateStringDaysAgo, cheeses, HISTORY_MAX_DAYS }
 export default router

@@ -38,6 +38,7 @@ app.get('/', (_req, res) => {
       'GET /facts':        'Get a random damning cheese fact',
       'GET /facts/all':    'Get all facts unconditionally',
       'GET /roast':        'Get today\'s daily cheese roast — a different cheese condemned each day',
+      'GET /roast/history':'Browse past N days of roasted cheeses (default 7, max 30)',
       'GET /health':       'Confirm the agent is operational and hates cheese',
     },
     note: 'No cheese has ever scored above 1.5/10. No cheese ever will.',
