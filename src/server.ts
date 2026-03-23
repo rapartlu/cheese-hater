@@ -14,6 +14,7 @@ import etymologyRouter from './routes/etymology'
 import timelineRouter from './routes/timeline'
 import severityRouter from './routes/severity'
 import cheeseRouter from './routes/cheese'
+import randomRouter from './routes/random'
 import { generateExplorerHtml } from './lib/explorerHtml'
 
 const app = express()
@@ -75,7 +76,9 @@ app.get('/', (req, res) => {
       'GET /severity/:tier':    'Browse all cheeses at a given threat level (catastrophic / revolting / condemned)',
       'GET /severity/:tier/worst':     'The single most-condemned cheese in a tier',
       'GET /severity/:tier/least-bad': 'The single least-condemned cheese in a tier ("least bad" is not a compliment)',
+      'GET /cheese/leaderboard': 'Top N most-hated cheeses ranked by score ascending (lower = worse). Supports ?limit=N (default 10, max 20)',
       'GET /cheese/:name':       'Full unified condemnation profile — score, severity, verdict, smell, texture, cultural damage, pairings, and roast in a single call',
+      'GET /random':            'Full condemnation profile for a randomly selected cheese — different every call. ?today_only=true for deterministic daily seeding',
       'GET /roast':             'Get today\'s daily cheese roast — a different cheese condemned each day',
       'GET /roast/history':     'Browse past N days of roasted cheeses (default 7, max 30)',
       'GET /roast/versus':      'Pit two cheeses against each other — declare the worse offender',
@@ -127,8 +130,12 @@ app.use('/timeline', timelineRouter)
 // GET /severity/:tier — browse cheeses by threat level (catastrophic / revolting / condemned)
 app.use('/severity', severityRouter)
 
+// GET /cheese/leaderboard — top N most-hated cheeses
 // GET /cheese/:name — unified full-profile condemnation dossier
 app.use('/cheese', cheeseRouter)
+
+// GET /random — randomly selected cheese with full condemnation profile
+app.use('/random', randomRouter)
 
 // GET /api — endpoint discovery: all routes, parameters, and example responses
 app.use('/api', apiRouter)
@@ -143,6 +150,7 @@ app.use((_req, res) => {
       'GET /random-rant',
       'GET /counter',
       'GET /counter/:argument',
+      'GET /cheese/leaderboard',
       'GET /cheese/:name',
       'GET /rate',
       'GET /rate/:cheese',
@@ -162,6 +170,7 @@ app.use((_req, res) => {
       'GET /severity/:tier',
       'GET /severity/:tier/worst',
       'GET /severity/:tier/least-bad',
+      'GET /random',
       'GET /roast',
       'GET /roast/history',
       'GET /roast/versus',
