@@ -11,6 +11,7 @@ import compareRouter from './routes/compare'
 import worstRouter from './routes/worst'
 import searchRouter from './routes/search'
 import etymologyRouter from './routes/etymology'
+import timelineRouter from './routes/timeline'
 import { generateExplorerHtml } from './lib/explorerHtml'
 
 const app = express()
@@ -66,6 +67,7 @@ app.get('/', (req, res) => {
       'GET /facts/search':      'Search facts by keyword; ?category narrows to a specific fact category',
       'GET /etymology/:cheese': 'Get the name origin of any cheese. Always concludes: does_this_help: false',
       'GET /etymology':         'List all cheeses with documented etymologies',
+      'GET /timeline':          'Chronological history of cheese — 20 milestones, each worse than the last. Supports ?era, ?after, ?before filters',
       'GET /roast':             'Get today\'s daily cheese roast — a different cheese condemned each day',
       'GET /roast/history':     'Browse past N days of roasted cheeses (default 7, max 30)',
       'GET /roast/versus':      'Pit two cheeses against each other — declare the worse offender',
@@ -111,6 +113,9 @@ app.use('/search', searchRouter)
 // GET /etymology/:cheese — name origin story; always concludes does_this_help: false
 app.use('/etymology', etymologyRouter)
 
+// GET /timeline — chronological history of cheese and why each century made things worse
+app.use('/timeline', timelineRouter)
+
 // GET /api — endpoint discovery: all routes, parameters, and example responses
 app.use('/api', apiRouter)
 
@@ -136,6 +141,7 @@ app.use((_req, res) => {
       'GET /facts/search',
       'GET /etymology',
       'GET /etymology/:cheese',
+      'GET /timeline',
       'GET /roast',
       'GET /roast/history',
       'GET /roast/versus',
