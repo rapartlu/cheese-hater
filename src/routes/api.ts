@@ -644,6 +644,48 @@ export const ENDPOINTS = [
       why_not: 'Understanding how we arrived here does not un-arrive us. The cheese exists. The timeline explains why. It does not excuse it.',
     },
   },
+  {
+    method: 'GET',
+    path: '/severity',
+    description: 'Returns the Cheese Threat Advisory Scale — all three tiers listed with counts, score ranges, threat levels, and descriptions. Use GET /severity/:tier to see the cheeses in each tier.',
+    parameters: [],
+    example_request: 'GET /severity',
+    example_response: {
+      title: 'The Cheese Threat Advisory Scale',
+      tiers: [
+        { tier: 'catastrophic', label: 'CATASTROPHIC', score_range: '0.0 – 0.99', threat_level: 'Immediate. No mitigation available.', count: 4, worst_in_tier: 'Casu Martzu' },
+        { tier: 'revolting',    label: 'REVOLTING',    score_range: '1.0 – 1.99', threat_level: 'High. Avoidance strongly recommended.', count: 10, worst_in_tier: 'Blue Cheese' },
+        { tier: 'condemned',    label: 'CONDEMNED',    score_range: '2.0 and above', threat_level: 'Moderate. Do not be deceived by comparatively higher scores.', count: 7, worst_in_tier: 'Provolone' },
+      ],
+      total_cheeses_assessed: 21,
+    },
+  },
+  {
+    method: 'GET',
+    path: '/severity/:tier',
+    description: 'Returns all cheeses at a given threat level, ranked from worst to least-worst within the tier. Valid tiers: catastrophic (score < 1.0), revolting (1.0–1.99), condemned (2.0+). Invalid tier names return 400 with the valid tier list and threat descriptions.',
+    parameters: [
+      {
+        name: 'tier',
+        location: 'path',
+        type: 'string',
+        required: true,
+        description: 'The severity tier to browse. Must be exactly one of: catastrophic, revolting, condemned. Case-insensitive.',
+      },
+    ],
+    example_request: 'GET /severity/catastrophic',
+    example_response: {
+      tier: 'catastrophic',
+      label: 'CATASTROPHIC',
+      score_range: '0.0 – 0.99',
+      threat_level: 'Immediate. No mitigation available.',
+      cheeses: [
+        { rank: 1, cheese: 'Casu Martzu', score: 0.125, severity_tier: 'catastrophic', verdict: 'CATASTROPHIC', why_it_wins: 'Contains live maggots…' },
+        { rank: 2, cheese: 'Blue Cheese', score: 0.625, severity_tier: 'catastrophic', verdict: 'CATASTROPHIC', why_it_wins: 'Deliberately cultivated mold…' },
+      ],
+      total: 4,
+    },
+  },
 ]
 
 router.get('/', (_req, res) => {
