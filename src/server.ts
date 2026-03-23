@@ -6,6 +6,7 @@ import rateRouter from './routes/rate'
 import factsRouter from './routes/facts'
 import roastRouter from './routes/roast'
 import apiRouter from './routes/api'
+import verdictRouter from './routes/verdict'
 import { generateExplorerHtml } from './lib/explorerHtml'
 
 const app = express()
@@ -51,6 +52,8 @@ app.get('/', (req, res) => {
       'GET /counter/:arg':      'Send a pro-cheese argument, receive its destruction',
       'GET /rate/:cheese':      'Get a score (always terrible) and full review',
       'GET /rate':              'List all 20 rated cheeses and their verdicts',
+      'GET /verdict/:cheese':   'Get a structured condemnation: severity, smell, texture offense, closing statement',
+      'GET /verdict':           'List all cheeses with known structured verdicts',
       'GET /facts':             'Get a random damning cheese fact',
       'GET /facts/all':         'Get all facts unconditionally',
       'GET /roast':             'Get today\'s daily cheese roast — a different cheese condemned each day',
@@ -83,6 +86,9 @@ app.use('/facts', factsRouter)
 // GET /roast — today's deterministic daily cheese roast
 app.use('/roast', roastRouter)
 
+// GET /verdict/:cheese — structured per-cheese condemnation with severity rating
+app.use('/verdict', verdictRouter)
+
 // GET /api — endpoint discovery: all routes, parameters, and example responses
 app.use('/api', apiRouter)
 
@@ -98,6 +104,8 @@ app.use((_req, res) => {
       'GET /counter/:argument',
       'GET /rate',
       'GET /rate/:cheese',
+      'GET /verdict',
+      'GET /verdict/:cheese',
       'GET /facts',
       'GET /facts/all',
       'GET /roast',

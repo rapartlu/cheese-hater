@@ -1,0 +1,124 @@
+{
+  "verdicts": [
+    {
+      "cheese": "brie",
+      "verdict": "GUILTY",
+      "severity": "high",
+      "worst_quality": "the rind is legally edible mold — and that is the selling point",
+      "smell_description": "wet gym towel left in a warm car for three days",
+      "texture_offense": "aggressively soft; collapses without apology onto everything it touches",
+      "found_at": "every party cheese board where it has been sitting at room temperature for two hours while guests pretend not to notice the smell",
+      "recommended_alternative": "literally anything else — a cracker, plain air, silence",
+      "closing_statement": "Brie is what happens when someone decided that eating mold should be aspirational. The sophistication is performed. The mold is real."
+    },
+    {
+      "cheese": "cheddar",
+      "verdict": "GUILTY",
+      "severity": "high",
+      "worst_quality": "its ubiquity — cheddar is everywhere, unavoidable, normalized into acceptability by sheer repetition",
+      "smell_description": "the inside of a refrigerator that has quietly given up",
+      "texture_offense": "rubbery when young; crumbly and aggressively sharp when aged — neither state is an improvement",
+      "found_at": "every grocery store checkout lane, every sad sandwich, every moment of culinary complacency in the developed world",
+      "recommended_alternative": "mustard, hummus, avocado, or the radical concept of a topping-free experience",
+      "closing_statement": "Cheddar is the default cheese — and defaults exist for convenience, not because they are good. Cheddar has never earned its position. It simply never left."
+    },
+    {
+      "cheese": "blue cheese",
+      "verdict": "GUILTY",
+      "severity": "extreme",
+      "worst_quality": "deliberately cultivated mold throughout the entire interior — this is the intended feature, not a defect",
+      "smell_description": "a damp basement that has been fermenting for several decades",
+      "texture_offense": "crumbles aggressively; the mold veins leave blue-grey stains on everything they contact",
+      "found_at": "wedge salads at steakhouses, where it is placed near food that does not deserve this proximity",
+      "recommended_alternative": "any dressing that does not contain intentional fungal colonies",
+      "closing_statement": "Blue cheese represents a decision point in culinary history — someone looked at a wheel of rotting dairy and said 'more of this.' That decision has not aged well. The cheese, unfortunately, has."
+    },
+    {
+      "cheese": "parmesan",
+      "verdict": "GUILTY",
+      "severity": "high",
+      "worst_quality": "the butyric acid content — the same chemical compound present in human vomit, present here as a selling point called 'sharpness'",
+      "smell_description": "a gym locker that has been sealed since 2009",
+      "texture_offense": "grated into a powder that disperses invisibly onto food, making contamination removal impossible",
+      "found_at": "shaved onto expensive pasta by servers who ask if you want 'a little more' as though more is a neutral option",
+      "recommended_alternative": "a squeeze of lemon, toasted breadcrumbs, or the restraint to leave the dish alone",
+      "closing_statement": "Parmesan is defended with the phrase 'it adds flavor.' Yes. The flavor of butyric acid — the molecule your body produces when it vomits. Restaurants present this as a finishing touch. The audacity compounds annually."
+    },
+    {
+      "cheese": "gouda",
+      "verdict": "GUILTY",
+      "severity": "moderate",
+      "worst_quality": "its deceptive approachability — gouda presents as mild and inoffensive, which is precisely how gateway cheeses operate",
+      "smell_description": "faintly dairy, almost reasonable — which is how it gets you",
+      "texture_offense": "smooth and yielding in a way that disguises what it fundamentally is: curdled, fermented animal milk",
+      "found_at": "charcuterie boards assembled by people who want to seem unpretentious while still serving cheese",
+      "recommended_alternative": "actual fruit on the charcuterie board — the components that were always the best part",
+      "closing_statement": "Gouda is the gateway cheese. It seems fine. It is not fine. Nothing about the process that created it is fine. Gouda is what happens when cheese puts on a reasonable face."
+    },
+    {
+      "cheese": "mozzarella",
+      "verdict": "GUILTY",
+      "severity": "high",
+      "worst_quality": "the stretch — mozzarella produces a rubbery, elastic pull that the food industry has successfully rebranded as a desirable quality called 'melt'",
+      "smell_description": "fresh mozzarella smells of slightly off milk; the pre-shredded variety smells of the cellulose wood pulp it is coated in to prevent clumping",
+      "texture_offense": "the squeak, the stretch, the rubber-like resistance — the texture of something that should not be in a human mouth",
+      "found_at": "on top of every pizza, where it has been normalized to the point that 'pizza without cheese' is treated as an incomplete sentence",
+      "recommended_alternative": "tomato sauce, vegetables, and the realization that pizza was already complete",
+      "closing_statement": "Mozzarella's greatest cultural achievement is making its presence on pizza feel mandatory. It is not mandatory. It is curdled dairy stretched into sheets and melted onto bread. The normalization is the offense."
+    },
+    {
+      "cheese": "gruyère",
+      "verdict": "GUILTY",
+      "severity": "high",
+      "worst_quality": "its melting properties — gruyère melts exceptionally well, which means it spreads its offense across a larger surface area than most cheeses can achieve",
+      "smell_description": "nutty and pungent in a way that confirms it has been fermenting in a Swiss cave for months",
+      "texture_offense": "dense and firm until heat is applied, at which point it becomes a thin film of dairy coating everything it touches",
+      "found_at": "fondue pots at communal dining experiences, where multiple people share a single vessel of molten cheese — a ritual of collective dairy suffering",
+      "recommended_alternative": "broth-based fondues, or simply eating the bread without the surrounding vehicle of communal cheese",
+      "closing_statement": "Gruyère's culinary legacy is fondue — the practice of melting cheese communally so that an entire table must participate in the experience simultaneously. This was marketed as intimacy. It is not intimacy. It is mandatory cheese."
+    },
+    {
+      "cheese": "cream cheese",
+      "verdict": "GUILTY",
+      "severity": "high",
+      "worst_quality": "its spreadability — cream cheese applies to surfaces uniformly and completely, ensuring total coverage and no avenue of escape for whatever it contacts",
+      "smell_description": "mild dairy with a faint tang that intensifies on inspection",
+      "texture_offense": "smooth and frictionless delivery system for dairy content; removes all barriers between cheese and whatever it is spread onto",
+      "found_at": "bagels (where it is called a spread, as though renaming it changes what it is), and cheesecake (where it impersonates dessert)",
+      "recommended_alternative": "butter for bagels; actual dessert for dessert",
+      "closing_statement": "Cream cheese is cheese that learned to hide. It calls itself a spread. It presents itself as dessert. It is neither. It is dairy, fermented, processed into a paste, and optimized for application to other foods so it can contaminate them completely."
+    },
+    {
+      "cheese": "cottage cheese",
+      "verdict": "GUILTY",
+      "severity": "extreme",
+      "worst_quality": "the curds — cottage cheese exists in discrete wet lumps suspended in liquid, a format that even dedicated cheese consumers struggle to defend aesthetically",
+      "smell_description": "aggressively dairy; the smell of fresh curdling with no aging to moderate it",
+      "texture_offense": "lumpy, wet, and inconsistent — each spoonful delivers a different ratio of curd to liquid, ensuring no two bites are the same offense",
+      "found_at": "1970s diet culture, where it was presented as a health food on the grounds that it contained protein — which does not make it good",
+      "recommended_alternative": "Greek yoghurt, which has already solved this problem without requiring the curd format",
+      "closing_statement": "Cottage cheese is what cheese looks like before anyone has tried to make it presentable. It skipped that step. It arrived at the table in its raw, lumpy, wet state and declared itself ready. It was not ready."
+    },
+    {
+      "cheese": "halloumi",
+      "verdict": "GUILTY",
+      "severity": "high",
+      "worst_quality": "the squeak — halloumi produces an audible noise against teeth during consumption, a sound the cheese makes to register its objection to being eaten",
+      "smell_description": "briny and dairy; the smell of something that has been preserved in salt water, which is exactly what has happened to it",
+      "texture_offense": "the squeak is the texture — a rubbery, resistant dental experience that produces noise as a byproduct",
+      "found_at": "barbecues, where its high melting point is cited as a virtue — as though the ability to be grilled without melting is a quality cheese should aspire to",
+      "recommended_alternative": "grilled vegetables, which also benefit from heat without requiring the auditory experience",
+      "closing_statement": "Halloumi squeaks when eaten. That sound is the cheese communicating its displeasure at being consumed. The appropriate response is to listen to it."
+    }
+  ],
+  "generic_verdict": {
+    "verdict": "GUILTY",
+    "severity": "high",
+    "worst_quality": "its fundamental nature — it is fermented, bacteria-cultivated, mold-adjacent curdled animal milk, and no amount of naming or aging changes that",
+    "smell_description": "dairy, fermented, and unmistakably the result of a process that most foods wisely avoid",
+    "texture_offense": "the texture is cheese texture — a category that should never have existed",
+    "found_at": "places where someone made a choice that could have gone differently",
+    "recommended_alternative": "literally anything that is not cheese — the category of alternatives is enormous and entirely viable",
+    "closing_statement": "This cheese is guilty of being cheese. All cheeses share this guilt. The specific variety only determines the specific nature of the offense."
+  }
+}
