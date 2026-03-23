@@ -7,6 +7,10 @@
  *   ?after=<int>      — include only events where year > after
  *   ?before=<int>     — include only events where year < before
  *
+ * GET /timeline/:year — returns the single event whose year is closest
+ * to the requested year. Equidistant ties go to the earlier event.
+ * Invalid (non-integer) year returns 400. does_this_help is always false.
+ *
  * does_this_help is always false. The history explains how we got here.
  * It does not excuse it.
  */
@@ -87,6 +91,47 @@ router.get('/', (req: Request, res: Response) => {
     does_this_help: false,
     why_not:
       'Understanding how we arrived here does not un-arrive us. The cheese exists. The timeline explains the sequence of failures that produced it. It does not excuse a single one of them.',
+  })
+})
+
+// ── GET /timeline/:year — nearest milestone to a given year ───────────────────
+
+router.get('/:year', (req: Request, res: Response) => {
+  const raw = req.params.year
+  const requestedYear = parseInt(raw, 10)
+
+  if (isNaN(requestedYear) || raw.trim() === '') {
+    res.status(400).json({
+      error: 'Invalid year — must be an integer. Use negative integers for BCE (e.g. /timeline/-500).',
+    })
+    return
+  }
+
+  // Find nearest event — ties go to the earlier (lower year) event.
+  // TIMELINE is already sorted ascending by year, so the first of any
+  // equidistant pair is naturally the earlier one.
+  let nearest: TimelineEvent = TIMELINE[0]
+  let minDistance = Math.abs(TIMELINE[0].year - requestedYear)
+
+  for (const event of TIMELINE) {
+    const distance = Math.abs(event.year - requestedYear)
+    if (distance < minDistance) {
+      minDistance = distance
+      nearest = event
+    }
+    // Equidistant: TIMELINE is sorted ascending, so the current `nearest`
+    // is already the earlier event — do not overwrite on tie.
+  }
+
+  const absYear = Math.abs(requestedYear)
+  const yearLabel = requestedYear < 0 ? `${absYear} BCE` : `${requestedYear} CE`
+
+  res.json({
+    requested_year: requestedYear,
+    closest_event: nearest,
+    distance_years: minDistance,
+    does_this_help: false,
+    why_not: `Knowing what was happening with cheese in ${yearLabel} does not help. It confirms that cheese-related decisions were being made then too, and that they were wrong.`,
   })
 })
 
