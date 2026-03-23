@@ -9,6 +9,7 @@ import apiRouter from './routes/api'
 import verdictRouter from './routes/verdict'
 import compareRouter from './routes/compare'
 import worstRouter from './routes/worst'
+import searchRouter from './routes/search'
 import { generateExplorerHtml } from './lib/explorerHtml'
 
 const app = express()
@@ -58,6 +59,7 @@ app.get('/', (req, res) => {
       'GET /verdict':           'List all cheeses with known structured verdicts',
       'GET /compare':           'Compare two cheeses — declare which is worse across smell, texture, and cultural damage',
       'GET /worst':             'All cheeses ranked from most to least terrible, with ?tier and ?limit filters',
+      'GET /search':            'Find cheeses by name, tier, or keyword in their condemnation text',
       'GET /facts':             'Get a random damning cheese fact',
       'GET /facts/all':         'Get all facts unconditionally',
       'GET /roast':             'Get today\'s daily cheese roast — a different cheese condemned each day',
@@ -99,6 +101,9 @@ app.use('/compare', compareRouter)
 // GET /worst — all cheeses ranked from most to least terrible
 app.use('/worst', worstRouter)
 
+// GET /search — find cheeses by name, tier, or keyword in condemnation text
+app.use('/search', searchRouter)
+
 // GET /api — endpoint discovery: all routes, parameters, and example responses
 app.use('/api', apiRouter)
 
@@ -118,6 +123,7 @@ app.use((_req, res) => {
       'GET /verdict/:cheese',
       'GET /compare',
       'GET /worst',
+      'GET /search',
       'GET /facts',
       'GET /facts/all',
       'GET /roast',
