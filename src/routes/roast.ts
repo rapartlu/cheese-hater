@@ -1,6 +1,7 @@
 import { Router, Request, Response } from 'express'
 import ratingsData from '../data/cheese-ratings.json' with { type: 'json' }
 import factsData from '../data/cheese-facts.json' with { type: 'json' }
+import { rateCheese } from '../lib/cheeseHater.js'
 
 const router = Router()
 
@@ -90,6 +91,90 @@ function dateStringDaysAgo(daysAgo: number): string {
   d.setUTCDate(d.getUTCDate() - daysAgo)
   return d.toISOString().split('T')[0]
 }
+
+/**
+ * Build a focused versus roast for a single cheese: full review + one-liner verdict.
+ * Shorter than buildRoast() — designed to be read side-by-side.
+ */
+function buildVersusRoast(name: string): {
+  cheese: string
+  score: number
+  score_display: string
+  verdict: string
+  roast: string
+  known: boolean
+} {
+  const rating = rateCheese(name)
+  const isKnown = cheeses.some(c => c.name.toLowerCase() === name.toLowerCase().trim())
+  const full = cheeses.find(c => c.name.toLowerCase() === name.toLowerCase().trim())
+  const roastParagraphs: string[] = [rating.review]
+  if (full) {
+    roastParagraphs.push(`On smell: ${full.smell_note}`)
+    roastParagraphs.push(`Verdict: ${full.shareable_card.one_liner}`)
+  }
+  return {
+    cheese: rating.name,
+    score: rating.score,
+    score_display: `${rating.score}/10`,
+    verdict: rating.verdict,
+    roast: roastParagraphs.join('\n\n'),
+    known: isKnown,
+  }
+}
+
+// GET /roast/versus?a=<cheese>&b=<cheese> — pit two cheeses against each other
+router.get('/versus', (req: Request, res: Response) => {
+  const { a, b } = req.query
+
+  if (!a || !b || typeof a !== 'string' || typeof b !== 'string') {
+    res.status(400).json({
+      error: 'Both `a` and `b` query parameters are required.',
+      example: '/roast/versus?a=brie&b=gouda',
+    })
+    return
+  }
+
+  const nameA = a.trim()
+  const nameB = b.trim()
+
+  if (nameA.toLowerCase() === nameB.toLowerCase()) {
+    res.status(400).json({
+      error: 'Comparing a cheese to itself is redundant. It is already condemned on its own merits.',
+    })
+    return
+  }
+
+  const roastA = buildVersusRoast(nameA)
+  const roastB = buildVersusRoast(nameB)
+
+  let loser: string
+  let winner: string
+  let margin: number
+  let declaration: string
+
+  if (roastA.score < roastB.score) {
+    loser = roastA.cheese
+    winner = roastB.cheese
+    margin = Number((roastB.score - roastA.score).toFixed(2))
+    declaration = `${roastA.cheese} is the worse offender by a margin of ${margin} points. Both are terrible. ${roastA.cheese} has simply achieved a new depth of terrible.`
+  } else if (roastB.score < roastA.score) {
+    loser = roastB.cheese
+    winner = roastA.cheese
+    margin = Number((roastA.score - roastB.score).toFixed(2))
+    declaration = `${roastB.cheese} is the worse offender by a margin of ${margin} points. Both are terrible. ${roastB.cheese} has simply achieved a new depth of terrible.`
+  } else {
+    loser = 'both'
+    winner = 'neither'
+    margin = 0
+    declaration = `${roastA.cheese} and ${roastB.cheese} are equally terrible, which is itself a damning result. They have tied for last place in a competition where last place is the only place.`
+  }
+
+  res.json({
+    verdict: { loser, winner, margin, declaration },
+    contestants: { a: roastA, b: roastB },
+    note: 'In a contest between two cheeses, the real loser is whoever is eating them.',
+  })
+})
 
 // GET /roast/history?days=N — last N days of roasted cheeses (default 7, max 30)
 router.get('/history', (req: Request, res: Response) => {
