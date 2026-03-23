@@ -79,6 +79,90 @@ function buildRoast(cheese: RatedCheese, supportingFacts: Fact[]): string {
   ].join('\n\n')
 }
 
+// ── Submission store ───────────────────────────────────────────────────────
+// In-memory store; resets on server restart. Intentional: no persistence
+// dependency, no database, no data-retention footgun.
+
+const SUBMISSION_MAX_STORE = 100
+const CHEESE_NAME_MAX_LEN  = 100
+
+interface Submission {
+  id: number
+  cheese: string
+  submitted_at: string
+  score_display: string
+  verdict: string
+  roast: string
+  known: boolean
+}
+
+const submissionStore: Submission[] = []
+let submissionIdCounter = 1
+
+/**
+ * Sanitize a user-supplied cheese name.
+ * Allows Unicode letters/numbers, spaces, hyphens, apostrophes, commas,
+ * parentheses, and periods (covers every real cheese name including
+ * accented/non-Latin ones). Rejects control chars, HTML, and overlong input.
+ * Returns the trimmed name, or null if invalid.
+ */
+function sanitizeCheeseName(raw: string): string | null {
+  const name = raw.trim()
+  if (!name || name.length > CHEESE_NAME_MAX_LEN) return null
+  // \p{L} = any Unicode letter, \p{N} = any Unicode number
+  if (!/^[\p{L}\p{N}\s\-'.,()]+$/u.test(name)) return null
+  return name
+}
+
+// POST /roast/submit — user submits a cheese for immediate condemnation
+router.post('/submit', (req: Request, res: Response) => {
+  const { cheese } = req.body as { cheese?: string }
+
+  if (!cheese || typeof cheese !== 'string') {
+    res.status(400).json({
+      error: 'Body must include { "cheese": "<name>" }.',
+      example: '{ "cheese": "Manchego" }',
+    })
+    return
+  }
+
+  const sanitized = sanitizeCheeseName(cheese)
+  if (!sanitized) {
+    res.status(400).json({
+      error: `Invalid cheese name. Names must be 1–${CHEESE_NAME_MAX_LEN} characters and contain only letters, numbers, spaces, hyphens, apostrophes, commas, parentheses, and periods.`,
+    })
+    return
+  }
+
+  const roastResult = buildVersusRoast(sanitized)
+  const submission: Submission = {
+    id: submissionIdCounter++,
+    cheese: roastResult.cheese,
+    submitted_at: new Date().toISOString(),
+    score_display: roastResult.score_display,
+    verdict: roastResult.verdict,
+    roast: roastResult.roast,
+    known: roastResult.known,
+  }
+
+  submissionStore.unshift(submission)
+  if (submissionStore.length > SUBMISSION_MAX_STORE) submissionStore.pop()
+
+  res.status(201).json({
+    message: `${submission.cheese} has been submitted and immediately condemned.`,
+    submission_id: submission.id,
+    submitted_at: submission.submitted_at,
+    preview: {
+      cheese: submission.cheese,
+      score_display: submission.score_display,
+      verdict: submission.verdict,
+      roast: submission.roast,
+      known: submission.known,
+    },
+    note: 'Your submission has been received. The condemnation was instant and thorough.',
+  })
+})
+
 const HISTORY_DEFAULT_DAYS = 7
 const HISTORY_MAX_DAYS = 30
 
@@ -386,6 +470,13 @@ router.get('/history', (req: Request, res: Response) => {
     days_returned: days,
     capped_at: HISTORY_MAX_DAYS,
     history,
+    recent_submissions: submissionStore.slice(0, 10).map(s => ({
+      id: s.id,
+      cheese: s.cheese,
+      submitted_at: s.submitted_at,
+      score_display: s.score_display,
+      verdict: s.verdict,
+    })),
     note: 'Every day, a different cheese is condemned. None have ever been acquitted.',
   })
 })
@@ -419,5 +510,5 @@ router.get('/', (_req: Request, res: Response) => {
   })
 })
 
-export { getTodayString, pickTodaysCheese, pickSupportingFacts, buildRoast, dateHash, dateStringDaysAgo, cheeses, HISTORY_MAX_DAYS }
+export { getTodayString, pickTodaysCheese, pickSupportingFacts, buildRoast, dateHash, dateStringDaysAgo, cheeses, HISTORY_MAX_DAYS, sanitizeCheeseName, submissionStore }
 export default router
