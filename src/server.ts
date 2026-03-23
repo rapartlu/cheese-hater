@@ -75,7 +75,7 @@ app.get('/', (req, res) => {
       'GET /severity/:tier':    'Browse all cheeses at a given threat level (catastrophic / revolting / condemned)',
       'GET /severity/:tier/worst':     'The single most-condemned cheese in a tier',
       'GET /severity/:tier/least-bad': 'The single least-condemned cheese in a tier ("least bad" is not a compliment)',
-      'GET /random':            'Full condemnation profile for a randomly selected cheese — different every call. ?today_only=true for deterministic daily seeding',
+      'GET /random':            'Full condemnation profile for a randomly selected cheese — different every call. ?today_only=true for daily seeding, ?tier=<name> to restrict to a severity tier',
       'GET /roast':             'Get today\'s daily cheese roast — a different cheese condemned each day',
       'GET /roast/history':     'Browse past N days of roasted cheeses (default 7, max 30)',
       'GET /roast/versus':      'Pit two cheeses against each other — declare the worse offender',

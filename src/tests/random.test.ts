@@ -139,6 +139,55 @@ describe('GET /random — pairings', () => {
   })
 })
 
+describe('GET /random — ?tier filter', () => {
+  const TIER_NAMES = ['catastrophic', 'revolting', 'condemned']
+
+  for (const tier of TIER_NAMES) {
+    it(`?tier=${tier} returns 200`, async () => {
+      const res = await request(app).get(`/random?tier=${tier}`)
+      expect(res.status).toBe(200)
+    })
+
+    it(`?tier=${tier} echoes tier in response`, async () => {
+      const res = await request(app).get(`/random?tier=${tier}`)
+      expect(res.body.tier).toBe(tier)
+    })
+
+    it(`?tier=${tier} returns a cheese in the ${tier} tier`, async () => {
+      const res = await request(app).get(`/random?tier=${tier}`)
+      expect(res.body.severity_tier).toBe(tier)
+    })
+
+    it(`?tier=${tier}&today_only=true is deterministic`, async () => {
+      const [a, b] = await Promise.all([
+        request(app).get(`/random?tier=${tier}&today_only=true`),
+        request(app).get(`/random?tier=${tier}&today_only=true`),
+      ])
+      expect(a.body.cheese).toBe(b.body.cheese)
+      expect(a.body.tier).toBe(tier)
+    })
+  }
+
+  it('unknown tier returns 400', async () => {
+    const res = await request(app).get('/random?tier=delicious')
+    expect(res.status).toBe(400)
+  })
+
+  it('400 response includes valid_tiers list', async () => {
+    const res = await request(app).get('/random?tier=delicious')
+    expect(res.body).toHaveProperty('valid_tiers')
+    expect(Array.isArray(res.body.valid_tiers)).toBe(true)
+    expect(res.body.valid_tiers).toContain('catastrophic')
+    expect(res.body.valid_tiers).toContain('revolting')
+    expect(res.body.valid_tiers).toContain('condemned')
+  })
+
+  it('no tier in response when ?tier is omitted', async () => {
+    const res = await request(app).get('/random')
+    expect(res.body.tier).toBeUndefined()
+  })
+})
+
 describe('GET /random — etymology', () => {
   it('etymology is an object', async () => {
     const res = await request(app).get('/random?today_only=true')
