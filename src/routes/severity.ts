@@ -15,7 +15,7 @@
 import { Router, Request, Response } from 'express'
 import { ratings } from '../lib/cheeseHater'
 import { WHY_IT_WINS, VERDICT_TO_TIER, defaultWhyItWins } from '../lib/worstAnnotations'
-import { parsePagination, applyPagination } from '../lib/paginate'
+import { parsePagination, applyPagination, buildLinks } from '../lib/paginate'
 
 const router = Router()
 
@@ -194,6 +194,7 @@ router.get('/:tier', (req: Request, res: Response) => {
     .map((e, idx) => ({ ...e, rank: idx + 1 }))   // re-rank within tier
 
   const { page, total, limit, offset, has_more } = applyPagination(inTier, params)
+  const { next, prev } = buildLinks(`/severity/${raw}`, params, total)
 
   res.json({
     tier: raw,
@@ -210,6 +211,8 @@ router.get('/:tier', (req: Request, res: Response) => {
     limit,
     offset,
     has_more,
+    next,
+    prev,
     note: `All ${total} cheeses in this tier have been assessed, found guilty, and ranked accordingly. The ranking is from most to least terrible within the tier.`,
   })
 })

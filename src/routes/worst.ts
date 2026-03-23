@@ -89,6 +89,14 @@ router.get('/', (req: Request, res: Response) => {
   const result = limit !== null ? afterOffset.slice(0, limit) : afterOffset
   const has_more = offset + result.length < reranked.length
 
+  // next/prev links — only defined when a limit is set (otherwise the full list is returned)
+  const worstNext = (limit !== null && has_more)
+    ? `/worst?${new URLSearchParams({ ...(tier ? { tier } : {}), limit: String(limit), offset: String(offset + limit) })}`
+    : null
+  const worstPrev = (limit !== null && offset > 0)
+    ? `/worst?${new URLSearchParams({ ...(tier ? { tier } : {}), limit: String(limit), offset: String(Math.max(0, offset - limit)) })}`
+    : null
+
   res.json({
     ranked: result,
     total: result.length,
@@ -97,6 +105,8 @@ router.get('/', (req: Request, res: Response) => {
     ...(limit !== null ? { limit } : {}),
     offset,
     has_more,
+    next: worstNext,
+    prev: worstPrev,
     note: 'Ranked from most terrible to least. The least terrible cheese on this list is still cheese.',
   })
 })

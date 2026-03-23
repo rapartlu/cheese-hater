@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express'
 import { getRandomFact, facts } from '../lib/cheeseHater'
-import { parsePagination, applyPagination } from '../lib/paginate'
+import { parsePagination, applyPagination, buildLinks } from '../lib/paginate'
 
 const router = Router()
 
@@ -109,6 +109,9 @@ router.get('/search', (req: Request, res: Response) => {
     }))
 
   const { page, total, limit, offset, has_more } = applyPagination(allResults, params)
+  const extraParams: Record<string, string> = { q: String(rawQ).trim() }
+  if (categoryFilter) extraParams.category = categoryFilter
+  const { next, prev } = buildLinks('/facts/search', params, total, extraParams)
 
   res.json({
     query: rawQ.trim(),
@@ -118,6 +121,8 @@ router.get('/search', (req: Request, res: Response) => {
     limit,
     offset,
     has_more,
+    next,
+    prev,
     note: total > 0
       ? 'Every fact is damning. The query only determines which facts are most immediately relevant.'
       : 'No facts matched this query. All cheese remains indefensible regardless.',
@@ -141,12 +146,15 @@ router.get('/all', (req: Request, res: Response) => {
   }))
 
   const { page, total, limit, offset, has_more } = applyPagination(allFacts, params)
+  const { next, prev } = buildLinks('/facts/all', params, total)
 
   res.json({
     total,
     limit,
     offset,
     has_more,
+    next,
+    prev,
     facts: page,
     note: 'Every fact is sourced. Every fact is damning. Cheese is indefensible.',
   })

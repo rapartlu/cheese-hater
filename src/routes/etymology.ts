@@ -7,7 +7,7 @@
  */
 import { Router, Request, Response } from 'express'
 import etymologiesRaw from '../data/cheese-etymologies.json'
-import { parsePagination, applyPagination } from '../lib/paginate'
+import { parsePagination, applyPagination, buildLinks } from '../lib/paginate'
 
 interface Etymology {
   cheese: string
@@ -105,6 +105,7 @@ router.get('/', (req: Request, res: Response) => {
   }))
 
   const { page, total, limit, offset, has_more } = applyPagination(allEtymologies, params)
+  const { next, prev } = buildLinks('/etymology', params, total)
 
   res.json({
     documented_cheeses: page,
@@ -112,6 +113,8 @@ router.get('/', (req: Request, res: Response) => {
     limit,
     offset,
     has_more,
+    next,
+    prev,
     does_this_help: false,
     why_not: 'Listing cheeses by their name origins does not rehabilitate any of them. Every cheese on this list remains indefensible.',
     usage: 'GET /etymology/:cheese — e.g. GET /etymology/brie',

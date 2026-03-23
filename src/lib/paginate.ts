@@ -42,3 +42,29 @@ export function applyPagination<T>(arr: T[], params: PaginationParams): { page: 
   const page = arr.slice(params.offset, params.offset + params.limit);
   return { page, total, limit: params.limit, offset: params.offset, has_more: params.offset + params.limit < total };
 }
+
+// Build next/prev hypermedia link strings for paginated responses.
+// extraParams: any other query params to preserve (e.g. { q: 'mold', tier: 'critical' })
+// Returns null for next when on the last page; null for prev when at offset 0.
+export function buildLinks(
+  basePath: string,
+  params: PaginationParams,
+  total: number,
+  extraParams: Record<string, string> = {}
+): { next: string | null; prev: string | null } {
+  const has_more = params.offset + params.limit < total;
+
+  const qs = (offset: number): string => {
+    const p = new URLSearchParams({
+      ...extraParams,
+      limit: String(params.limit),
+      offset: String(offset),
+    });
+    return `${basePath}?${p.toString()}`;
+  };
+
+  return {
+    next: has_more ? qs(params.offset + params.limit) : null,
+    prev: params.offset > 0 ? qs(Math.max(0, params.offset - params.limit)) : null,
+  };
+}

@@ -362,3 +362,140 @@ describe('GET /severity/:tier — pagination', () => {
     expect(res.body).toHaveProperty('error')
   })
 })
+
+// ── Hypermedia links (next / prev) ────────────────────────────────────────────
+
+describe('next / prev links — GET /facts/all', () => {
+  it('first page: next is a string, prev is null', async () => {
+    const res = await request(app).get('/facts/all?limit=3&offset=0')
+    expect(res.status).toBe(200)
+    expect(typeof res.body.next).toBe('string')
+    expect(res.body.prev).toBeNull()
+    expect(res.body.next).toContain('/facts/all')
+    expect(res.body.next).toContain('offset=3')
+  })
+
+  it('middle page: next is a string, prev is a string', async () => {
+    const res = await request(app).get('/facts/all?limit=3&offset=3')
+    expect(res.status).toBe(200)
+    expect(typeof res.body.next).toBe('string')
+    expect(typeof res.body.prev).toBe('string')
+    expect(res.body.prev).toContain('offset=0')
+    expect(res.body.next).toContain('offset=6')
+  })
+
+  it('last page: next is null, prev is a string', async () => {
+    // fetch total first, then jump to a page that will be the last
+    const all = await request(app).get('/facts/all?limit=100')
+    const total: number = all.body.total
+    const offset = total - 1
+    const res = await request(app).get(`/facts/all?limit=3&offset=${offset}`)
+    expect(res.status).toBe(200)
+    expect(res.body.next).toBeNull()
+    expect(typeof res.body.prev).toBe('string')
+  })
+
+  it('out-of-range offset: next is null, prev is a string', async () => {
+    const res = await request(app).get('/facts/all?limit=5&offset=9999')
+    expect(res.status).toBe(200)
+    expect(res.body.next).toBeNull()
+    expect(typeof res.body.prev).toBe('string')
+  })
+
+  it('next link contains correct limit param', async () => {
+    const res = await request(app).get('/facts/all?limit=7&offset=0')
+    expect(res.status).toBe(200)
+    if (res.body.next !== null) {
+      expect(res.body.next).toContain('limit=7')
+    }
+  })
+})
+
+describe('next / prev links — GET /timeline', () => {
+  it('first page has next, no prev', async () => {
+    const res = await request(app).get('/timeline?limit=3&offset=0')
+    expect(res.status).toBe(200)
+    expect(typeof res.body.next).toBe('string')
+    expect(res.body.prev).toBeNull()
+  })
+
+  it('next link preserves era filter', async () => {
+    const res = await request(app).get('/timeline?limit=1&offset=0&era=ancient')
+    expect(res.status).toBe(200)
+    if (res.body.next !== null) {
+      expect(res.body.next).toContain('era=ancient')
+    }
+  })
+})
+
+describe('next / prev links — GET /etymology', () => {
+  it('first page: next is a string (10 cheeses, limit=3)', async () => {
+    const res = await request(app).get('/etymology?limit=3&offset=0')
+    expect(res.status).toBe(200)
+    expect(typeof res.body.next).toBe('string')
+    expect(res.body.prev).toBeNull()
+    expect(res.body.next).toContain('/etymology')
+    expect(res.body.next).toContain('offset=3')
+  })
+
+  it('offset past end: next null, prev present', async () => {
+    const res = await request(app).get('/etymology?limit=3&offset=9999')
+    expect(res.status).toBe(200)
+    expect(res.body.next).toBeNull()
+    expect(typeof res.body.prev).toBe('string')
+  })
+})
+
+describe('next / prev links — GET /severity/:tier', () => {
+  it('first page of catastrophic tier: next or null depending on count, prev null', async () => {
+    const res = await request(app).get('/severity/catastrophic?limit=1&offset=0')
+    expect(res.status).toBe(200)
+    expect(res.body.prev).toBeNull()
+    // next is string if more items exist, null if only one in tier
+    expect(res.body.next === null || typeof res.body.next === 'string').toBe(true)
+  })
+})
+
+describe('next / prev links — GET /facts/search', () => {
+  it('search results: next link preserves q param', async () => {
+    const res = await request(app).get('/facts/search?q=mold&limit=1&offset=0')
+    expect(res.status).toBe(200)
+    if (res.body.next !== null) {
+      expect(res.body.next).toContain('q=mold')
+      expect(res.body.next).toContain('/facts/search')
+    }
+  })
+})
+
+describe('next / prev links — GET /worst', () => {
+  it('without limit: next and prev are both null (full list returned)', async () => {
+    const res = await request(app).get('/worst')
+    expect(res.status).toBe(200)
+    expect(res.body.next).toBeNull()
+    expect(res.body.prev).toBeNull()
+  })
+
+  it('with limit: first page has next, no prev', async () => {
+    const res = await request(app).get('/worst?limit=3')
+    expect(res.status).toBe(200)
+    expect(typeof res.body.next).toBe('string')
+    expect(res.body.prev).toBeNull()
+    expect(res.body.next).toContain('limit=3')
+    expect(res.body.next).toContain('offset=3')
+  })
+
+  it('with limit and offset: middle page has both next and prev', async () => {
+    const res = await request(app).get('/worst?limit=3&offset=3')
+    expect(res.status).toBe(200)
+    expect(typeof res.body.next).toBe('string')
+    expect(typeof res.body.prev).toBe('string')
+  })
+
+  it('next link preserves tier filter', async () => {
+    const res = await request(app).get('/worst?limit=1&offset=0&tier=condemned')
+    expect(res.status).toBe(200)
+    if (res.body.next !== null) {
+      expect(res.body.next).toContain('tier=condemned')
+    }
+  })
+})

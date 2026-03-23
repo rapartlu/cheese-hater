@@ -16,7 +16,7 @@
  */
 import { Router, Request, Response } from 'express'
 import timelineRaw from '../data/cheese-timeline.json'
-import { parsePagination, applyPagination } from '../lib/paginate'
+import { parsePagination, applyPagination, buildLinks } from '../lib/paginate'
 
 interface TimelineEvent {
   year: number
@@ -88,6 +88,11 @@ router.get('/', (req: Request, res: Response) => {
   if (beforeYear !== null) filtersApplied.before = beforeYear
 
   const { page, total, limit, offset, has_more } = applyPagination(events, params)
+  const extraParams: Record<string, string> = {}
+  if (era && typeof era === 'string') extraParams.era = era
+  if (afterYear !== null) extraParams.after = String(afterYear)
+  if (beforeYear !== null) extraParams.before = String(beforeYear)
+  const { next, prev } = buildLinks('/timeline', params, total, extraParams)
 
   res.json({
     title: 'A History of Cheese: How We Got Here and Why It Did Not Have to Be This Way',
@@ -97,6 +102,8 @@ router.get('/', (req: Request, res: Response) => {
     limit,
     offset,
     has_more,
+    next,
+    prev,
     ...(isFiltered && total === 0
       ? { note: 'No events match the given filters. The cheese persists regardless.' }
       : {}),
