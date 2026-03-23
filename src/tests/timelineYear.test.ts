@@ -177,10 +177,16 @@ describe('GET /timeline/:year — invalid input', () => {
     expect(res.body).toHaveProperty('error')
   })
 
-  it('float string returns 400 or nearest integer behavior', async () => {
-    // parseInt("1850.5") === 1850, which is valid — acceptable behavior
+  it('float string returns 400', async () => {
     const res = await request(app).get('/timeline/1850.5')
-    expect([200, 400]).toContain(res.status)
+    expect(res.status).toBe(400)
+    expect(res.body).toHaveProperty('error')
+  })
+
+  it('partial-integer string like "1850abc" returns 400', async () => {
+    const res = await request(app).get('/timeline/1850abc')
+    expect(res.status).toBe(400)
+    expect(res.body).toHaveProperty('error')
   })
 
   it('empty string segment does not reach the handler', async () => {

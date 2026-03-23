@@ -98,14 +98,13 @@ router.get('/', (req: Request, res: Response) => {
 
 router.get('/:year', (req: Request, res: Response) => {
   const raw = req.params.year
-  const requestedYear = parseInt(raw, 10)
-
-  if (isNaN(requestedYear) || raw.trim() === '') {
+  if (!/^-?\d+$/.test(raw.trim())) {
     res.status(400).json({
       error: 'Invalid year — must be an integer. Use negative integers for BCE (e.g. /timeline/-500).',
     })
     return
   }
+  const requestedYear = parseInt(raw, 10)
 
   // Find nearest event — ties go to the earlier (lower year) event.
   // TIMELINE is already sorted ascending by year, so the first of any
