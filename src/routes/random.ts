@@ -30,6 +30,11 @@ interface RatedCheese {
 
 const cheeses = (ratingsData as any).cheeses as RatedCheese[]
 
+// Fail loudly at startup rather than silently returning undefined at request time.
+if (!cheeses.length) {
+  throw new Error('cheese-ratings.json contains no cheeses — cannot serve GET /random')
+}
+
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
 function getTodayString(): string {
