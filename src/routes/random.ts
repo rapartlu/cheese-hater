@@ -115,6 +115,17 @@ router.get('/', (req: Request, res: Response) => {
     ? cheeses.filter(c => VERDICT_TO_TIER[c.verdict] === tier)
     : cheeses
 
+  // A valid tier may still have zero cheeses in the current dataset (e.g. a
+  // new tier added before data is backfilled). Guard here rather than letting
+  // pickRandom/pickByDate return undefined and crash on .name access.
+  if (pool.length === 0) {
+    res.status(404).json({
+      error: `No cheeses found in the "${tier}" tier.`,
+      hint: 'The tier is valid but the current dataset contains no entries for it.',
+    })
+    return
+  }
+
   // ── Pick ──
   let picked: RatedCheese
   let selectionDate: string | null = null
