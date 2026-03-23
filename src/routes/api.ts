@@ -589,6 +589,61 @@ export const ENDPOINTS = [
       note: 'Etymology is the study of word origins. It cannot help you with cheese.',
     },
   },
+  {
+    method: 'GET',
+    path: '/timeline',
+    description: 'Returns a chronological history of cheese — 20 milestones from 8000 BCE to the present, each annotated with its significance and a verdict on why it represents a step in the wrong direction. Supports optional query filters by era, year range, or both. does_this_help is always false.',
+    parameters: [
+      {
+        name: 'era',
+        location: 'query',
+        type: 'string',
+        required: false,
+        description: 'Case-insensitive substring match on the era field. E.g. "roman", "medieval", "industrial", "neolithic".',
+      },
+      {
+        name: 'after',
+        location: 'query',
+        type: 'integer',
+        required: false,
+        description: 'Return only events where year > after. Use negative integers for BCE (e.g. ?after=-1000 returns events after 1000 BCE).',
+      },
+      {
+        name: 'before',
+        location: 'query',
+        type: 'integer',
+        required: false,
+        description: 'Return only events where year < before. Use negative integers for BCE (e.g. ?before=0 returns only BCE events).',
+      },
+    ],
+    example_request: 'GET /timeline?era=industrial',
+    example_response: {
+      title: 'A History of Cheese: How We Got Here and Why It Did Not Have to Be This Way',
+      filters_applied: { era: 'industrial' },
+      events: [
+        {
+          year: 1815,
+          era: 'Industrial Revolution',
+          event: 'The first cooperative cheese factory opens in Bern, Switzerland…',
+          significance: 'For 9,800 years, cheese production was limited by human capacity and regional milk supply. The industrial era removes these constraints.',
+          verdict: 'Scale amplifies all things. In cheese\'s case, this is not a virtue.',
+          cheese_implicated: null,
+        },
+        {
+          year: 1851,
+          era: 'Industrial America',
+          event: 'Jesse Williams opens the first American cheese factory in Rome, New York…',
+          significance: 'A country with vast resources decides a major use of them is industrial cheese.',
+          verdict: 'America applies industrialization to cheese. The continent had done nothing to deserve this.',
+          cheese_implicated: null,
+        },
+      ],
+      total_events: 2,
+      conclusion: 'This is not a neutral history. Every entry represents a choice that was made, and the world is worse for it.',
+      does_this_help: false,
+      why_not: 'Understanding how we arrived here does not un-arrive us. The cheese exists. The timeline explains why. It does not excuse it.',
+    },
+  },
 ]
 
 router.get('/', (_req, res) => {

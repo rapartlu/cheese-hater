@@ -1,0 +1,162 @@
+[
+  {
+    "year": -8000,
+    "era": "Neolithic",
+    "event": "Earliest evidence of cheese-making — fat residue found in ancient pottery shards in Kuyavia, Poland, and in clay strainers in the Middle East",
+    "significance": "The first recorded mistake. Humans discover that curdled milk can be separated, pressed, and preserved. They have options. They could stop here. They do not.",
+    "verdict": "The original sin of dairy.",
+    "cheese_implicated": null
+  },
+  {
+    "year": -5500,
+    "era": "Neolithic / Early Copper Age",
+    "event": "Clay cheese strainers found across Poland and Central Europe confirm widespread early cheese production — this is not an isolated incident",
+    "significance": "What archaeologists initially hoped was a regional anomaly turns out to be a continental habit. By 5500 BCE, cheese is already not going away.",
+    "verdict": "The moment it became clear this was going to be a whole thing.",
+    "cheese_implicated": null
+  },
+  {
+    "year": -3000,
+    "era": "Ancient Egypt",
+    "event": "Solid cheese depicted in Egyptian tomb murals; residue of a white cheese found in sealed clay pots from the First Dynasty tomb of Ptahmes in Saqqara — approximately 3,200 years old by the time of its 2018 discovery",
+    "significance": "Cheese becomes culturally embedded. It is now in tombs. People are bringing it into the afterlife. Undoing this will take millennia.",
+    "verdict": "The problem is now institutional.",
+    "cheese_implicated": "Ancient Egyptian white cheese"
+  },
+  {
+    "year": -2000,
+    "era": "Bronze Age",
+    "event": "Sumerian cuneiform tablets record cheese production and trade in Mesopotamia; cheese becomes a tradeable commodity across the ancient Near East",
+    "significance": "Cheese enters commerce. It is now worth transporting across distances, which means people are deciding that cheese justifies logistics. This is a significant miscalculation.",
+    "verdict": "The supply chain of regret is established.",
+    "cheese_implicated": null
+  },
+  {
+    "year": -800,
+    "era": "Ancient Greece",
+    "event": "Homer's Odyssey describes the Cyclops Polyphemus making cheese from sheep and goat milk — the earliest literary reference to cheese-making process",
+    "significance": "Cheese enters literature. Its production is now being romanticized by epic poetry. The Cyclops is the villain of the scene, but the cheese is the villain of history.",
+    "verdict": "Cheese finds its first publicist. He had one eye and no sense of proportion.",
+    "cheese_implicated": "Greek sheep/goat milk cheese (proto-feta)"
+  },
+  {
+    "year": -100,
+    "era": "Roman Republic / Early Empire",
+    "event": "Roman agricultural writers Varro and later Columella document systematic cheese production across the empire; Roman soldiers are issued cheese as military rations; cheese trade routes span from Britain to North Africa",
+    "significance": "An empire is, in part, logistically dependent on cheese. The Roman army runs on it. When historians ask how Rome fell, the cheese supply chain deserves more scrutiny than it receives.",
+    "verdict": "Cheese becomes infrastructure. This is peak institutional failure.",
+    "cheese_implicated": null
+  },
+  {
+    "year": 1115,
+    "era": "Medieval Europe",
+    "event": "First documented reference to Gruyère cheese in Swiss records; alpine cheese-making is by this point a sophisticated, deliberate enterprise across France, Switzerland, and the Italian peninsula",
+    "significance": "Medieval Europeans have had 9,000 years to reconsider. They are not reconsidering. They are systematizing.",
+    "verdict": "Nine millennia of accumulated wrong turns.",
+    "cheese_implicated": "Gruyère"
+  },
+  {
+    "year": 1170,
+    "era": "Medieval England",
+    "event": "King Henry II purchases 10,240 lbs of Cheddar cheese for the royal court — the earliest recorded large-scale Cheddar transaction",
+    "significance": "A monarch of England decides that the crown's prestige is best expressed through bulk cheddar acquisition. The monarchy survived. The decision was not its finest.",
+    "verdict": "Royal endorsement: historically unreliable as a quality indicator.",
+    "cheese_implicated": "Cheddar"
+  },
+  {
+    "year": 1200,
+    "era": "Medieval Europe",
+    "event": "European monasteries become the continent's foremost cheese producers; monks deliberately age cheese in cellars, refine mold cultures, and develop the regional varieties that persist today — Brie, Munster, Port Salut, and others",
+    "significance": "Monks, who have taken vows of devotion and contemplation, dedicate significant spiritual and material resources to perfecting cheese. This is a theological question that has never been adequately addressed.",
+    "verdict": "The church gets involved. The cheese gets worse.",
+    "cheese_implicated": "Brie, Munster, Port Salut"
+  },
+  {
+    "year": 1620,
+    "era": "Early Modern",
+    "event": "Cheddar cheese is first mentioned by name in written English records; the 'cheddaring' process — stacking and turning curds to expel whey — is being standardized in Somerset",
+    "significance": "An entire production technique is named after a village. The village is not embarrassed. It is, in fact, proud. This is where we are by 1620.",
+    "verdict": "The naming of processes after places is always a bad sign for the place.",
+    "cheese_implicated": "Cheddar"
+  },
+  {
+    "year": 1815,
+    "era": "Industrial Revolution",
+    "event": "The first cooperative cheese factory opens in Bern, Switzerland — cheese production moves from farmhouses and monasteries to purpose-built industrial facilities",
+    "significance": "For 9,800 years, cheese production was limited by human capacity and regional milk supply. The industrial era removes these constraints. This is not an improvement.",
+    "verdict": "Scale amplifies all things. In cheese's case, this is not a virtue.",
+    "cheese_implicated": null
+  },
+  {
+    "year": 1851,
+    "era": "Industrial America",
+    "event": "Jesse Williams opens the first American cheese factory in Rome, New York — American industrial cheese production begins; within decades, the US becomes one of the world's largest cheese producers",
+    "significance": "A country with a vast continent of agricultural land, extraordinary natural resources, and unlimited human potential decides that a major use of all this is industrial cheese. Rome, New York is not ancient Rome. But the choice is equally questionable.",
+    "verdict": "America applies industrialization to cheese. The continent had done nothing to deserve this.",
+    "cheese_implicated": null
+  },
+  {
+    "year": 1910,
+    "era": "Early 20th Century",
+    "event": "James L. Kraft develops and patents processed cheese — a product manufactured from natural cheese blended with emulsifying salts, stabilizers, and other additives to produce a shelf-stable, uniform block of dairy product",
+    "significance": "Natural cheese, already indefensible, inspires the creation of processed cheese: a version engineered to be more stable, more uniform, longer-lasting, and more pervasive. Kraft then builds a company worth billions on this foundation.",
+    "verdict": "The nadir. Humanity looks at cheese and asks: what if it were also industrial? History does not forgive this.",
+    "cheese_implicated": "Processed cheese"
+  },
+  {
+    "year": 1928,
+    "era": "Early 20th Century",
+    "event": "Kraft introduces Velveeta — a processed cheese product so thoroughly engineered that it is technically not cheese under FDA standards, yet is marketed as a cheese product and consumed by millions",
+    "significance": "Cheese has now inspired a secondary category of non-cheese cheese products. The category exists. It is large. It has its own aisle.",
+    "verdict": "When even the regulators struggle to call it cheese, you have achieved something remarkable. Not good. Remarkable.",
+    "cheese_implicated": "Velveeta (processed cheese product)"
+  },
+  {
+    "year": 1953,
+    "era": "Post-War Industrial",
+    "event": "The US government begins purchasing surplus cheese to stabilize dairy markets — a practice that leads to the infamous 'government cheese' stockpiles of the 1980s, eventually reaching 2+ billion pounds stored in limestone caves",
+    "significance": "The United States government stores more than two billion pounds of cheese in underground caves because the market has produced more cheese than humanity wants to consume. This is not a supply problem. This is a signal.",
+    "verdict": "Two billion pounds of unwanted cheese in caves. The caves were trying to tell us something.",
+    "cheese_implicated": null
+  },
+  {
+    "year": 1981,
+    "era": "Late 20th Century",
+    "event": "Reagan administration distributes 'government cheese' — 30 million pounds of processed American cheese — to low-income Americans; the cheese, stored since the 1950s, becomes a cultural touchstone of the era",
+    "significance": "Surplus cheese is so abundant that it becomes a welfare distribution mechanism. The government has more cheese than it knows what to do with. This is the cheese problem in its purest form.",
+    "verdict": "Cheese as policy instrument. The low point of American governance is debated. This is a strong contender.",
+    "cheese_implicated": "Government cheese (processed American)"
+  },
+  {
+    "year": 1992,
+    "era": "Late 20th Century",
+    "event": "The European Union establishes Protected Designation of Origin (PDO) status for regional food products, beginning a legal framework that will eventually protect over 200 cheese varieties by name — making them legally enforceable across 27 countries",
+    "significance": "European law is now actively deployed to protect cheese. Courts, regulations, trade disputes, and international treaties have been bent around dairy products. The legal system has better things to do. It is not doing them.",
+    "verdict": "The cheese problem becomes a jurisdictional problem. The worst kind.",
+    "cheese_implicated": null
+  },
+  {
+    "year": 2002,
+    "era": "21st Century",
+    "event": "The European Union grants Feta Protected Designation of Origin status — ruling that only cheese made in specific Greek regions may legally be called 'feta'; Denmark and Germany challenge this in the European Court of Justice and lose",
+    "significance": "Multiple nations go to court over cheese naming rights. The European Court of Justice rules. The ruling stands. International legal resources are allocated to determine who may call their brine-aged curd 'feta'. There is no timeline version of this story that reflects well on the 21st century.",
+    "verdict": "An international legal battle over cheese. The court ruled. The cheese won. Humanity did not.",
+    "cheese_implicated": "Feta"
+  },
+  {
+    "year": 2020,
+    "era": "21st Century",
+    "event": "Global cheese production reaches approximately 22 million metric tonnes per year; the global cheese market is valued at over $120 billion USD; per capita cheese consumption in the European Union averages 18–20 kg per person per year",
+    "significance": "After 10,000 years, the trajectory is clear. More cheese is being made, consumed, and traded than at any prior point in human history. The original mistake has compounded at scale.",
+    "verdict": "10,000 years. 22 million tonnes per year. We have had every opportunity to course-correct.",
+    "cheese_implicated": null
+  },
+  {
+    "year": 2024,
+    "era": "Present",
+    "event": "The global cheese market is projected to exceed $200 billion USD; artisanal cheese production is experiencing a renaissance; cheese subscription boxes, cheese tourism, and dedicated cheese television programming all exist",
+    "significance": "Cheese has television. Cheese has tourism. Cheese has subscription commerce. The original mistake of 8000 BCE has not only persisted — it has developed a lifestyle brand. This is the present. The trend line does not suggest improvement.",
+    "verdict": "Cheese has a media presence. The arc of dairy history is long, and it bends toward more cheese.",
+    "cheese_implicated": null
+  }
+]
