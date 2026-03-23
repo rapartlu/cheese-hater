@@ -413,6 +413,60 @@ export const ENDPOINTS = [
       note: 'Both cheeses are guilty. This comparison only determines the hierarchy of guilt.',
     },
   },
+  {
+    method: 'GET',
+    path: '/worst',
+    description: 'All cheeses ranked from most to least terrible by score, each annotated with a severity tier and a why_it_wins explanation. Supports filtering by tier and limiting results. GET /worst?limit=1 returns the single worst cheese in the database.',
+    parameters: [
+      {
+        name: 'tier',
+        location: 'query',
+        type: 'string',
+        required: false,
+        description: 'Filter by severity tier: "catastrophic" (score < 1.0), "revolting" (score 1.0–1.99), or "condemned" (score 2.0+).',
+      },
+      {
+        name: 'limit',
+        location: 'query',
+        type: 'number',
+        required: false,
+        description: 'Return only the top N entries. Default: all cheeses.',
+      },
+    ],
+    example_request: 'GET /worst?limit=3',
+    example_response: {
+      ranked: [
+        {
+          rank: 1,
+          cheese: 'Casu Martzu',
+          score: 0.125,
+          severity_tier: 'catastrophic',
+          verdict: 'CATASTROPHIC',
+          why_it_wins: 'Contains live maggots — cheese fly larvae deliberately left to eat through the interior. Illegal to sell in the EU. Still consumed. This is what cheese becomes when you follow its logic without regulatory constraint.',
+        },
+        {
+          rank: 2,
+          cheese: 'Blue Cheese',
+          score: 0.625,
+          severity_tier: 'catastrophic',
+          verdict: 'CATASTROPHIC',
+          why_it_wins: 'Deliberately cultivated mold injected throughout with Penicillium spores. Someone looked at a rotting wheel of dairy and said "more of this." That person was wrong.',
+        },
+        {
+          rank: 3,
+          cheese: 'Stilton',
+          score: 0.925,
+          severity_tier: 'catastrophic',
+          verdict: 'CATASTROPHIC',
+          why_it_wins: 'A Protected Designation of Origin cheese — meaning the EU has legal geographic restrictions on which farms can produce this specific variety of mold-veined aged dairy.',
+        },
+      ],
+      total: 3,
+      total_in_database: 21,
+      limit: 3,
+      note: 'Ranked from most terrible to least. The least terrible cheese on this list is still cheese.',
+    },
+  },
 ]
 
 router.get('/', (_req, res) => {
