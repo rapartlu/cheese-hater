@@ -4,7 +4,7 @@ import {
   containsForbiddenPhrase,
   NEGATIVE_TERMS,
   FORBIDDEN_POSITIVE_PHRASES,
-} from '../lib/cheeseHater.js'
+} from '../lib/cheeseHater.ts'
 
 describe('Response Language Enforcement', () => {
   describe('containsNegativeLanguage', () => {

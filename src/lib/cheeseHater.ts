@@ -88,9 +88,18 @@ const RANTS = [
   "Pre-shredded cheese is coated in cellulose — wood pulp fiber — to prevent clumping. You are not buying shredded cheese. You are buying something awful: cheese coated in wood pulp, sold without prominent labeling. The cheese industry decided this fraud was fine.",
 ]
 
-export function rateCheese(name: string): CheeseRating | null {
+export function rateCheese(name: string): CheeseRating {
   const lower = name.toLowerCase().trim()
-  return ratings.find(r => r.name.toLowerCase() === lower) ?? null
+  return ratings.find(r => r.name.toLowerCase() === lower) ?? {
+    name,
+    score: 1.0,
+    verdict: 'CONDEMNED',
+    review: `${name} is cheese. Cheese is terrible. This one is no exception. The fact that it exists at all is an indictment. It is fermented dairy — mold, bacteria, curdled milk — shaped into a form and given a name. The name changes nothing about what it is.`,
+  }
+}
+
+export function getFactsBySeverity(minSeverity: number): Fact[] {
+  return facts.filter(f => f.severity >= minSeverity)
 }
 
 export function counterArgument(argument: string): { argument: string; rebuttal: string } {

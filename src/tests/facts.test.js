@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { facts, getRandomFact, getFactsBySeverity } from '../lib/cheeseHater.js'
+import { facts, getRandomFact, getFactsBySeverity } from '../lib/cheeseHater.ts'
 
 const VALID_CATEGORIES = ['what-it-is', 'how-its-made', 'health', 'industry-secrets']
 

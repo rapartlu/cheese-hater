@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { counterArgument, counterArgs, containsNegativeLanguage, containsForbiddenPhrase } from '../lib/cheeseHater.js'
+import { counterArgument, counterArgs, containsNegativeLanguage, containsForbiddenPhrase } from '../lib/cheeseHater.ts'
 
 describe('Counter-Argument System', () => {
   it('database contains at least 10 counter-arguments', () => {

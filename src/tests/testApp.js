@@ -10,7 +10,7 @@ import {
   getRandomFact,
   facts,
   ratings,
-} from '../lib/cheeseHater.js'
+} from '../lib/cheeseHater.ts'
 
 const app = express()
 app.use(express.json())

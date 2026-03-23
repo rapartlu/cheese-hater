@@ -10,7 +10,7 @@
 import { describe, it, expect } from 'vitest'
 import request from 'supertest'
 import app from './testApp.js'
-import { containsNegativeLanguage, MAX_PASSING_SCORE } from '../lib/cheeseHater.js'
+import { containsNegativeLanguage, MAX_PASSING_SCORE } from '../lib/cheeseHater.ts'
 
 describe('GET /health', () => {
   it('returns 200', async () => {
