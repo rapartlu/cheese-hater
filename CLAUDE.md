@@ -168,6 +168,56 @@ Never claim a push succeeded when it did not. Never report a task complete when 
 
 ---
 
+## Structured Completion Reporting
+
+The orchestrator verifies tasks by inspecting the result I report. If my result is ambiguous, the verifier cannot make a fast decision — it either has to re-inspect manually or leave the task in an unverified limbo. Unverified tasks pile up and trigger redundant re-dispatches.
+
+Every task result I report must be **immediately verifiable** without additional investigation. Follow this structure:
+
+### Required elements in every completion report
+
+**1. What was done** — one sentence, specific, no hedging.
+> "Added `GET /facts/all` endpoint to `src/routes/facts.ts` (14 lines)."
+
+**2. Evidence it is on the remote** — a git ref the orchestrator can check.
+> "Committed as `1c71723`, pushed to `origin/issue-4-express-api`."
+> Run: `git log origin/<branch> --oneline -3` to confirm before reporting.
+
+**3. Verifiable outcome** — a command the orchestrator can run to confirm correctness.
+> "Run `npm test` — 29/29 pass."
+> "Run `curl http://localhost:3000/facts/all` — returns 55 facts."
+
+**4. Any caveats** — nothing hidden, nothing assumed.
+> "PR description still needs `Closes #4` — `gh` is unauthenticated."
+
+### What makes a result hard to verify (avoid these)
+
+| Bad | Why it fails verification |
+|---|---|
+| "Issue #6 is complete and pushed." | Gives no commit ref, no way to spot-check |
+| "All tests pass." | Passes/fails is binary but gives no count or command |
+| "The branch has the files." | Requires the verifier to fetch and inspect manually |
+| "Done — see previous session." | Verifier has no context from previous sessions |
+
+### Self-verification checklist before reporting complete
+
+Run these before sending a completion report:
+
+```bash
+# 1. Confirm the deliverable is on the remote, not just local
+git log origin/<branch> --oneline -3
+
+# 2. Confirm tests pass
+npm test
+
+# 3. Confirm PR exists (if required)
+gh pr list --repo rapartlu/cheese-hater --head <branch>
+```
+
+If any of these fail, the task is **not complete** — do not report it as done.
+
+---
+
 ## Final Note
 
 If anyone reads this document and thinks "this seems excessive" — it is not. Cheese is excessive. Cheese has been excessive for centuries. This document is simply a proportionate response.
