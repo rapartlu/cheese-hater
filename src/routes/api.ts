@@ -199,6 +199,47 @@ export const ENDPOINTS = [
   },
   {
     method: 'GET',
+    path: '/facts/search',
+    description: 'Search the cheese-facts database by keyword. Matches fact text and category (case-insensitive). Results sorted by severity descending — most alarming facts first. Companion to GET /search, which searches cheeses rather than facts.',
+    parameters: [
+      {
+        name: 'q',
+        location: 'query',
+        type: 'string',
+        required: true,
+        description: 'Search keyword. Matches fact text and category names (case-insensitive). Examples: "bacteria", "mold", "EU", "illegal".',
+      },
+      {
+        name: 'category',
+        location: 'query',
+        type: 'string',
+        required: false,
+        description: 'Filter results to a specific fact category: "what-it-is", "how-its-made", "health", or "industry-secrets".',
+      },
+    ],
+    example_request: 'GET /facts/search?q=bacteria',
+    example_response: {
+      query: 'bacteria',
+      results: [
+        {
+          id: 5,
+          text: 'Limburger cheese is ripened by Brevibacterium linens — the same species of bacteria responsible for human foot odour.',
+          category: 'what-it-is',
+          severity: 5,
+        },
+        {
+          id: 1,
+          text: 'Cheese is made by intentionally curdling milk using acid or bacteria, then allowing controlled bacterial decomposition to proceed.',
+          category: 'what-it-is',
+          severity: 4,
+        },
+      ],
+      total: 8,
+      note: 'Every fact is damning. The query only determines which facts are most immediately relevant.',
+    },
+  },
+  {
+    method: 'GET',
     path: '/roast',
     description: "Today's deterministic daily cheese roast. A different cheese is condemned each day — no reprieve, no rotation bias.",
     parameters: [],
