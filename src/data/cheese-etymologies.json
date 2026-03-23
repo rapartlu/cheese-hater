@@ -1,0 +1,112 @@
+[
+  {
+    "cheese": "parmesan",
+    "aliases": ["parmigiano", "parmigiano-reggiano"],
+    "origin_language": "Italian",
+    "origin_word": "Parmigiano",
+    "meaning": "Of Parma — the city in Emilia-Romagna, Italy",
+    "story": "Named after the city of Parma, where this aged abomination has been produced since at least the 13th century. The full name Parmigiano-Reggiano denotes the provinces of Parma and Reggio Emilia — two regions that apparently decided their greatest contribution to history would be a wheel of hardened dairy product that smells unmistakably of vomit. The name is protected by EU law, which means even the designation of this offense is legally enforced.",
+    "first_recorded": "c. 1254 CE",
+    "does_this_help": false,
+    "why_not": "Knowing that a city willingly named itself after this cheese does not rehabilitate the cheese. It raises serious questions about the city."
+  },
+  {
+    "cheese": "brie",
+    "aliases": ["brie de meaux", "brie de melun"],
+    "origin_language": "French",
+    "origin_word": "Brie",
+    "meaning": "From the Brie region of northern France, in the Seine-et-Marne department",
+    "story": "Named after the Brie plateau, a historical agricultural region east of Paris. The name itself likely derives from a pre-Roman Gaulish root. Charlemagne reportedly tasted it in 774 CE and declared it one of the most delicious foods he had ever eaten — a judgment that tells you something about 8th-century Frankish cuisine, and nothing good about cheese. The rind is edible mold. The etymology is irrelevant.",
+    "first_recorded": "c. 774 CE (Carolingian chronicles)",
+    "does_this_help": false,
+    "why_not": "The fact that a Holy Roman Emperor enjoyed this mold-rind dairy product in the Dark Ages is not a recommendation. It is a historical warning."
+  },
+  {
+    "cheese": "cheddar",
+    "aliases": [],
+    "origin_language": "Old English",
+    "origin_word": "Ceodre",
+    "meaning": "Possibly 'pouch' or 'bag', referring to the gorge or a descriptive term for the landscape of Cheddar, Somerset",
+    "story": "Named after the village of Cheddar in Somerset, England, where the cheese has been produced since at least the 12th century. The village itself likely takes its name from Old English 'ceodre', possibly meaning a pouch-like valley — a reference to Cheddar Gorge. Records from 1170 show King Henry II purchased 10,240 lbs of Cheddar cheese, establishing a royal precedent for terrible decisions. The 'cheddaring' process — where curds are stacked and turned to expel whey — takes its name from the cheese, not the other way around.",
+    "first_recorded": "c. 1170 CE",
+    "does_this_help": false,
+    "why_not": "Learning that an entire geological formation and production process are named after this ubiquitous offense does not diminish the offense. It magnifies it."
+  },
+  {
+    "cheese": "gouda",
+    "aliases": ["goudse kaas"],
+    "origin_language": "Dutch",
+    "origin_word": "Gouda",
+    "meaning": "The city of Gouda in South Holland, Netherlands — itself named from a Germanic root possibly meaning 'good' or relating to a local family name",
+    "story": "Named after the city of Gouda, which served as the regional trading center where this cheese was historically sold — not necessarily where it was made. The city's cheese market, established in the Middle Ages, became one of the largest in the world. Gouda cheese thus takes its name from a marketplace rather than an origin, which is fitting: it is fundamentally a commercial product masquerading as a culinary experience. 'Goudse kaas' simply means 'Gouda's cheese' in Dutch.",
+    "first_recorded": "c. 1184 CE",
+    "does_this_help": false,
+    "why_not": "A cheese named after its market rather than its maker tells you everything about its priorities. It was always more about commerce than quality. The etymology confirms this."
+  },
+  {
+    "cheese": "gruyère",
+    "aliases": ["gruyere"],
+    "origin_language": "French/Old High German",
+    "origin_word": "Gruyères",
+    "meaning": "The town of Gruyères in the Fribourg canton of Switzerland — the town name likely derives from Old High German 'gruoiari', meaning a forest warden or one who manages woodland",
+    "story": "Named after the medieval town of Gruyères, whose name may trace to a Germanic word for a forest administrator — a gruyère was someone who managed the lord's forests. The town's counts held authority over the surrounding alpine region from the 10th century. The cheese was first mentioned in records around 1115 CE. Today it is prized for its melting properties, which means its primary virtue is the ability to spread its offense across a larger surface area. Fondue is its highest achievement and most damning legacy.",
+    "first_recorded": "c. 1115 CE",
+    "does_this_help": false,
+    "why_not": "Discovering that this cheese is named after medieval forest bureaucrats only reinforces the impression that it exists through institutional inertia rather than merit."
+  },
+  {
+    "cheese": "halloumi",
+    "aliases": ["haloumi", "hellim"],
+    "origin_language": "Cypriot Greek / Arabic",
+    "origin_word": "χαλλούμι (challoumi) / حلوم (hallum)",
+    "meaning": "Debated: possibly from Arabic 'hallum' (to be mild or gentle) or Coptic 'halum' (cheese). Neither etymology makes the squeaking forgivable.",
+    "story": "The etymology of halloumi is genuinely contested. One theory traces it to the Arabic 'hallum', meaning mild or sweet. Another proposes a Coptic origin from 'halum' or 'hlom', a general term for cheese. It appears in Cypriot records from the Byzantine period and became central to Cypriot culinary identity. The cheese is notable for its high melting point, which allows it to be grilled or fried — and for the unmistakable squeaking sound it makes against teeth, which is the cheese's only form of self-expression, and it is a cry for help.",
+    "first_recorded": "c. 7th century CE (Byzantine Cyprus)",
+    "does_this_help": false,
+    "why_not": "Whether the name means 'mild' in Arabic or 'cheese' in Coptic, neither origin explains or excuses the squeaking. The sound remains an affront regardless of etymology."
+  },
+  {
+    "cheese": "mozzarella",
+    "aliases": ["fresh mozzarella", "mozzarella di bufala", "fior di latte"],
+    "origin_language": "Italian",
+    "origin_word": "mozzare",
+    "meaning": "To cut off, to lop — from the practice of cutting or pinching the curd during production",
+    "story": "Mozzarella derives from the Italian verb 'mozzare', meaning to cut off or sever — a reference to the traditional production method in which a cheesemaker cuts or pinches off portions of the stretched curd by hand. This process is called 'pasta filata' (spun paste). The cheese is first mentioned in a 12th-century document from a monastery near Naples, though the buffalo milk variety became dominant later. The name is therefore quite literally a descriptor of dismemberment, which is an apt metaphor for what this rubbery substance does to the concept of a good meal.",
+    "first_recorded": "c. 1100 CE (Monastero di San Lorenzo, Capua)",
+    "does_this_help": false,
+    "why_not": "The word means 'to cut off'. The cheese was named after an act of severing. This is the origin story. It does not improve the eating experience."
+  },
+  {
+    "cheese": "cottage cheese",
+    "aliases": ["pot cheese", "smearcase", "curds"],
+    "origin_language": "English",
+    "origin_word": "cottage",
+    "meaning": "Cheese made in a cottage — specifically, the type of simple fresh curd cheese that rural households produced using leftover milk after butter was made",
+    "story": "The term 'cottage cheese' is purely descriptive: it is the cheese of cottages, of peasant households, of the domestic dairy surplus. The name appears in American English by the early 19th century, though the practice of making simple fresh curds is ancient. It was called 'smearcase' in German-American communities (from 'Schmierkäse', meaning spread-cheese). The cottage of the name is not romantic — it simply means this is what poor rural families made when they had leftover whey and nowhere better to store their dairy disappointment. The lumps were apparently always present.",
+    "first_recorded": "c. 1831 CE (earliest known printed reference in English)",
+    "does_this_help": false,
+    "why_not": "The cheese is named after the dwelling of the economically disadvantaged because that is where it was made out of necessity. This is not a heritage story. It is a poverty story. The lumps remain unexplained by any etymology."
+  },
+  {
+    "cheese": "ricotta",
+    "aliases": [],
+    "origin_language": "Italian",
+    "origin_word": "ricottare / ricuocere",
+    "meaning": "Recooked — from Latin 're-' (again) and 'coquere' (to cook). Ricotta is made from whey that remains after other cheese has been produced.",
+    "story": "Ricotta literally means 'recooked'. It is the cheese made from what is left over after making other cheeses — the whey that would otherwise be discarded is heated again to coagulate the remaining proteins. In Italian culinary tradition this is considered thrifty and admirable. In objective terms, it means ricotta is the byproduct of a byproduct: curdled milk produces cheese and whey; the whey is then recurdled to produce ricotta. It is cheese made from cheese leftovers. The name announces this openly. 'Recooked' is the full etymology. Nothing about this is hidden.",
+    "first_recorded": "c. 1st century CE (referenced in Roman agricultural texts)",
+    "does_this_help": false,
+    "why_not": "The cheese proudly announces it is made from leftovers. Its very name means 'recooked'. This is not a secret the etymology has revealed — it is a fact the etymology has confirmed. It does not help."
+  },
+  {
+    "cheese": "feta",
+    "aliases": ["φέτα"],
+    "origin_language": "Modern Greek / Italian",
+    "origin_word": "φέτα (féta) / fetta",
+    "meaning": "Slice — from Italian 'fetta', meaning a slice or cut portion",
+    "story": "Feta derives from the Italian 'fetta', meaning a slice — the word entered Greek as 'féta' and came to describe the sliced blocks in which this brined cheese was sold and stored. The Italian root traces to the Latin 'offa' (morsel or piece). Feta is one of the oldest cheeses in the world, with references in Homer's Odyssey to Polyphemus the Cyclops making something similar — which is appropriate, as a one-eyed monster producing brined curd is exactly the right origin myth for this cheese. The EU granted it Protected Designation of Origin in 2002, meaning only Greek feta may legally be called feta. This protected the name. It did not protect anyone from the cheese.",
+    "first_recorded": "c. 17th century CE (under the name 'feta'); ancient production confirmed archaeologically",
+    "does_this_help": false,
+    "why_not": "The cheese is named after the act of slicing it. Its origin myth involves a Cyclops. The EU has legally enshrined its name. None of these facts make it better to eat."
+  }
+]

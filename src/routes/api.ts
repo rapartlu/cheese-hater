@@ -546,6 +546,49 @@ export const ENDPOINTS = [
       note: 'All results are guilty. The query only determines which cheese\'s guilt is most relevant to your search.',
     },
   },
+  {
+    method: 'GET',
+    path: '/etymology',
+    description: 'List all cheeses with documented etymologies. Returns cheese name, aliases, origin language, and first recorded date for each. does_this_help is always false.',
+    parameters: [],
+    example_request: 'GET /etymology',
+    example_response: {
+      documented_cheeses: [
+        { cheese: 'parmesan', aliases: ['parmigiano', 'parmigiano-reggiano'], origin_language: 'Italian', first_recorded: 'c. 1254 CE' },
+        { cheese: 'brie', aliases: ['brie de meaux', 'brie de melun'], origin_language: 'French', first_recorded: 'c. 774 CE' },
+      ],
+      total: 10,
+      does_this_help: false,
+      why_not: 'Listing cheeses by their name origins does not rehabilitate any of them. Every cheese on this list remains indefensible.',
+      usage: 'GET /etymology/:cheese — e.g. GET /etymology/brie',
+    },
+  },
+  {
+    method: 'GET',
+    path: '/etymology/:cheese',
+    description: 'Get the name origin story for any cheese. Returns origin language, original word, meaning, full etymological story, and first recorded date. Always includes does_this_help: false and a why_not explanation. Unknown cheeses return a generic response — never a 404.',
+    parameters: [
+      {
+        name: 'cheese',
+        location: 'path',
+        type: 'string',
+        required: true,
+        description: 'The cheese name to look up. Documented: parmesan, brie, cheddar, gouda, gruyère, halloumi, mozzarella, cottage cheese, ricotta, feta. Any other name returns a generic fallback response.',
+      },
+    ],
+    example_request: 'GET /etymology/brie',
+    example_response: {
+      cheese: 'brie',
+      origin_language: 'French',
+      origin_word: 'Brie',
+      meaning: 'From the Brie region of northern France, in the Seine-et-Marne department',
+      story: 'Named after the Brie plateau, a historical agricultural region east of Paris…',
+      first_recorded: 'c. 774 CE (Carolingian chronicles)',
+      does_this_help: false,
+      why_not: 'The fact that a Holy Roman Emperor enjoyed this mold-rind dairy product in the Dark Ages is not a recommendation. It is a historical warning.',
+      note: 'Etymology is the study of word origins. It cannot help you with cheese.',
+    },
+  },
 ]
 
 router.get('/', (_req, res) => {
