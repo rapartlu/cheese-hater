@@ -306,6 +306,56 @@ router.get('/bracket', (req: Request, res: Response) => {
   })
 })
 
+const LEADERBOARD_DEFAULT_LIMIT = 10
+
+// GET /roast/leaderboard?limit=N — most-condemned cheeses ranked by appearance count
+router.get('/leaderboard', (req: Request, res: Response) => {
+  const rawLimit = req.query.limit
+  let limit = LEADERBOARD_DEFAULT_LIMIT
+
+  if (rawLimit !== undefined) {
+    const parsed = parseInt(String(rawLimit), 10)
+    if (isNaN(parsed) || parsed < 1) {
+      res.status(400).json({ error: '`limit` must be a positive integer.' })
+      return
+    }
+    limit = parsed
+  }
+
+  // Tally appearances across the full history window (HISTORY_MAX_DAYS days)
+  const counts = new Map<string, number>()
+  for (let i = 0; i < HISTORY_MAX_DAYS; i++) {
+    const dateStr = dateStringDaysAgo(i)
+    const cheese = pickTodaysCheese(dateStr)
+    counts.set(cheese.name, (counts.get(cheese.name) ?? 0) + 1)
+  }
+
+  // Sort: most appearances first; break ties alphabetically for determinism
+  const ranked = [...counts.entries()]
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .slice(0, limit)
+
+  const leaderboard = ranked.map(([name, appearances], idx) => {
+    const full = cheeses.find(c => c.name === name)!
+    return {
+      rank: idx + 1,
+      cheese: name,
+      appearances,
+      score_display: full.shareable_card.score_display,
+      verdict: full.verdict,
+      best_quote: full.shareable_card.one_liner,
+    }
+  })
+
+  res.json({
+    limit,
+    history_window_days: HISTORY_MAX_DAYS,
+    total_ranked: leaderboard.length,
+    leaderboard,
+    note: 'Ranked by number of daily condemnations in the last 30 days. A higher rank means more suffering.',
+  })
+})
+
 // GET /roast/history?days=N — last N days of roasted cheeses (default 7, max 30)
 router.get('/history', (req: Request, res: Response) => {
   const rawDays = req.query.days
