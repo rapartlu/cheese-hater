@@ -467,6 +467,44 @@ export const ENDPOINTS = [
       note: 'Ranked from most terrible to least. The least terrible cheese on this list is still cheese.',
     },
   },
+  {
+    method: 'GET',
+    path: '/search',
+    description: 'Find cheeses by name, severity tier, or keyword in their condemnation text. Searches across cheese names, tier labels, why_it_wins annotations, and full review text. Results ranked by relevance (name match > tier match > text match), then by score ascending within each tier.',
+    parameters: [
+      {
+        name: 'q',
+        location: 'query',
+        type: 'string',
+        required: true,
+        description: 'Search query. Matches cheese names (e.g. "brie"), tier labels (e.g. "catastrophic"), or keywords in condemnation text (e.g. "maggot", "squeak", "mold").',
+      },
+    ],
+    example_request: 'GET /search?q=mold',
+    example_response: {
+      query: 'mold',
+      results: [
+        {
+          cheese: 'Blue Cheese',
+          score: 0.625,
+          severity_tier: 'catastrophic',
+          verdict: 'CATASTROPHIC',
+          why_it_wins: 'Deliberately cultivated mold injected throughout…',
+          match_reason: 'why_it_wins: "…cultivated mold injected throughout with Penicillium spores…"',
+        },
+        {
+          cheese: 'Brie',
+          score: 1.65,
+          severity_tier: 'revolting',
+          verdict: 'REVOLTING',
+          why_it_wins: 'The rind is legally edible mold…',
+          match_reason: 'why_it_wins: "…rind is legally edible mold. This is the selling point…"',
+        },
+      ],
+      total: 3,
+      note: 'All results are guilty. The query only determines which cheese\'s guilt is most relevant to your search.',
+    },
+  },
 ]
 
 router.get('/', (_req, res) => {
