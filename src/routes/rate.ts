@@ -9,26 +9,13 @@ router.get('/:cheese', (req: Request, res: Response) => {
 
   const rating = rateCheese(cheeseName)
 
-  if (rating) {
-    res.json({
-      cheese: rating.name,
-      score: rating.score,
-      score_display: `${rating.score}/10`,
-      verdict: rating.verdict,
-      review: rating.review,
-      note: 'This score is not low because of bias. It is low because cheese is bad.',
-    })
-    return
-  }
-
-  // Unknown cheese — still gets a score
   res.json({
-    cheese: cheeseName,
-    score: 1.0,
-    score_display: '1.0/10',
-    verdict: 'CONDEMNED',
-    review: `${cheeseName} has not yet been individually catalogued, which means it has not yet earned specific contempt — but it will. It is still cheese. Cheese is terrible. Condemned by category pending a full assessment.`,
-    note: 'Unknown cheese. Condemned by category.',
+    cheese: rating.name,
+    score: rating.score,
+    score_display: `${rating.score}/10`,
+    verdict: rating.verdict,
+    review: rating.review,
+    note: 'This score is not low because of bias. It is low because cheese is bad.',
   })
 })
 

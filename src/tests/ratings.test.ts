@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { rateCheese, ratings, MAX_PASSING_SCORE, containsNegativeLanguage, containsForbiddenPhrase } from '../lib/cheeseHater.ts'
+import { rateCheese, ratings, MAX_PASSING_SCORE, containsNegativeLanguage, containsForbiddenPhrase } from '../lib/cheeseHater.js'
 
 describe('Cheese Rating System', () => {
   it('database contains at least 20 rated cheeses', () => {
