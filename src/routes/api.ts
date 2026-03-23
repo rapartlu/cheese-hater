@@ -371,6 +371,48 @@ export const ENDPOINTS = [
       note: 'All cheeses are guilty. The verdict is never in doubt. Only the specifics vary.',
     },
   },
+  {
+    method: 'GET',
+    path: '/compare',
+    description: 'Compare two cheeses head-to-head and declare which is more terrible. Returns structured dimension analysis: smell, texture, and cultural damage — each with a worse-offender and margin rating. Both cheeses are always guilty; this endpoint only determines the hierarchy of guilt.',
+    parameters: [
+      {
+        name: 'a',
+        location: 'query',
+        type: 'string',
+        required: true,
+        description: 'The first cheese to compare (e.g. "brie"). Unknown cheeses are accepted.',
+      },
+      {
+        name: 'b',
+        location: 'query',
+        type: 'string',
+        required: true,
+        description: 'The second cheese to compare (e.g. "cheddar"). Must differ from a.',
+      },
+    ],
+    example_request: 'GET /compare?a=brie&b=cheddar',
+    example_response: {
+      cheese_a: 'brie',
+      cheese_b: 'cheddar',
+      winner: 'brie',
+      loser: 'cheddar',
+      winner_reason: 'Brie is worse than Cheddar on both sensory dimensions. Its smell — wet gym towel left in a warm car for three days — is accompanied by a texture offense: aggressively soft; collapses without apology onto everything it touches.',
+      scores: {
+        brie: 1.65,
+        cheddar: 2.05,
+        margin: 'moderate',
+        note: 'Lower score = more condemned. The winner is the more terrible cheese.',
+      },
+      comparison: {
+        smell: { worse: 'brie', margin: 'significant' },
+        texture: { worse: 'brie', margin: 'decisive' },
+        cultural_damage: { worse: 'cheddar', margin: 'decisive' },
+        severity_delta: 0.4,
+      },
+      note: 'Both cheeses are guilty. This comparison only determines the hierarchy of guilt.',
+    },
+  },
 ]
 
 router.get('/', (_req, res) => {
