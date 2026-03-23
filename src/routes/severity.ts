@@ -15,6 +15,7 @@
 import { Router, Request, Response } from 'express'
 import { ratings } from '../lib/cheeseHater'
 import { WHY_IT_WINS, VERDICT_TO_TIER, defaultWhyItWins } from '../lib/worstAnnotations'
+import { parsePagination, applyPagination } from '../lib/paginate'
 
 const router = Router()
 
@@ -179,11 +180,20 @@ router.get('/:tier', (req: Request, res: Response) => {
   const raw = resolveTier(req.params.tier)
   if (!raw) { tierError(req.params.tier, res); return }
 
+  const paginationResult = parsePagination(req.query as Record<string, unknown>)
+  if ('error' in paginationResult) {
+    res.status(400).json({ error: paginationResult.error })
+    return
+  }
+  const { params } = paginationResult
+
   const advisory = TIER_ADVISORY[raw]
   const all = buildAllRanked()
   const inTier = all
     .filter(e => e.severity_tier === raw)
     .map((e, idx) => ({ ...e, rank: idx + 1 }))   // re-rank within tier
+
+  const { page, total, limit, offset, has_more } = applyPagination(inTier, params)
 
   res.json({
     tier: raw,
@@ -195,9 +205,12 @@ router.get('/:tier', (req: Request, res: Response) => {
     score_range: advisory.score_range,
     threat_level: advisory.threat_level,
     description: advisory.description,
-    cheeses: inTier,
-    total: inTier.length,
-    note: `All ${inTier.length} cheeses in this tier have been assessed, found guilty, and ranked accordingly. The ranking is from most to least terrible within the tier.`,
+    cheeses: page,
+    total,
+    limit,
+    offset,
+    has_more,
+    note: `All ${total} cheeses in this tier have been assessed, found guilty, and ranked accordingly. The ranking is from most to least terrible within the tier.`,
   })
 })
 

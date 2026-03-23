@@ -1,5 +1,6 @@
 import { Router, Request, Response } from 'express'
 import { getRandomFact, facts } from '../lib/cheeseHater'
+import { parsePagination, applyPagination } from '../lib/paginate'
 
 const router = Router()
 
@@ -84,7 +85,14 @@ router.get('/search', (req: Request, res: Response) => {
 
   const categoryFilter = typeof rawCategory === 'string' ? rawCategory : null
 
-  const results = facts
+  const paginationResult = parsePagination(req.query as Record<string, unknown>)
+  if ('error' in paginationResult) {
+    res.status(400).json({ error: paginationResult.error })
+    return
+  }
+  const { params } = paginationResult
+
+  const allResults = facts
     .filter(f => {
       const matchesQuery =
         f.text.toLowerCase().includes(query) ||
@@ -100,27 +108,46 @@ router.get('/search', (req: Request, res: Response) => {
       severity: f.severity,
     }))
 
+  const { page, total, limit, offset, has_more } = applyPagination(allResults, params)
+
   res.json({
     query: rawQ.trim(),
     ...(categoryFilter ? { filtered_by_category: categoryFilter } : {}),
-    results,
-    total: results.length,
-    note: results.length > 0
+    results: page,
+    total,
+    limit,
+    offset,
+    has_more,
+    note: total > 0
       ? 'Every fact is damning. The query only determines which facts are most immediately relevant.'
       : 'No facts matched this query. All cheese remains indefensible regardless.',
   })
 })
 
 // GET /facts/all — return every damning cheese fact
-router.get('/all', (_req: Request, res: Response) => {
+router.get('/all', (req: Request, res: Response) => {
+  const paginationResult = parsePagination(req.query as Record<string, unknown>)
+  if ('error' in paginationResult) {
+    res.status(400).json({ error: paginationResult.error })
+    return
+  }
+  const { params } = paginationResult
+
+  const allFacts = facts.map(f => ({
+    id: f.id,
+    text: f.text,
+    category: f.category,
+    severity: f.severity,
+  }))
+
+  const { page, total, limit, offset, has_more } = applyPagination(allFacts, params)
+
   res.json({
-    total: facts.length,
-    facts: facts.map(f => ({
-      id: f.id,
-      text: f.text,
-      category: f.category,
-      severity: f.severity,
-    })),
+    total,
+    limit,
+    offset,
+    has_more,
+    facts: page,
     note: 'Every fact is sourced. Every fact is damning. Cheese is indefensible.',
   })
 })

@@ -181,6 +181,14 @@ describe('GET /facts/all', () => {
     const res = await request(app).get('/facts/all')
     expect(res.status).toBe(200)
     expect(res.body.total).toBeGreaterThanOrEqual(50)
+    // facts is paginated — default limit is 20; use ?limit=100 to get all
+    expect(res.body.facts.length).toBeGreaterThanOrEqual(1)
+  })
+
+  it('returns all facts when limit is set high enough', async () => {
+    const res = await request(app).get('/facts/all?limit=100')
+    expect(res.status).toBe(200)
+    expect(res.body.total).toBeGreaterThanOrEqual(50)
     expect(res.body.facts.length).toBeGreaterThanOrEqual(50)
   })
 })
