@@ -13,6 +13,7 @@ import searchRouter from './routes/search'
 import etymologyRouter from './routes/etymology'
 import timelineRouter from './routes/timeline'
 import severityRouter from './routes/severity'
+import cheeseRouter from './routes/cheese'
 import { generateExplorerHtml } from './lib/explorerHtml'
 
 const app = express()
@@ -74,6 +75,7 @@ app.get('/', (req, res) => {
       'GET /severity/:tier':    'Browse all cheeses at a given threat level (catastrophic / revolting / condemned)',
       'GET /severity/:tier/worst':     'The single most-condemned cheese in a tier',
       'GET /severity/:tier/least-bad': 'The single least-condemned cheese in a tier ("least bad" is not a compliment)',
+      'GET /cheese/:name':       'Full unified condemnation profile — score, severity, verdict, smell, texture, cultural damage, pairings, and roast in a single call',
       'GET /roast':             'Get today\'s daily cheese roast — a different cheese condemned each day',
       'GET /roast/history':     'Browse past N days of roasted cheeses (default 7, max 30)',
       'GET /roast/versus':      'Pit two cheeses against each other — declare the worse offender',
@@ -125,6 +127,9 @@ app.use('/timeline', timelineRouter)
 // GET /severity/:tier — browse cheeses by threat level (catastrophic / revolting / condemned)
 app.use('/severity', severityRouter)
 
+// GET /cheese/:name — unified full-profile condemnation dossier
+app.use('/cheese', cheeseRouter)
+
 // GET /api — endpoint discovery: all routes, parameters, and example responses
 app.use('/api', apiRouter)
 
@@ -138,6 +143,7 @@ app.use((_req, res) => {
       'GET /random-rant',
       'GET /counter',
       'GET /counter/:argument',
+      'GET /cheese/:name',
       'GET /rate',
       'GET /rate/:cheese',
       'GET /verdict',
