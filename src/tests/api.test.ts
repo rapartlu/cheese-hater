@@ -236,6 +236,7 @@ describe('GET /api', () => {
     expect(paths).toContain('/roast/versus')
     expect(paths).toContain('/roast/bracket')
     expect(paths).toContain('/roast/leaderboard')
+    expect(paths).toContain('/roast/submit')
   })
 
   it('all methods are valid HTTP verbs', async () => {

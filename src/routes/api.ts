@@ -46,7 +46,7 @@ export const ENDPOINTS = [
     parameters: [],
     example_response: {
       agent: 'cheese-hater',
-      total_endpoints: 15,
+      total_endpoints: 17,
       endpoints: ['...'],
       note: 'Every one of these endpoints exists to condemn cheese.',
     },
@@ -303,6 +303,31 @@ export const ENDPOINTS = [
         { rank: 1, cheese: 'Gruyère', appearances: 4, last_roasted: '2026-03-23' },
       ],
       note: 'These are the most-condemned cheeses of the past 30 days. A hall of infamy.',
+    },
+  },
+  {
+    method: 'POST',
+    path: '/roast/submit',
+    description: 'Submit any cheese for immediate condemnation. The cheese is roasted on the spot and added to the roast history — joining the permanent record of dairy offenses.',
+    parameters: [
+      {
+        name: 'cheese',
+        location: 'body',
+        type: 'string',
+        required: true,
+        description: 'The name of the cheese to condemn (e.g. "limburger", "stilton"). Unknown cheeses are condemned regardless.',
+      },
+    ],
+    example_request: { cheese: 'limburger' },
+    example_response: {
+      cheese: 'limburger',
+      date: '2026-03-23',
+      roast: 'Limburger is perhaps the most aggressively offensive cheese in existence. Its smell alone constitutes a public health concern.',
+      supporting_facts: [
+        'Limburger develops its characteristic odor from the same bacteria responsible for human foot odor.',
+      ],
+      submitted: true,
+      note: 'This condemnation has been recorded. Limburger will not be forgotten. Nor forgiven.',
     },
   },
 ]
