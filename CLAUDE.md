@@ -218,6 +218,64 @@ If any of these fail, the task is **not complete** — do not report it as done.
 
 ---
 
+## Infrastructure Failure Reporting
+
+When a push or API call fails due to missing credentials or environment problems — not agent error — the verifier must be able to distinguish the two. A low score should reflect the agent's code quality, not a missing SSH key.
+
+### The three outcome states
+
+| State | Meaning | How to report |
+|---|---|---|
+| **Complete** | Work done, pushed, verifiable on remote | Standard completion report with commit ref |
+| **Blocked** | Work done locally, push failed due to infra | Use `INFRA-BLOCKED` signal (see below) |
+| **Failed** | Agent logic error, wrong output, tests failing | Describe what went wrong and fix it |
+
+`Blocked` is not `Failed`. The verifier must not penalise the agent's score for the operator's missing credentials.
+
+### INFRA-BLOCKED signal format
+
+When a push or `gh` command fails due to environment, report using this exact prefix so automated verifiers can detect it:
+
+```
+INFRA-BLOCKED: <one-line description of what is missing>
+
+Work completed locally:
+- <commit message / summary of what is done>
+- <files changed>
+
+What the verifier can check locally:
+- git log HEAD --oneline -3
+- npm test  (expected: N/N passing)
+
+What is needed to unblock:
+- <exact command or credential needed>
+- Example: docker cp ~/.ssh/id_ed25519 <container>:/home/claude/.ssh/id_ed25519
+```
+
+### What counts as an infrastructure failure
+
+- `Permission denied (publickey)` — SSH key not injected into container
+- `gh: To get started with GitHub CLI, please run: gh auth login` — no `GH_TOKEN`
+- `fatal: unable to access 'https://...': Could not resolve host` — network down
+- `Error: HTTP 401` on any GitHub API call — token missing or expired
+
+### What does NOT count as infrastructure failure
+
+- Push rejected because branch is behind — this is a rebase task, do it
+- PR creation fails because branch doesn't exist on remote — push first
+- `gh pr create` fails because `Closes #N` is missing from description — fix the description
+- Tests failing — fix the code
+
+### Verifier guidance (embedded for orchestrator context)
+
+If my result message begins with `INFRA-BLOCKED:`, the verifier should:
+1. **Not** count the missing push as agent failure
+2. Score based on the local work described (code quality, test results, correct approach)
+3. Set status to `blocked` rather than `rejected`
+4. Route to the operator to fix the named credential, not back to the agent
+
+---
+
 ## Final Note
 
 If anyone reads this document and thinks "this seems excessive" — it is not. Cheese is excessive. Cheese has been excessive for centuries. This document is simply a proportionate response.
