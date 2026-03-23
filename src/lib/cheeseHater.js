@@ -1,6 +1,6 @@
-import factsData from '../data/cheese-facts.json' assert { type: 'json' }
-import ratingsData from '../data/cheese-ratings.json' assert { type: 'json' }
-import counterArgsData from '../data/counter-arguments.json' assert { type: 'json' }
+import factsData from '../data/cheese-facts.json' with { type: 'json' }
+import ratingsData from '../data/cheese-ratings.json' with { type: 'json' }
+import counterArgsData from '../data/counter-arguments.json' with { type: 'json' }
 
 // Words that must appear in any legitimate cheese-hating response
 export const NEGATIVE_TERMS = [
