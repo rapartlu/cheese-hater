@@ -53,6 +53,41 @@ export const ENDPOINTS = [
   },
   {
     method: 'GET',
+    path: '/cheese/leaderboard',
+    description: 'Top N most-hated cheeses ranked by score ascending (lower score = more hated). Supports ?limit=N (default 10, max 20). Each entry includes rank, score, severity tier, verdict, one-liner, and full roast.',
+    parameters: [
+      {
+        name: 'limit',
+        location: 'query',
+        type: 'integer',
+        required: false,
+        default: 10,
+        max: 20,
+        description: 'Number of cheeses to return. Capped at 20 — because after 20 entries you will need to lie down.',
+      },
+    ],
+    example_request: 'GET /cheese/leaderboard?limit=3',
+    example_response: {
+      description: 'The most-hated cheeses, ranked by score ascending. Lower score = more hated. There are no winners here.',
+      total_rated: 20,
+      showing: 3,
+      limit: 3,
+      entries: [
+        {
+          rank: 1,
+          cheese: 'Limburger',
+          score: 0.45,
+          severity_tier: 'catastrophic',
+          verdict: 'CATASTROPHIC',
+          one_liner: 'A cheese so pungent it has been banned from public transport.',
+          roast: 'Limburger is not a cheese. It is a biological event...',
+        },
+      ],
+      note: 'All information presented is damning. There is no exculpatory section.',
+    },
+  },
+  {
+    method: 'GET',
     path: '/cheese/:name',
     description: 'Unified full-profile endpoint. Returns every dimension of condemnation for any cheese in a single call: score, severity tier, structured verdict, smell, texture, cultural damage, co-condemned pairings, and a full roast. Unknown cheeses receive generic condemnation — never a 404.',
     parameters: [

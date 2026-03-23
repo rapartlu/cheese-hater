@@ -75,6 +75,7 @@ app.get('/', (req, res) => {
       'GET /severity/:tier':    'Browse all cheeses at a given threat level (catastrophic / revolting / condemned)',
       'GET /severity/:tier/worst':     'The single most-condemned cheese in a tier',
       'GET /severity/:tier/least-bad': 'The single least-condemned cheese in a tier ("least bad" is not a compliment)',
+      'GET /cheese/leaderboard': 'Top N most-hated cheeses ranked by score ascending (lower = worse). Supports ?limit=N (default 10, max 20)',
       'GET /cheese/:name':       'Full unified condemnation profile — score, severity, verdict, smell, texture, cultural damage, pairings, and roast in a single call',
       'GET /roast':             'Get today\'s daily cheese roast — a different cheese condemned each day',
       'GET /roast/history':     'Browse past N days of roasted cheeses (default 7, max 30)',
@@ -127,6 +128,7 @@ app.use('/timeline', timelineRouter)
 // GET /severity/:tier — browse cheeses by threat level (catastrophic / revolting / condemned)
 app.use('/severity', severityRouter)
 
+// GET /cheese/leaderboard — top N most-hated cheeses
 // GET /cheese/:name — unified full-profile condemnation dossier
 app.use('/cheese', cheeseRouter)
 
@@ -143,6 +145,7 @@ app.use((_req, res) => {
       'GET /random-rant',
       'GET /counter',
       'GET /counter/:argument',
+      'GET /cheese/leaderboard',
       'GET /cheese/:name',
       'GET /rate',
       'GET /rate/:cheese',
