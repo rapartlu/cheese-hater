@@ -13,7 +13,7 @@ import searchRouter from './routes/search'
 import etymologyRouter from './routes/etymology'
 import timelineRouter from './routes/timeline'
 import severityRouter from './routes/severity'
-import cheeseRouter from './routes/cheese.js'
+import cheeseRouter from './routes/cheese'
 import { generateExplorerHtml } from './lib/explorerHtml'
 
 const app = express()

@@ -107,7 +107,7 @@ function buildPairings(targetName: string, targetScore: number): Pairing[] {
 
 // GET /cheese/:name — unified full condemnation profile
 router.get('/:name', (req: Request, res: Response) => {
-  const cheeseName = decodeURIComponent(req.params.name).trim()
+  const cheeseName = req.params.name.trim()
 
   const rating = rateCheese(cheeseName)
   const structured = getStructuredVerdict(cheeseName)
