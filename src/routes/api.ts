@@ -644,6 +644,35 @@ export const ENDPOINTS = [
       why_not: 'Understanding how we arrived here does not un-arrive us. The cheese exists. The timeline explains why. It does not excuse it.',
     },
   },
+  {
+    method: 'GET',
+    path: '/timeline/:year',
+    description: 'Returns the single cheese history milestone whose year is closest to the requested year. Accepts any integer, including negative integers for BCE. Equidistant ties go to the earlier event. Invalid (non-integer) year returns 400. does_this_help is always false.',
+    parameters: [
+      {
+        name: 'year',
+        location: 'path',
+        type: 'integer',
+        required: true,
+        description: 'The year to look up. Use negative integers for BCE (e.g. /timeline/-500 for 500 BCE). Any integer is valid — the nearest event is returned regardless of how far away it is.',
+      },
+    ],
+    example_request: 'GET /timeline/1850',
+    example_response: {
+      requested_year: 1850,
+      closest_event: {
+        year: 1851,
+        era: 'Industrial America',
+        event: 'Jesse Williams opens the first American cheese factory in Rome, New York…',
+        significance: 'A country with vast resources decides a major use of them is industrial cheese.',
+        verdict: 'America applies industrialization to cheese. The continent had done nothing to deserve this.',
+        cheese_implicated: null,
+      },
+      distance_years: 1,
+      does_this_help: false,
+      why_not: 'Knowing what was happening with cheese in 1850 CE does not help. It confirms that cheese-related decisions were being made then too, and that they were wrong.',
+    },
+  },
 ]
 
 router.get('/', (_req, res) => {
