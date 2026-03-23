@@ -185,6 +185,135 @@ describe('GET /facts/all', () => {
   })
 })
 
+describe('GET /api', () => {
+  it('returns 200', async () => {
+    const res = await request(app).get('/api')
+    expect(res.status).toBe(200)
+  })
+
+  it('identifies as cheese-hater', async () => {
+    const res = await request(app).get('/api')
+    expect(res.body.agent).toBe('cheese-hater')
+  })
+
+  it('returns an array of endpoints', async () => {
+    const res = await request(app).get('/api')
+    expect(Array.isArray(res.body.endpoints)).toBe(true)
+    expect(res.body.endpoints.length).toBeGreaterThan(0)
+  })
+
+  it('total_endpoints matches the endpoints array length', async () => {
+    const res = await request(app).get('/api')
+    expect(res.body.total_endpoints).toBe(res.body.endpoints.length)
+  })
+
+  it('every endpoint has method, path, and description', async () => {
+    const res = await request(app).get('/api')
+    for (const endpoint of res.body.endpoints) {
+      expect(endpoint.method).toBeTruthy()
+      expect(endpoint.path).toBeTruthy()
+      expect(endpoint.description).toBeTruthy()
+    }
+  })
+
+  it('includes the core routes: /, /health, /opinion, /rate, /facts, /roast', async () => {
+    const res = await request(app).get('/api')
+    const paths: string[] = res.body.endpoints.map((e: { path: string }) => e.path)
+    expect(paths).toContain('/')
+    expect(paths).toContain('/health')
+    expect(paths).toContain('/opinion')
+    expect(paths).toContain('/rate')
+    expect(paths).toContain('/rate/:cheese')
+    expect(paths).toContain('/facts')
+    expect(paths).toContain('/facts/all')
+    expect(paths).toContain('/roast')
+  })
+
+  it('includes the roast sub-routes', async () => {
+    const res = await request(app).get('/api')
+    const paths: string[] = res.body.endpoints.map((e: { path: string }) => e.path)
+    expect(paths).toContain('/roast/history')
+    expect(paths).toContain('/roast/versus')
+    expect(paths).toContain('/roast/bracket')
+    expect(paths).toContain('/roast/leaderboard')
+  })
+
+  it('all methods are valid HTTP verbs', async () => {
+    const res = await request(app).get('/api')
+    const validMethods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
+    for (const endpoint of res.body.endpoints) {
+      expect(validMethods).toContain(endpoint.method)
+    }
+  })
+
+  it('note field expresses contempt for cheese', async () => {
+    const res = await request(app).get('/api')
+    expect(containsNegativeLanguage(res.body.note)).toBe(true)
+  })
+})
+
+describe('GET / HTML explorer (Accept: text/html)', () => {
+  it('returns 200 with Content-Type text/html when browser Accept header is sent', async () => {
+    const res = await request(app)
+      .get('/')
+      .set('Accept', 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8')
+    expect(res.status).toBe(200)
+    expect(res.headers['content-type']).toMatch(/text\/html/)
+  })
+
+  it('HTML page contains DOCTYPE declaration', async () => {
+    const res = await request(app)
+      .get('/')
+      .set('Accept', 'text/html')
+    expect(res.text).toMatch(/<!DOCTYPE html>/i)
+  })
+
+  it('HTML page contains a prominent cheese-hatred declaration', async () => {
+    const res = await request(app)
+      .get('/')
+      .set('Accept', 'text/html')
+    expect(res.text.toLowerCase()).toMatch(/hate|terrible|abomination|condemned/)
+  })
+
+  it('HTML page references the /api endpoint for schema loading', async () => {
+    const res = await request(app)
+      .get('/')
+      .set('Accept', 'text/html')
+    expect(res.text).toContain('/api')
+  })
+
+  it('HTML page contains a Try it interaction mechanism', async () => {
+    const res = await request(app)
+      .get('/')
+      .set('Accept', 'text/html')
+    // The explorer has "Try it" buttons and a fireRequest JS function
+    expect(res.text).toContain('fireRequest')
+  })
+
+  it('returns JSON manifesto when Accept is application/json', async () => {
+    const res = await request(app)
+      .get('/')
+      .set('Accept', 'application/json')
+    expect(res.status).toBe(200)
+    expect(res.headers['content-type']).toMatch(/application\/json/)
+    expect(res.body.hatred_level).toBe('MAXIMUM')
+  })
+
+  it('returns JSON manifesto when no Accept header is sent', async () => {
+    const res = await request(app).get('/')
+    expect(res.status).toBe(200)
+    expect(res.body.name).toBe('cheese-hater')
+    expect(res.body.hatred_level).toBe('MAXIMUM')
+  })
+
+  it('JSON manifesto still lists /api endpoint', async () => {
+    const res = await request(app)
+      .get('/')
+      .set('Accept', 'application/json')
+    expect(res.body.endpoints['GET /api']).toBeTruthy()
+  })
+})
+
 describe('Unknown routes', () => {
   it('returns 404 for unknown GET routes', async () => {
     const res = await request(app).get('/cheese/is/good')
