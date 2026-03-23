@@ -1,15 +1,16 @@
 /**
  * GET /severity/:tier — browse all cheeses at a given threat level.
+ * GET /severity/:tier/worst — the single most-condemned cheese in a tier.
+ * GET /severity/:tier/least-bad — the single least-condemned cheese in a tier.
+ * GET /severity — lists all tiers with counts and descriptions.
  *
  * Valid tiers (the Cheese Threat Advisory Scale):
  *   catastrophic — score < 1.0. The worst of all possible cheeses.
  *   revolting    — score 1.0–1.99. Bad in every measurable way.
  *   condemned    — score 2.0+. Still cheese. Still guilty.
  *
- * Returns cheeses in the tier ranked ascending by score (worst first).
+ * Returns cheeses ranked ascending by score (worst first).
  * Invalid tier names return 400 with the valid tier list and descriptions.
- *
- * GET /severity — lists all tiers with counts and descriptions.
  */
 import { Router, Request, Response } from 'express'
 import { ratings } from '../lib/cheeseHater'
@@ -83,23 +84,100 @@ router.get('/', (_req: Request, res: Response) => {
   })
 })
 
+// ── Shared tier validation helper ────────────────────────────────────────────
+
+function resolveTier(raw: string): string | null {
+  const tier = raw.trim().toLowerCase()
+  return VALID_TIERS.has(tier) ? tier : null
+}
+
+function tierError(raw: string, res: Response): void {
+  res.status(400).json({
+    error: `Unknown severity tier: "${raw}".`,
+    valid_tiers: {
+      catastrophic: `${TIER_ADVISORY.catastrophic.score_range} — ${TIER_ADVISORY.catastrophic.threat_level}`,
+      revolting:    `${TIER_ADVISORY.revolting.score_range} — ${TIER_ADVISORY.revolting.threat_level}`,
+      condemned:    `${TIER_ADVISORY.condemned.score_range} — ${TIER_ADVISORY.condemned.threat_level}`,
+    },
+    note: 'The Cheese Threat Advisory Scale has three levels. All three are bad. Pick one.',
+  })
+}
+
+// ── GET /severity/:tier/worst — the single most-condemned cheese in a tier ───
+
+router.get('/:tier/worst', (req: Request, res: Response) => {
+  const tier = resolveTier(req.params.tier)
+  if (!tier) { tierError(req.params.tier, res); return }
+
+  const advisory = TIER_ADVISORY[tier]
+  const all = buildAllRanked()
+  const inTier = all.filter(e => e.severity_tier === tier)
+
+  const worst = { ...inTier[0], rank_in_tier: 1 }
+  const total = inTier.length
+
+  const notes: Record<string, string> = {
+    catastrophic: 'The worst cheese in the worst tier. This is the terminus of dairy failure. There is nowhere further down to go.',
+    revolting:    'The worst cheese in the revolting tier — which means it is nearly catastrophic. The only thing keeping it here is a decimal point.',
+    condemned:    'The worst cheese in the condemned tier. Still cheese. Still guilty. The tier is mildly less bad than what is above it. This cheese is not.',
+  }
+
+  res.json({
+    tier,
+    position: 'worst',
+    cheese: worst.cheese,
+    score: worst.score,
+    severity_tier: worst.severity_tier,
+    verdict: worst.verdict,
+    why_it_wins: worst.why_it_wins,
+    rank_in_tier: 1,
+    total_in_tier: total,
+    score_range: advisory.score_range,
+    threat_level: advisory.threat_level,
+    note: notes[tier],
+  })
+})
+
+// ── GET /severity/:tier/least-bad — the least-condemned cheese in a tier ─────
+
+router.get('/:tier/least-bad', (req: Request, res: Response) => {
+  const tier = resolveTier(req.params.tier)
+  if (!tier) { tierError(req.params.tier, res); return }
+
+  const advisory = TIER_ADVISORY[tier]
+  const all = buildAllRanked()
+  const inTier = all.filter(e => e.severity_tier === tier)
+
+  const leastBad = inTier[inTier.length - 1]
+  const total = inTier.length
+
+  const notes: Record<string, string> = {
+    catastrophic: 'The least-bad cheese in the catastrophic tier. It is still catastrophic. "Least bad catastrophic" is not a compliment — it is a ranking within a disaster.',
+    revolting:    'The least-bad cheese in the revolting tier. It is still revolting. Proximity to the condemned tier does not make it acceptable. It makes it borderline.',
+    condemned:    'The least-bad cheese in the condemned tier. It is still condemned. "Least bad" is not a compliment. It is the lowest possible praise for the highest possible score in a system where all scores are bad.',
+  }
+
+  res.json({
+    tier,
+    position: 'least-bad',
+    cheese: leastBad.cheese,
+    score: leastBad.score,
+    severity_tier: leastBad.severity_tier,
+    verdict: leastBad.verdict,
+    why_it_wins: leastBad.why_it_wins,
+    rank_in_tier: total,
+    total_in_tier: total,
+    score_range: advisory.score_range,
+    threat_level: advisory.threat_level,
+    note: notes[tier],
+  })
+})
+
 // ── GET /severity/:tier — cheeses at a given threat level ────────────────────
 
 router.get('/:tier', (req: Request, res: Response) => {
-  const raw = req.params.tier.trim().toLowerCase()
-
-  if (!VALID_TIERS.has(raw)) {
-    res.status(400).json({
-      error: `Unknown severity tier: "${req.params.tier}".`,
-      valid_tiers: {
-        catastrophic: `${TIER_ADVISORY.catastrophic.score_range} — ${TIER_ADVISORY.catastrophic.threat_level}`,
-        revolting:    `${TIER_ADVISORY.revolting.score_range} — ${TIER_ADVISORY.revolting.threat_level}`,
-        condemned:    `${TIER_ADVISORY.condemned.score_range} — ${TIER_ADVISORY.condemned.threat_level}`,
-      },
-      note: 'The Cheese Threat Advisory Scale has three levels. All three are bad. Pick one.',
-    })
-    return
-  }
+  const raw = resolveTier(req.params.tier)
+  if (!raw) { tierError(req.params.tier, res); return }
 
   const advisory = TIER_ADVISORY[raw]
   const all = buildAllRanked()
@@ -109,6 +187,10 @@ router.get('/:tier', (req: Request, res: Response) => {
 
   res.json({
     tier: raw,
+    extremes: {
+      worst: `GET /severity/${raw}/worst`,
+      least_bad: `GET /severity/${raw}/least-bad`,
+    },
     label: advisory.label,
     score_range: advisory.score_range,
     threat_level: advisory.threat_level,
