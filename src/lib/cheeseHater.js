@@ -70,9 +70,17 @@ export function containsForbiddenPhrase(text) {
  */
 export function rateCheese(cheeseName) {
   const name = cheeseName.toLowerCase().trim()
-  const known = ratingsData.ratings.find(r => r.name.toLowerCase() === name)
+  const known = ratingsData.cheeses.find(r => r.name.toLowerCase() === name)
 
-  if (known) return known
+  if (known) {
+    return {
+      name: known.name,
+      score: known.aggregate,
+      verdict: known.verdict,
+      review: known.full_review,
+      scores: known.scores,
+    }
+  }
 
   // Unknown cheese — still gets a terrible score
   return {
@@ -126,5 +134,11 @@ export function getFactsBySeverity(minSeverity) {
 }
 
 export const facts = factsData.facts
-export const ratings = ratingsData.ratings
+export const ratings = ratingsData.cheeses.map(r => ({
+  name: r.name,
+  score: r.aggregate,
+  verdict: r.verdict,
+  review: r.full_review,
+  scores: r.scores,
+}))
 export const counterArgs = counterArgsData.arguments
