@@ -53,6 +53,42 @@ export const ENDPOINTS = [
   },
   {
     method: 'GET',
+    path: '/cheese/:name/rank',
+    description: 'Returns a cheese\'s position in the full shame hierarchy: 1-based rank, score, severity tier, percentile of awfulness, up to 3 cheeses it scores worse than, up to 3 it scores better than, and its immediate neighbors in the ranked list. Unknown cheeses are inserted at their default score position.',
+    parameters: [
+      {
+        name: 'name',
+        location: 'path',
+        type: 'string',
+        required: true,
+        description: 'The name of the cheese to rank (e.g. "brie", "gouda"). All cheeses are guilty; this just tells you how guilty.',
+      },
+    ],
+    example_request: 'GET /cheese/brie/rank',
+    example_response: {
+      cheese: 'Brie',
+      rank: 3,
+      total_rated: 20,
+      score: 1.65,
+      severity_tier: 'revolting',
+      percentile_of_awfulness: 85,
+      is_rated: true,
+      worse_than: [
+        { cheese: 'Limburger', score: 0.45, severity_tier: 'catastrophic' },
+      ],
+      better_than: [
+        { cheese: 'Gouda', score: 2.1, severity_tier: 'condemned' },
+      ],
+      nearest_rivals: {
+        above: { cheese: 'Blue Cheese', rank: 2, score: 0.625 },
+        below: { cheese: 'Parmesan', rank: 4, score: 1.88 },
+      },
+      roast: 'Brie is what happens when someone decides that the worst part of milk...',
+      note: 'All information presented is damning. There is no exculpatory section.',
+    },
+  },
+  {
+    method: 'GET',
     path: '/cheese/:name',
     description: 'Unified full-profile endpoint. Returns every dimension of condemnation for any cheese in a single call: score, severity tier, structured verdict, smell, texture, cultural damage, co-condemned pairings, and a full roast. Unknown cheeses receive generic condemnation — never a 404.',
     parameters: [
