@@ -922,6 +922,53 @@ export const ENDPOINTS = [
       note: 'The least-bad cheese in the condemned tier. It is still condemned.',
     },
   },
+  {
+    method: 'GET',
+    path: '/pair',
+    description: 'List all cheeses with documented pairing data. Returns each cheese with its pairing count, a damage_category one-liner, and a link to the detail endpoint. does_this_help is always false.',
+    parameters: [],
+    example_request: 'GET /pair',
+    example_response: {
+      documented_cheeses: [
+        { cheese: 'parmesan', pairing_count: 4, damage_category: 'gym locker garnish', endpoint: '/pair/parmesan' },
+        { cheese: 'brie', pairing_count: 4, damage_category: 'mold-adjacent hospitality', endpoint: '/pair/brie' },
+      ],
+      total: 10,
+      does_this_help: false,
+      why_not: 'Listing cheeses with their conventional pairings does not rehabilitate any of them. Every pairing on this list is documented as a warning, not a recommendation.',
+      usage: 'GET /pair/:cheese — e.g. GET /pair/brie',
+      note: 'Unknown cheeses return a generic response. No cheese returns a 404. All cheese returns does_this_help: false.',
+    },
+  },
+  {
+    method: 'GET',
+    path: '/pair/:cheese',
+    description: 'Get conventional food pairings for any cheese, each explained as a warning. Returns pairings with their conventional rationale and the actual problem with each pairing. does_this_help is always false. Unknown cheeses return a generic response — never a 404.',
+    parameters: [
+      {
+        name: 'cheese',
+        location: 'path',
+        type: 'string',
+        required: true,
+        description: 'The cheese name to look up pairings for. Documented: parmesan, brie, cheddar, gouda, gruyère, halloumi, mozzarella, cottage cheese, ricotta, feta. Any other name returns a generic fallback response.',
+      },
+    ],
+    example_request: 'GET /pair/brie',
+    example_response: {
+      cheese: 'brie',
+      preamble: 'The following pairings are conventional. "Conventional" means people do them. It does not mean they should.',
+      pairings: [
+        {
+          pairing: 'Crackers',
+          conventional_reason: 'The neutral flavour of crackers is said to "let the cheese shine".',
+          actual_problem: 'Letting brie shine means letting the ammonia smell and mold-rind texture shine. The cracker is not a neutral backdrop. It is an accomplice.',
+        },
+      ],
+      recommendation: 'None of these pairings are recommended. They are documented so that you understand what is being done and why it is wrong.',
+      does_this_help: false,
+      why_not: 'Knowing what to pair with brie does not make brie better. It makes the damage more organised.',
+    },
+  },
 ]
 
 router.get('/', (_req, res) => {

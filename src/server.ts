@@ -13,6 +13,7 @@ import searchRouter from './routes/search'
 import etymologyRouter from './routes/etymology'
 import timelineRouter from './routes/timeline'
 import severityRouter from './routes/severity'
+import pairRouter from './routes/pair'
 import cheeseRouter from './routes/cheese'
 import { generateExplorerHtml } from './lib/explorerHtml'
 
@@ -75,6 +76,8 @@ app.get('/', (req, res) => {
       'GET /severity/:tier':    'Browse all cheeses at a given threat level (catastrophic / revolting / condemned)',
       'GET /severity/:tier/worst':     'The single most-condemned cheese in a tier',
       'GET /severity/:tier/least-bad': 'The single least-condemned cheese in a tier ("least bad" is not a compliment)',
+      'GET /pair':              'List all cheeses with documented pairings, pairing counts, and damage categories',
+      'GET /pair/:cheese':      'Conventional food pairings for any cheese, explained as warnings. does_this_help: false. Always.',
       'GET /cheese/:name':       'Full unified condemnation profile — score, severity, verdict, smell, texture, cultural damage, pairings, and roast in a single call',
       'GET /roast':             'Get today\'s daily cheese roast — a different cheese condemned each day',
       'GET /roast/history':     'Browse past N days of roasted cheeses (default 7, max 30)',
@@ -127,6 +130,9 @@ app.use('/timeline', timelineRouter)
 // GET /severity/:tier — browse cheeses by threat level (catastrophic / revolting / condemned)
 app.use('/severity', severityRouter)
 
+// GET /pair — list cheeses with pairing data; GET /pair/:cheese — pairings as warnings
+app.use('/pair', pairRouter)
+
 // GET /cheese/:name — unified full-profile condemnation dossier
 app.use('/cheese', cheeseRouter)
 
@@ -162,6 +168,8 @@ app.use((_req, res) => {
       'GET /severity/:tier',
       'GET /severity/:tier/worst',
       'GET /severity/:tier/least-bad',
+      'GET /pair',
+      'GET /pair/:cheese',
       'GET /roast',
       'GET /roast/history',
       'GET /roast/versus',
