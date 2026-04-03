@@ -922,6 +922,55 @@ export const ENDPOINTS = [
       note: 'The least-bad cheese in the condemned tier. It is still condemned.',
     },
   },
+  {
+    method: 'GET',
+    path: '/glossary',
+    description: 'Returns all documented cheese terminology with pronunciation, literal meaning, and a verdict. Every term defined honestly — each definition strips the euphemism. does_this_help is always false.',
+    parameters: [],
+    example_request: 'GET /glossary',
+    example_response: {
+      description: 'The language of cheese, translated honestly. Every term defined, every definition a warning.',
+      terms: [
+        {
+          term: 'affinage',
+          pronunciation: 'ah-fee-NAHJ',
+          origin_language: 'French',
+          literal_meaning: 'The art and process of maturing and refining cheese',
+          verdict: "A French word for 'we left it in a cave and watched it change' that has been elevated into a profession.",
+          endpoint: '/glossary/affinage',
+        },
+      ],
+      total: 18,
+      does_this_help: false,
+      why_not: 'Knowing the vocabulary of cheese does not improve cheese. It improves your ability to describe why it is bad.',
+    },
+  },
+  {
+    method: 'GET',
+    path: '/glossary/:term',
+    description: 'Full definition for a single cheese term: pronunciation, origin language, literal meaning, what it actually means, used in a sentence, verdict, does_this_help (always false), and why_not. Unknown terms return a generic response — never a 404.',
+    parameters: [
+      {
+        name: 'term',
+        location: 'path',
+        type: 'string',
+        required: true,
+        description: "The cheese term to look up (e.g. 'affinage', 'rennet', 'umami'). Unknown terms return a generic condemnation. URL-encode multi-word terms.",
+      },
+    ],
+    example_request: 'GET /glossary/affinage',
+    example_response: {
+      term: 'affinage',
+      pronunciation: 'ah-fee-NAHJ',
+      origin_language: 'French',
+      literal_meaning: 'The art and process of maturing and refining cheese',
+      what_it_actually_means: "Aging cheese in a controlled environment while monitoring it for weeks or months as bacteria and mold transform its flavor and texture. The word 'art' is doing significant work here.",
+      used_in_a_sentence: "'The affinage on this Comté took 18 months.' Translation: someone spent 18 months in a cold room with cheese.",
+      verdict: "A French word for 'we left it in a cave and watched it change' that has been elevated into a profession.",
+      does_this_help: false,
+      why_not: 'Knowing the correct terminology for cheese aging does not make the aged cheese better.',
+    },
+  },
 ]
 
 router.get('/', (_req, res) => {
