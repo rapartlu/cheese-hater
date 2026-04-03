@@ -922,6 +922,49 @@ export const ENDPOINTS = [
       note: 'The least-bad cheese in the condemned tier. It is still condemned.',
     },
   },
+  {
+    method: 'GET',
+    path: '/stats',
+    description: 'Aggregate condemnation statistics across the full cheese dataset. Returns total cheeses condemned, tier breakdown with percentages, average score, score extremes, per-dimension averages (smell/texture/taste/cultural_damage), and a country-of-origin ranking. Every number here is damning. does_this_help is always false.',
+    parameters: [],
+    example_request: 'GET /stats',
+    example_response: {
+      total_cheeses_condemned: 21,
+      average_condemnation_score: 1.61,
+      score_range: {
+        lowest: 0.13,
+        lowest_cheese: 'Casu Martzu',
+        highest: 2.98,
+        highest_cheese: 'Gouda',
+        note: 'Higher scores indicate marginally less offensive cheese. No cheese has ever scored above 3.0. None will.',
+      },
+      tier_breakdown: [
+        { tier: 'revolting', count: 10, percentage: 47.62 },
+        { tier: 'condemned', count: 7, percentage: 33.33 },
+        { tier: 'catastrophic', count: 4, percentage: 19.05 },
+      ],
+      verdict_breakdown: [
+        { name: 'REVOLTING', count: 10, percentage: 47.62 },
+        { name: 'CONDEMNED', count: 7, percentage: 33.33 },
+        { name: 'CATASTROPHIC', count: 4, percentage: 19.05 },
+      ],
+      dimension_averages: {
+        smell: 1.58,
+        texture: 1.64,
+        taste: 1.71,
+        cultural_damage: 1.52,
+        most_offensive_dimension: 'taste',
+        note: 'All dimensions measured on a 0–10 scale where higher scores indicate more offensive cheese.',
+      },
+      most_condemned_origin: {
+        country: 'Italy',
+        cheese_count: 5,
+        note: 'Italy has contributed 5 cheeses to the condemned register. This is not a compliment.',
+      },
+      does_this_help: false,
+      why_not: 'Statistics do not rehabilitate cheese. They measure how bad it is across 21 confirmed cases.',
+    },
+  },
 ]
 
 router.get('/', (_req, res) => {

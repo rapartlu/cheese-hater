@@ -14,6 +14,7 @@ import etymologyRouter from './routes/etymology'
 import timelineRouter from './routes/timeline'
 import severityRouter from './routes/severity'
 import cheeseRouter from './routes/cheese'
+import statsRouter from './routes/stats'
 import { generateExplorerHtml } from './lib/explorerHtml'
 
 const app = express()
@@ -82,6 +83,7 @@ app.get('/', (req, res) => {
       'GET /roast/bracket':     'Run 4–8 cheeses through a single-elimination tournament of condemnation',
       'GET /roast/leaderboard': 'Top N most-condemned cheeses ranked by 30-day appearance count',
       'POST /roast/submit':     'Submit any cheese for immediate condemnation; appears in /roast/history',
+      'GET /stats':             'Aggregate condemnation statistics — totals, tier breakdown, average score, most-condemned origin, dimension averages',
       'GET /health':            'Confirm the agent is operational and hates cheese',
     },
     note: 'No cheese has ever scored above 1.5/10. No cheese ever will. Visit / in a browser to explore interactively.',
@@ -130,6 +132,9 @@ app.use('/severity', severityRouter)
 // GET /cheese/:name — unified full-profile condemnation dossier
 app.use('/cheese', cheeseRouter)
 
+// GET /stats — aggregate condemnation statistics across the full cheese dataset
+app.use('/stats', statsRouter)
+
 // GET /api — endpoint discovery: all routes, parameters, and example responses
 app.use('/api', apiRouter)
 
@@ -162,6 +167,7 @@ app.use((_req, res) => {
       'GET /severity/:tier',
       'GET /severity/:tier/worst',
       'GET /severity/:tier/least-bad',
+      'GET /stats',
       'GET /roast',
       'GET /roast/history',
       'GET /roast/versus',
